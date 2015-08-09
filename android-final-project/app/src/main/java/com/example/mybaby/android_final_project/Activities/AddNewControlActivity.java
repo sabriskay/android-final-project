@@ -1,13 +1,13 @@
 package com.example.mybaby.android_final_project.Activities;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.mybaby.android_final_project.R;
 
-public class AddNewControlActivity extends AppCompatActivity {
+public class AddNewControlActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,13 +1,13 @@
 package com.example.mybaby.android_final_project.Activities;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.mybaby.android_final_project.R;
 
-public class ProgressActivity extends AppCompatActivity {
+public class ProgressActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
