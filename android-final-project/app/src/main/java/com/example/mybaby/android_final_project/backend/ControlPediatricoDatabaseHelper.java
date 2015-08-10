@@ -16,12 +16,10 @@ import java.util.Date;
 
 public class ControlPediatricoDatabaseHelper extends SQLiteOpenHelper
 {
-    private final static String CREATE_CONTROL_TABLE = "CREATE TABLE CONTROL (id_control INTEGER PRIMARY KEY AUTOINCREMENT, fecha_control TEXT,id_paciente INTEGER, peso NUMERIC, altura NUMERIC, perimetro_cefalico NUMERIC, cantidad_dientes INTEGER, pediatra TEXT, notas TEXT ,fecha_audit NUMERIC )";
+    private final static String CREATE_CONTROL_TABLE = "CREATE TABLE CONTROL (id_control INTEGER PRIMARY KEY AUTOINCREMENT, fecha_control TEXT,id_paciente INTEGER, peso NUMERIC, altura NUMERIC, perimetro_cefalico NUMERIC, cantidad_dientes INTEGER, pediatra TEXT, notas TEXT , id_humor INTEGER,fecha_audit NUMERIC )";
     private final static String CREATE_PACIENTE_TABLE = "CREATE TABLE PACIENTE(id_paciente INTEGER PRIMARY KEY AUTOINCREMENT,nombre TEXT NOT NULL UNIQUE, fecha_nac TEXT,dni INTEGER UNIQUE, sexo TEXT, id_grupo_sanguineo INTEGER, fecha_audit NUMERIC)";
     private final static String CREATE_GRUPO_SANGUINEO_TABLE = "CREATE TABLE GRUPO_SANGUINEO (id_grupo_sanguineo INTEGER PRIMARY KEY AUTOINCREMENT, grupo_factor TEXT UNIQUE )";
     private final static String CREATE_HUMOR_TABLE = "CREATE TABLE HUMOR (id_humor INTEGER PRIMARY KEY AUTOINCREMENT, humor TEXT UNIQUE)";
-    private final static String CREATE_CONTROL_HUMOR_TABLE = "CREATE TABLE HUMORXCONTROL(id_humor INTEGER, id_control INTEGER)";
-
 
     private final static String DATABASE_NAME = "ControlPediatricoDatabase";
     private final static String TABLE_DROP_STATEMENT = "DROP TABLE IF EXISTS ";
@@ -29,7 +27,6 @@ public class ControlPediatricoDatabaseHelper extends SQLiteOpenHelper
     private static final String PACIENTE_TABLE = "PACIENTE" ;
     private static final String GRUPO_SANGUINEO_TABLE = "GRUPO_SANGUINEO";
     private static final String CONTROL_TABLE = "CONTROL";
-    private static final String CONTROL_HUMOR_TABLE= "HUMORXCONTROL";
     private static final String HUMOR_TABLE= "HUMOR";
 
     private Context context;
@@ -64,7 +61,6 @@ public class ControlPediatricoDatabaseHelper extends SQLiteOpenHelper
         db.execSQL(CREATE_HUMOR_TABLE);
         db.execSQL(CREATE_GRUPO_SANGUINEO_TABLE);
         db.execSQL(CREATE_CONTROL_TABLE);
-        db.execSQL(CREATE_CONTROL_HUMOR_TABLE);
         insertDefaultData();
     }
 
@@ -77,7 +73,6 @@ public class ControlPediatricoDatabaseHelper extends SQLiteOpenHelper
         this.getWritableDatabase().execSQL(CREATE_HUMOR_TABLE);
         this.getWritableDatabase().execSQL(CREATE_GRUPO_SANGUINEO_TABLE);
         this.getWritableDatabase().execSQL(CREATE_CONTROL_TABLE);
-        this.getWritableDatabase().execSQL(CREATE_CONTROL_HUMOR_TABLE);
         insertDefaultData();
     }
 
@@ -194,16 +189,6 @@ public class ControlPediatricoDatabaseHelper extends SQLiteOpenHelper
         return datos;
     }
 
-    private void insertControlXHumor(int id_control, int id_humor)
-	{
-    	ContentValues values = new ContentValues();
-    	values.put("id_control", id_control);
-    	values.put("id_humor", id_humor);
-		
-    	getWritableDatabase().insert(CONTROL_HUMOR_TABLE, null, values);
-    	this.close();
-    }
-
 	private void insertHumor()
 	{
         Log.d("Populate Table: ", HUMOR_TABLE);
@@ -253,6 +238,7 @@ public class ControlPediatricoDatabaseHelper extends SQLiteOpenHelper
         while(cursor.moveToNext())
         {
             Log.d("Select Humor: ", cursor.getString(cursor.getColumnIndex("humor")));
+            //agregar a datos
         }
         this.close();
         cursor.close();
@@ -265,6 +251,7 @@ public class ControlPediatricoDatabaseHelper extends SQLiteOpenHelper
         while(c.moveToNext())
         {
             Log.d("HUMOR: ", c.getString(c.getColumnIndex("humor")));
+            //agregar en datos
         }
         this.close();
     }
@@ -279,7 +266,6 @@ public class ControlPediatricoDatabaseHelper extends SQLiteOpenHelper
         this.getWritableDatabase().execSQL(TABLE_DROP_STATEMENT + HUMOR_TABLE);
         this.getWritableDatabase().execSQL(TABLE_DROP_STATEMENT + GRUPO_SANGUINEO_TABLE);
         this.getWritableDatabase().execSQL(TABLE_DROP_STATEMENT + CONTROL_TABLE);
-        this.getWritableDatabase().execSQL(TABLE_DROP_STATEMENT + CONTROL_HUMOR_TABLE);
     }
 
     public String convertLongToDateString(Long date){
