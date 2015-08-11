@@ -1,62 +1,38 @@
 package com.example.mybaby.android_final_project.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 public class Control implements Serializable {
 
     private int id_control;
-    private int id_paciente;
-    private int cantidad_dientes;
-    private String fecha_control;
-    private String pediatra;
-    private String notas;
+    private int id_patient;
+    private int tooth_amount;
+    private Calendar date_control;
+    private float weight;
+    private float height;
+    private float head_circumference;
+    private String pediatrician;
+    private String notes;
+    private Mood mood;
 
-    public Control(int id_control, int id_paciente, int cantidad_dientes, String fecha_control, String pediatra, String notas) {
+    public Control(int id_control, int id_patient, int tooth_amount, Calendar date_control, float weight, float height, float head_circumference, String pediatrician, String notes) {
         this.id_control = id_control;
-        this.id_paciente = id_paciente;
-        this.cantidad_dientes = cantidad_dientes;
-        this.fecha_control = fecha_control;
-        this.pediatra = pediatra;
-        this.notas = notas;
+        this.id_patient = id_patient;
+        this.tooth_amount = tooth_amount;
+        this.date_control = date_control;
+        this.weight = weight;
+        this.height = height;
+        this.head_circumference = head_circumference;
+        this.pediatrician = pediatrician;
+        this.notes = notes;
     }
 
-    public int getId_control() {
-        return id_control;
+    public Mood getMood() {
+        return mood;
     }
 
-    public int getId_paciente() {
-        return id_paciente;
-    }
-
-    public int getCantidad_dientes() {
-        return cantidad_dientes;
-    }
-
-    public void setCantidad_dientes(int cantidad_dientes) {
-        this.cantidad_dientes = cantidad_dientes;
-    }
-
-    public String getFecha_control() {
-        return fecha_control;
-    }
-
-    public void setFecha_control(String fecha_control) {
-        this.fecha_control = fecha_control;
-    }
-
-    public String getPediatra() {
-        return pediatra;
-    }
-
-    public void setPediatra(String pediatra) {
-        this.pediatra = pediatra;
-    }
-
-    public String getNotas() {
-        return notas;
-    }
-
-    public void setNotas(String notas) {
-        this.notas = notas;
+    public void setMood(Mood mood) {
+        this.mood = mood;
     }
 }
