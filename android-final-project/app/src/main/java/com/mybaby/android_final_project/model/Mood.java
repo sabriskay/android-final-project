@@ -1,8 +1,4 @@
-package com.example.mybaby.android_final_project.model;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+package com.mybaby.android_final_project.model;
 
 /**
  * Created by Paula on 10/08/2015.

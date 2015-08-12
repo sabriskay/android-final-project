@@ -1,6 +1,6 @@
-package com.example.mybaby.android_final_project.dao;
+package com.mybaby.android_final_project.dao;
 
-import com.example.mybaby.android_final_project.model.Patient;
+import com.mybaby.android_final_project.model.Patient;
 
 /**
  * Created by paula.garcia on 8/10/2015.

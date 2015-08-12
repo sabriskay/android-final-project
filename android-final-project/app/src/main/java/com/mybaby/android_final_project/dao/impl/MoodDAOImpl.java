@@ -1,15 +1,11 @@
-package com.example.mybaby.android_final_project.dao.impl;
+package com.mybaby.android_final_project.dao.impl;
 
 import android.content.Context;
 
-import com.example.mybaby.android_final_project.backend.PedriatricControlDatabaseHelper;
-import com.example.mybaby.android_final_project.dao.PatientDAO;
-import com.example.mybaby.android_final_project.model.Mood;
-import com.example.mybaby.android_final_project.model.Patient;
+import com.mybaby.android_final_project.backend.PedriatricControlDatabaseHelper;
+import com.mybaby.android_final_project.model.Mood;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by paula.garcia on 8/10/2015.

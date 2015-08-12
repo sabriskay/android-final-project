@@ -1,6 +1,6 @@
-package com.example.mybaby.android_final_project.dao;
+package com.mybaby.android_final_project.dao;
 
-import com.example.mybaby.android_final_project.model.Control;
+import com.mybaby.android_final_project.model.Control;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.mybaby.android_final_project.backend;
+package com.mybaby.android_final_project.backend;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,24 +8,22 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.mybaby.android_final_project.model.Control;
-import com.example.mybaby.android_final_project.model.Mood;
-import com.example.mybaby.android_final_project.model.Patient;
+import com.mybaby.android_final_project.model.Control;
+import com.mybaby.android_final_project.model.Mood;
+import com.mybaby.android_final_project.model.Patient;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
 {
     private final static String CREATE_CONTROL_TABLE = "CREATE TABLE CONTROL (id_control INTEGER PRIMARY KEY AUTOINCREMENT, date_control TEXT,id_patient INTEGER, weight NUMERIC, height NUMERIC, head_circumference  NUMERIC, teeth_amount INTEGER, pediatrician TEXT, notes TEXT , id_mood INTEGER,date_audit NUMERIC )";
-    private final static String CREATE_PATIENT_TABLE = "CREATE TABLE PACIENTE(id_patient INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL UNIQUE, birth_date TEXT,id INTEGER UNIQUE, genre TEXT, id_blood_type INTEGER, date_audit NUMERIC)";
+    private final static String CREATE_PATIENT_TABLE = "CREATE TABLE PATIENT(id_patient INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL UNIQUE, birth_date TEXT,id INTEGER UNIQUE, genre TEXT, id_blood_type INTEGER, date_audit NUMERIC)";
     private final static String CREATE_BLOOD_TYPE_TABLE = "CREATE TABLE BLOOD_TYPE (id_blood_type INTEGER PRIMARY KEY AUTOINCREMENT, group_factor TEXT UNIQUE )";
     private final static String CREATE_MOOD_TABLE = "CREATE TABLE MOOD (id_mood INTEGER PRIMARY KEY AUTOINCREMENT, mood TEXT UNIQUE)";
 
@@ -69,10 +67,11 @@ public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
         db.execSQL(CREATE_MOOD_TABLE);
         db.execSQL(CREATE_BLOOD_TYPE_TABLE);
         db.execSQL(CREATE_CONTROL_TABLE);
-        insertDefaultData();
+        insertDefaultData(db);
     }
 
 
+    //Database created. Used just for testing
     public void onInitializeDB()
     {
 
@@ -81,7 +80,7 @@ public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
         this.getWritableDatabase().execSQL(CREATE_MOOD_TABLE);
         this.getWritableDatabase().execSQL(CREATE_BLOOD_TYPE_TABLE);
         this.getWritableDatabase().execSQL(CREATE_CONTROL_TABLE);
-        insertDefaultData();
+        insertDefaultData(this.getWritableDatabase());
     }
 
     @Override
@@ -111,13 +110,13 @@ public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
         return index;
     }
     
-	public long insertPatient(String name , String birth_date, int id, String sex, int id_blood_type )
+	public long insertPatient(String name , String birth_date, int id, String genre, int id_blood_type )
 	{
-        Log.d("Insert Table: ", PATIENT_TABLE);
+        Log.d("Insert into Table: ", PATIENT_TABLE);
         ContentValues values = new ContentValues();
         values.put("name", name);
         values.put("id_blood_type", id_blood_type);
-        values.put("sex", sex);
+        values.put("genre", genre);
         values.put("id", id);
         values.put("birth_date", birth_date);
         values.put("date_audit", new Date().getTime());
@@ -128,9 +127,9 @@ public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
     }
 
     public Patient getPatient(String name) {
-        String SELECT_QUERY = "SELECT pac.name, pac.sex, pac.id, pac.birth_date, pac.id_patient , pac.id_blood_type "
+        String SELECT_QUERY = "SELECT pac.name, pac.genre, pac.id, pac.birth_date, pac.id_patient , pac.id_blood_type "
                 +" FROM " + PATIENT_TABLE + " pac "
-                + "INNER JOIN " + BLOOD_TYPE_TABLE + " gs ON pac.id_blood_type = gs.id_blood_type "
+                + " INNER JOIN " + BLOOD_TYPE_TABLE + " gs ON pac.id_blood_type = gs.id_blood_type "
                 + " WHERE pac.name='" + name + "'";
 
         Patient data = null;
@@ -199,7 +198,7 @@ public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
         return data;
     }
 
-	private void insertMood()
+	private void insertMood(SQLiteDatabase db)
 	{
         Log.d("Populate Table: ", MOOD_TABLE);
 
@@ -209,13 +208,11 @@ public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
     	for(String value: mood)
 		{
             values.put("mood", value);
-            getWritableDatabase().insert(MOOD_TABLE, null, values);
+            db.insert(MOOD_TABLE, null, values);
         }
-
-    	this.close();
     }
 
-    private void insertBloodType()
+    private void insertBloodType(SQLiteDatabase db)
     {
         Log.d("Populate Table: ", BLOOD_TYPE_TABLE);
         String[] group_factor={"A+","A-","B+","B-","AB+","AB-","0+","0-"};
@@ -223,9 +220,8 @@ public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
         for(String value: group_factor)
         {
             values.put("group_factor", value);
-            getWritableDatabase().insert(BLOOD_TYPE_TABLE, null, values);
+            db.insert(BLOOD_TYPE_TABLE, null, values);
         }
-        this.close();
     }
 
 	/*
@@ -265,13 +261,13 @@ public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
             mood = new Mood(c.getInt(c.getColumnIndex("id_mood")), c.getString(c.getColumnIndex("mood")));
         }
 
-        this.close();
+        c.close();
         return mood;
     }
 
-   private void insertDefaultData(){
-       insertBloodType();
-       insertMood();
+   private void insertDefaultData(SQLiteDatabase db){
+       insertBloodType(db);
+       insertMood(db);
    }
     public void deleteTables(){
         Log.d("Delete Tables: ", DATABASE_NAME);

@@ -1,4 +1,6 @@
-package com.example.mybaby.android_final_project.model;
+package com.mybaby.android_final_project.model;
+
+import com.mybaby.android_final_project.model.Mood;
 
 import java.io.Serializable;
 import java.util.Calendar;

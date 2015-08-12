@@ -1,4 +1,4 @@
-package com.example.mybaby.android_final_project.model;
+package com.mybaby.android_final_project.model;
 
 import java.util.Calendar;
 
