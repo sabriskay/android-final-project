@@ -9,7 +9,7 @@ public class Control implements Serializable {
 
     private int id_control;
     private int id_patient;
-    private int tooth_amount;
+    private int teeth_amount;
     private Calendar date_control;
     private float weight;
     private float height;
@@ -18,10 +18,10 @@ public class Control implements Serializable {
     private String notes;
     private Mood mood;
 
-    public Control(int id_control, int id_patient, int tooth_amount, Calendar date_control, float weight, float height, float head_circumference, String pediatrician, String notes) {
+    public Control(int id_control, int id_patient, int teeth_amount, Calendar date_control, float weight, float height, float head_circumference, String pediatrician, String notes) {
         this.id_control = id_control;
         this.id_patient = id_patient;
-        this.tooth_amount = tooth_amount;
+        this.teeth_amount = teeth_amount;
         this.date_control = date_control;
         this.weight = weight;
         this.height = height;

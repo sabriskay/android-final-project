@@ -20,14 +20,14 @@ import java.util.Date;
 import java.util.List;
 
 
-public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
+public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 {
     private final static String CREATE_CONTROL_TABLE = "CREATE TABLE CONTROL (id_control INTEGER PRIMARY KEY AUTOINCREMENT, date_control TEXT,id_patient INTEGER, weight NUMERIC, height NUMERIC, head_circumference  NUMERIC, teeth_amount INTEGER, pediatrician TEXT, notes TEXT , id_mood INTEGER,date_audit NUMERIC )";
     private final static String CREATE_PATIENT_TABLE = "CREATE TABLE PATIENT(id_patient INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL UNIQUE, birth_date TEXT,id INTEGER UNIQUE, genre TEXT, id_blood_type INTEGER, date_audit NUMERIC)";
     private final static String CREATE_BLOOD_TYPE_TABLE = "CREATE TABLE BLOOD_TYPE (id_blood_type INTEGER PRIMARY KEY AUTOINCREMENT, group_factor TEXT UNIQUE )";
     private final static String CREATE_MOOD_TABLE = "CREATE TABLE MOOD (id_mood INTEGER PRIMARY KEY AUTOINCREMENT, mood TEXT UNIQUE)";
 
-    private final static String DATABASE_NAME = "PedriatricControlDatabase";
+    private final static String DATABASE_NAME = "PediatricControlDatabase";
     private final static String TABLE_DROP_STATEMENT = "DROP TABLE IF EXISTS ";
 
     private static final String PATIENT_TABLE = "PATIENT" ;
@@ -36,25 +36,25 @@ public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
     private static final String MOOD_TABLE = "MOOD";
 
     private Context context;
-    private static PedriatricControlDatabaseHelper databaseInstance;
+    private static PediatricControlDatabaseHelper databaseInstance;
 
 
-    public static PedriatricControlDatabaseHelper getDatabaseInstance(Context context)
+    public static PediatricControlDatabaseHelper getDatabaseInstance(Context context)
     {
     	if(databaseInstance == null)
     	{
-    		databaseInstance = new PedriatricControlDatabaseHelper(context.getApplicationContext());
+    		databaseInstance = new PediatricControlDatabaseHelper(context.getApplicationContext());
     	}
     	return databaseInstance;
     }
 
-    public PedriatricControlDatabaseHelper(Context context, String name, CursorFactory factory, int version)
+    public PediatricControlDatabaseHelper(Context context, String name, CursorFactory factory, int version)
     {
         super(context, name, factory, version);
         this.context = context;
     }
 
-    private PedriatricControlDatabaseHelper(Context context)
+    private PediatricControlDatabaseHelper(Context context)
     {
     	super(context, DATABASE_NAME, null, 1);
     }
@@ -98,7 +98,7 @@ public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
     	values.put("id_patient", id_patient);
 		values.put("weight", weight);
 		values.put("height", height);
-		values.put("head_circumference ", head_circumference );
+		values.put("head_circumference", head_circumference );
 		values.put("teeth_amount", teeth_amount);
 		values.put("notes", notes);
 		values.put("date_audit",  new Date().getTime());
@@ -151,51 +151,51 @@ public class PedriatricControlDatabaseHelper extends SQLiteOpenHelper
 
     public List<Control> getAllControl()
     {
-        List<Control> result = new ArrayList<Control>();
+        List<Control> controlList = new ArrayList<Control>();
 
-        String SELECT_QUERY = "SELECT control.*, pac.name FROM "+ CONTROL_TABLE +" control INNER JOIN "+ PATIENT_TABLE +" pac ON control.id_patient = pac.id_patient "
-                             +" Order By control.date_control desc";
+        String SELECT_QUERY = "SELECT control.*, pac.name, mood.mood FROM "+ CONTROL_TABLE +" control INNER JOIN "+ PATIENT_TABLE +" pac ON control.id_patient = pac.id_patient "
+                +" INNER JOIN "+ MOOD_TABLE + " mood ON control.id_mood = mood.id_mood "
+                +" Order By control.date_control desc";
         Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
         {
-            Control data = new Control(c.getInt(c.getColumnIndex("id_control")),
-                    c.getInt(c.getColumnIndex("id_patient")),
-                    c.getInt(c.getColumnIndex("teeth_amount")),
-                    convertStringToCalendar(c.getString(c.getColumnIndex("date_control"))),
-                    c.getFloat(c.getColumnIndex("weight")),
-                    c.getFloat(c.getColumnIndex("height")),
-                    c.getFloat(c.getColumnIndex("head_circumference ")),
-                    c.getString(c.getColumnIndex("pediatrician")),
-                    c.getString(c.getColumnIndex("notes")));
-            data.setMood(new Mood(c.getInt(c.getColumnIndex("id_mood")),
-                    c.getString(c.getColumnIndex("mood"))));
-            result.add(data);
+            Control data = getControl(c);
+            controlList.add(data);
         }
 
         c.close();
-        return result;
+        return controlList;
     }
 
-    public String[] getControl(int id_control) {
-        String SELECT_QUERY = "SELECT * FROM " + CONTROL_TABLE + " WHERE id_control= " + id_control;
+    private Control getControl(Cursor c) {
+        Control data = new Control(c.getInt(c.getColumnIndex("id_control")),
+                c.getInt(c.getColumnIndex("id_patient")),
+                c.getInt(c.getColumnIndex("teeth_amount")),
+                convertStringToCalendar(c.getString(c.getColumnIndex("date_control"))),
+                c.getFloat(c.getColumnIndex("weight")),
+                c.getFloat(c.getColumnIndex("height")),
+                c.getFloat(c.getColumnIndex("head_circumference")),
+                c.getString(c.getColumnIndex("pediatrician")),
+               c.getString(c.getColumnIndex("notes")));
+        data.setMood(new Mood(c.getInt(c.getColumnIndex("id_mood")),
+                c.getString(c.getColumnIndex("mood"))));
+        return data;
+    }
 
-        String[] data = null;
+    public Control getControl(int id_control) {
+        String SELECT_QUERY = "SELECT control.*,mood.mood FROM " + CONTROL_TABLE
+                + " control INNER JOIN  MOOD mood on control.id_mood=mood.id_mood "
+                +" WHERE id_control= " + id_control;
+
+        Control control = null;
         Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
         if (c != null && c.getCount() > 0) {
             if (c.moveToFirst()) {
-                data = new String[]{
-                        c.getString(c.getColumnIndex("date_control")),
-                        c.getString(c.getColumnIndex("weight")),
-                        c.getString(c.getColumnIndex("height")),
-                        c.getString(c.getColumnIndex("head_circumference ")),
-                        c.getString(c.getColumnIndex("teeth_amount")),
-                        c.getString(c.getColumnIndex("notes")),
-                        c.getString(c.getColumnIndex("pediatrician")),
-                        c.getString(c.getColumnIndex("id_control"))};
+                control = getControl(c);
             }
         }
         this.close();
-        return data;
+        return control;
     }
 
 	private void insertMood(SQLiteDatabase db)
