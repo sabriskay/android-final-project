@@ -28,8 +28,8 @@
             android:label="@string/title_activity_progress" >
         </activity>
         <activity
-            android:name=".activities.PerfilActivity"
-            android:label="@string/title_activity_perfil" >
+            android:name=".activities.ProfileActivity"
+            android:label="@string/title_activity_profile" >
         </activity>
         <activity
             android:name=".activities.ControlHistoryActivity"

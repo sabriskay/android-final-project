@@ -2,7 +2,7 @@ package com.mybaby.android_final_project.dao.impl;
 
 import android.content.Context;
 
-import com.mybaby.android_final_project.backend.PedriatricControlDatabaseHelper;
+import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
 import com.mybaby.android_final_project.dao.PatientDAO;
 import com.mybaby.android_final_project.model.Patient;
 
@@ -11,7 +11,7 @@ import com.mybaby.android_final_project.model.Patient;
  */
 public class PatientDAOImpl implements PatientDAO{
 
-    PedriatricControlDatabaseHelper pedriatricControlDatabaseHelper;
+    PediatricControlDatabaseHelper pediatricControlDatabaseHelper;
 
     public PatientDAOImpl(Context context){
 
@@ -19,8 +19,13 @@ public class PatientDAOImpl implements PatientDAO{
 
     @Override
     public Patient getPatient(String name) {
-        Patient patient = pedriatricControlDatabaseHelper.getPatient(name);
+        Patient patient = pediatricControlDatabaseHelper.getPatient(name);
         return null;
+    }
+
+    @Override
+    public void addPatiente(String nombre, String fecha_nac, int DNI, String sexo, int id_grupo_sanguineo) {
+
     }
 
     @Override

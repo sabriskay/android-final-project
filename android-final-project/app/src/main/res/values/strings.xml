@@ -6,6 +6,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_add_new_control">AddNewControlActivity</string>
     <string name="title_activity_progress">ProgressActivity</string>
-    <string name="title_activity_perfil">PerfilActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_history_control">HistoryControlActivity</string>
 </resources>

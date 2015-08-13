@@ -7,7 +7,7 @@ import android.view.MenuItem;
 
 import com.mybaby.android_final_project.R;
 
-public class PerfilActivity extends Activity {
+public class ProfileActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class PerfilActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_perfil, menu);
+        getMenuInflater().inflate(R.menu.menu_profile, menu);
         return true;
     }
 
