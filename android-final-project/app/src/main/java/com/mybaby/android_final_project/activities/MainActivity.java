@@ -1,4 +1,4 @@
-package com.example.mybaby.android_final_project.activities;
+package com.mybaby.android_final_project.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
