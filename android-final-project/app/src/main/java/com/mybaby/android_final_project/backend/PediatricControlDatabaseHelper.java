@@ -101,7 +101,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 		values.put("head_circumference", head_circumference );
 		values.put("teeth_amount", teeth_amount);
 		values.put("notes", notes);
-		values.put("date_audit",  new Date().getTime());
+		values.put("date_audit", new Date().getTime());
 		values.put("pediatrician", pediatrician);
         values.put("id_mood", id_mood);
 
@@ -144,7 +144,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
                         c.getInt(c.getColumnIndex("id_blood_type")));
             }
         }
-        c.close();
+        this.close();
         return data;
 
     }
@@ -159,27 +159,12 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
         {
-            Control data = getControl(c);
+            Control data = createControl(c);
             controlList.add(data);
         }
 
-        c.close();
+        this.close();
         return controlList;
-    }
-
-    private Control getControl(Cursor c) {
-        Control data = new Control(c.getInt(c.getColumnIndex("id_control")),
-                c.getInt(c.getColumnIndex("id_patient")),
-                c.getInt(c.getColumnIndex("teeth_amount")),
-                convertStringToCalendar(c.getString(c.getColumnIndex("date_control"))),
-                c.getFloat(c.getColumnIndex("weight")),
-                c.getFloat(c.getColumnIndex("height")),
-                c.getFloat(c.getColumnIndex("head_circumference")),
-                c.getString(c.getColumnIndex("pediatrician")),
-               c.getString(c.getColumnIndex("notes")));
-        data.setMood(new Mood(c.getInt(c.getColumnIndex("id_mood")),
-                c.getString(c.getColumnIndex("mood"))));
-        return data;
     }
 
     public Control getControl(int id_control) {
@@ -191,12 +176,28 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
         if (c != null && c.getCount() > 0) {
             if (c.moveToFirst()) {
-                control = getControl(c);
+                control = createControl(c);
             }
         }
         this.close();
         return control;
     }
+    public Control getLastControl() {
+        String SELECT_QUERY = "SELECT id_control FROM " + CONTROL_TABLE
+                +" ORDER BY date_control desc limit 1 ";
+
+        Control control = null;
+        Cursor cursor = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
+        if (cursor != null && cursor.getCount() > 0) {
+            if (cursor.moveToFirst()) {
+                control = getControl(cursor.getInt(cursor.getColumnIndex("id_control")));
+            }
+        }
+        this.close();
+        return control;
+    }
+
+
 
 	private void insertMood(SQLiteDatabase db)
 	{
@@ -210,6 +211,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
             values.put("mood", value);
             db.insert(MOOD_TABLE, null, values);
         }
+
     }
 
     private void insertBloodType(SQLiteDatabase db)
@@ -229,11 +231,12 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
     {
     	String[] args = new String[] {username, password};
 		Cursor c = getReadableDatabase().query(DATABASE_NAME_NEWS_TABLE, null, "username=? AND password=?", args, null, null, null); //Select null from users where username = ? and password =?
-        this.close();
+
 
     	if (c.getCount()> 0){
             return true;
         }
+        this.close();
         return false;
     }*/
 
@@ -248,7 +251,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
             data.add(mood);
         }
 
-        cursor.close();
+        this.close();
         return data;
     }
 
@@ -265,10 +268,31 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         return mood;
     }
 
-   private void insertDefaultData(SQLiteDatabase db){
-       insertBloodType(db);
-       insertMood(db);
-   }
+    private Control createControl(Cursor c) {
+        Control data = new Control(c.getInt(c.getColumnIndex("id_control")),
+                c.getInt(c.getColumnIndex("id_patient")),
+                c.getInt(c.getColumnIndex("teeth_amount")),
+                convertStringToCalendar(c.getString(c.getColumnIndex("date_control"))),
+                c.getFloat(c.getColumnIndex("weight")),
+                c.getFloat(c.getColumnIndex("height")),
+                c.getFloat(c.getColumnIndex("head_circumference")),
+                c.getString(c.getColumnIndex("pediatrician")),
+                c.getString(c.getColumnIndex("notes")),c.getInt(c.getColumnIndex("id_mood")));
+        data.setMood(new Mood(c.getInt(c.getColumnIndex("id_mood")),
+                c.getString(c.getColumnIndex("mood"))));
+        return data;
+    }
+
+    public int deleteControl(int idControl) {
+        int rowsDeleted = getWritableDatabase().delete(CONTROL_TABLE, "id_Control = "+idControl,null );
+        return rowsDeleted;
+    }
+
+    private void insertDefaultData(SQLiteDatabase db){
+        insertBloodType(db);
+        insertMood(db);
+    }
+
     public void deleteTables(){
         Log.d("Delete Tables: ", DATABASE_NAME);
         this.getWritableDatabase().execSQL(TABLE_DROP_STATEMENT + PATIENT_TABLE);
@@ -276,6 +300,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         this.getWritableDatabase().execSQL(TABLE_DROP_STATEMENT + BLOOD_TYPE_TABLE);
         this.getWritableDatabase().execSQL(TABLE_DROP_STATEMENT + CONTROL_TABLE);
     }
+
 
     public Calendar convertStringToCalendar(String date){
         Calendar cal = Calendar.getInstance();
@@ -287,4 +312,5 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         }
         return cal;
 	}
+
 }

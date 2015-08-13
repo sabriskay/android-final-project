@@ -24,6 +24,11 @@ public class PatientDAOImpl implements PatientDAO{
     }
 
     @Override
+    public void addPatiente(String nombre, String fecha_nac, int DNI, String sexo, int id_grupo_sanguineo) {
+
+    }
+
+    @Override
     public void updatePatient(Patient patient) {
 
     }

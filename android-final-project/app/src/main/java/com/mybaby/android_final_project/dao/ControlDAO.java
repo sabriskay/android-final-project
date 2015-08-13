@@ -24,5 +24,10 @@ public interface ControlDAO {
     public int updateControl(Control Control);
 
     // Deleting single Control
-    public void deleteControl(Control Control);
+    public int deleteControl(int id);
+
+
+    // Getting single Last Control
+    public Control getLastControl();
+
 }

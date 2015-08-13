@@ -12,14 +12,14 @@ import java.util.List;
  */
 public class MoodDAOImpl {
 
-    private PediatricControlDatabaseHelper pediatricControlDatabaseHelper;
+    private Context context;
 
     public MoodDAOImpl(Context context){
-
+        context = context;
     }
 
     public List<Mood> getAllMoods() {
-        List<Mood> mood = pediatricControlDatabaseHelper.getAllMood();
+        List<Mood> mood =  PediatricControlDatabaseHelper.getDatabaseInstance(context).getAllMood();
         return mood;
     }
 }
