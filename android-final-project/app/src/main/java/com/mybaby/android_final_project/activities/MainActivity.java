@@ -1,11 +1,11 @@
-package com.example.mybaby.android_final_project.Activities;
+package com.mybaby.android_final_project.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.mybaby.android_final_project.R;
+import com.mybaby.android_final_project.R;
 
 public class MainActivity extends Activity {
 

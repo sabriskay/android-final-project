@@ -1,24 +1,24 @@
-package com.example.mybaby.android_final_project.Activities;
+package com.mybaby.android_final_project.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.mybaby.android_final_project.R;
+import com.mybaby.android_final_project.R;
 
-public class ControlHistoryActivity extends Activity {
+public class AddNewControlActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_control_history);
+        setContentView(R.layout.activity_add_new_control);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_history_control, menu);
+        getMenuInflater().inflate(R.menu.menu_add_new_control, menu);
         return true;
     }
 
