@@ -24,7 +24,7 @@ public class MainActivityTestBackend extends Activity {
         PediatricControlDatabaseHelper.getDatabaseInstance(this).getAllMood();
 
         PediatricControlDatabaseHelper.getDatabaseInstance(this).insertPatient("a1", "2015-01-01", 12345678, "F", 1);
-        PediatricControlDatabaseHelper.getDatabaseInstance(this).getPatient("a1");
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).getPatient(1);
         PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl("2015-01-01", 1, 3.5f, 30.3f, 30.1f, 2, "Angela", "factor AG", 1);
         PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl("2015-03-01", 1, 5.5f, 60.6f, 70.7f, 3, "Beatriz", "volver en 15", 1);
         PediatricControlDatabaseHelper.getDatabaseInstance(this).getAllControl();

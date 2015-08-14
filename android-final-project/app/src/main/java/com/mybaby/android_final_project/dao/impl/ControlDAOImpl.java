@@ -4,7 +4,9 @@ import android.content.Context;
 
 import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
 import com.mybaby.android_final_project.dao.ControlDAO;
+import com.mybaby.android_final_project.dao.PatientDAO;
 import com.mybaby.android_final_project.model.Control;
+import com.mybaby.android_final_project.model.Patient;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,7 +18,8 @@ import java.util.List;
  */
 public class ControlDAOImpl implements ControlDAO {
 
-    Context context;
+    private Context context;
+    private PatientDAOImpl patientDAO;
 
     public ControlDAOImpl(Context context){
         context = context;
@@ -58,7 +61,10 @@ public class ControlDAOImpl implements ControlDAO {
 
     @Override
     public Control getLastControl() {
-        return PediatricControlDatabaseHelper.getDatabaseInstance(context).getLastControl();
+        Control lastControl = PediatricControlDatabaseHelper.getDatabaseInstance(context).getLastControl();
+        PatientDAO patient = new PatientDAOImpl(this.context);
+        lastControl.setPatient(patient.getPatient(lastControl.getIdPatient()));
+        return lastControl;
     }
 
     public String convertCalendarToString(Calendar date) {

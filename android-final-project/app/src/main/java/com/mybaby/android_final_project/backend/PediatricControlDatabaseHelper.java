@@ -126,11 +126,11 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         return index;
     }
 
-    public Patient getPatient(String name) {
+    public Patient getPatient(int id_patient) {
         String SELECT_QUERY = "SELECT pac.name, pac.genre, pac.id, pac.birth_date, pac.id_patient , pac.id_blood_type "
                 +" FROM " + PATIENT_TABLE + " pac "
                 + " INNER JOIN " + BLOOD_TYPE_TABLE + " gs ON pac.id_blood_type = gs.id_blood_type "
-                + " WHERE pac.name='" + name + "'";
+                + " WHERE pac.id_patient=" + id_patient;
 
         Patient data = null;
         Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);

@@ -12,14 +12,14 @@ import com.mybaby.android_final_project.model.Patient;
 public class PatientDAOImpl implements PatientDAO{
 
     PediatricControlDatabaseHelper pediatricControlDatabaseHelper;
-
+    Context context;
     public PatientDAOImpl(Context context){
-
+        context= context;
     }
 
     @Override
-    public Patient getPatient(String name) {
-        Patient patient = pediatricControlDatabaseHelper.getPatient(name);
+    public Patient getPatient(int idPatient) {
+        Patient patient = pediatricControlDatabaseHelper.getPatient(idPatient);
         return null;
     }
 
