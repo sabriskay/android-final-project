@@ -8,4 +8,17 @@
     <string name="title_activity_progress">ProgressActivity</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="title_activity_history_control">HistoryControlActivity</string>
+
+    <!--main-->
+    <string name="title_list_last_visit">Last visit</string>
+    <string name="title_list_last_date">Date: </string>
+    <string name="title_list_last_size">Size: </string>
+    <string name="title_list_last_weight">Weight: </string>
+    <string name="title_list_last_note">Notes: </string>
+
+    <string name="button_profile_text">Profile</string>
+    <string name="button_process_text">Process</string>
+    <string name="button_new_control_text">New Control</string>
+    <string name="button_control_history_text">Controls</string>
+
 </resources>
