@@ -8,7 +8,7 @@ import com.mybaby.android_final_project.model.Patient;
 public interface PatientDAO {
 
     public Patient getPatient(int idPatient);
-    public void addPatiente(String nombre , String fecha_nac, int DNI, String sexo, int id_grupo_sanguineo);
+    public void addPatient(Patient patient);
     public void updatePatient(Patient patient);
-    public void deletePatient(Patient patient);
+    public void deletePatient(int idPatient);
 }

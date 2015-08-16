@@ -19,10 +19,9 @@ import java.util.List;
 public class ControlDAOImpl implements ControlDAO {
 
     private Context context;
-    private PatientDAOImpl patientDAO;
 
     public ControlDAOImpl(Context context){
-        context = context;
+        this.context = context;
     }
 
     @Override
@@ -61,10 +60,7 @@ public class ControlDAOImpl implements ControlDAO {
 
     @Override
     public Control getLastControl() {
-        Control lastControl = PediatricControlDatabaseHelper.getDatabaseInstance(context).getLastControl();
-        PatientDAO patient = new PatientDAOImpl(this.context);
-        lastControl.setPatient(patient.getPatient(lastControl.getIdPatient()));
-        return lastControl;
+        return PediatricControlDatabaseHelper.getDatabaseInstance(context).getLastControl();
     }
 
     public String convertCalendarToString(Calendar date) {

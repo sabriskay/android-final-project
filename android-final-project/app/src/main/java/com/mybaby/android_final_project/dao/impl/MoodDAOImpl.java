@@ -15,7 +15,7 @@ public class MoodDAOImpl {
     private Context context;
 
     public MoodDAOImpl(Context context){
-        context = context;
+        this.context = context;
     }
 
     public List<Mood> getAllMoods() {
