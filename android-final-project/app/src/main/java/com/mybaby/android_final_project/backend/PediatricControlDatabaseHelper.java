@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.mybaby.android_final_project.model.BloodGroup;
 import com.mybaby.android_final_project.model.Control;
 import com.mybaby.android_final_project.model.Mood;
 import com.mybaby.android_final_project.model.Patient;
@@ -37,7 +38,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 
     private Context context;
     private static PediatricControlDatabaseHelper databaseInstance;
-
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
     public static PediatricControlDatabaseHelper getDatabaseInstance(Context context)
     {
@@ -110,15 +111,15 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         return index;
     }
     
-	public long insertPatient(String name , String birth_date, int id, String genre, int id_blood_type )
+	public long insertPatient(Patient patient)
 	{
         Log.d("Insert into Table: ", PATIENT_TABLE);
         ContentValues values = new ContentValues();
-        values.put("name", name);
-        values.put("id_blood_type", id_blood_type);
-        values.put("genre", genre);
-        values.put("id", id);
-        values.put("birth_date", birth_date);
+        values.put("name", patient.getName());
+        values.put("id_blood_type", patient.getIdBloodGroup());
+        values.put("genre", patient.getGenre());
+        values.put("id", patient.getid());
+        values.put("birth_date", convertCalendarToString(patient.getBirthDate()));
         values.put("date_audit", new Date().getTime());
 
         long index = getWritableDatabase().insert(PATIENT_TABLE, null, values);
@@ -126,11 +127,33 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         return index;
     }
 
-    public Patient getPatient(String name) {
+    public int updatePatient(Patient patient) {
+        Log.d("Update into Table: ", PATIENT_TABLE);
+
+        ContentValues values = new ContentValues();
+        values.put("name", patient.getName());
+        values.put("id_blood_type", patient.getIdBloodGroup());
+        values.put("genre", patient.getGenre());
+        values.put("id", patient.getid());
+        values.put("birth_date", convertCalendarToString(patient.getBirthDate()));
+
+        int rowUpdated = getWritableDatabase().update(PATIENT_TABLE, values, "id_patient = " + patient.getIdPatient(), null);
+        this.close();
+        return rowUpdated;
+    }
+
+    public int deletePatient(int idPatient) {
+        Log.d("Delete into Table: ", PATIENT_TABLE);
+
+        int rowDeleted = getWritableDatabase().delete(PATIENT_TABLE, "id_patient = " + idPatient, null);
+        return rowDeleted;
+    }
+
+    public Patient getPatient(int id_patient) {
         String SELECT_QUERY = "SELECT pac.name, pac.genre, pac.id, pac.birth_date, pac.id_patient , pac.id_blood_type "
                 +" FROM " + PATIENT_TABLE + " pac "
                 + " INNER JOIN " + BLOOD_TYPE_TABLE + " gs ON pac.id_blood_type = gs.id_blood_type "
-                + " WHERE pac.name='" + name + "'";
+                + " WHERE pac.id_patient=" + id_patient;
 
         Patient data = null;
         Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
@@ -255,6 +278,21 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         return data;
     }
 
+    public List<BloodGroup> getAllBloodType() {
+        List<BloodGroup> data = new ArrayList<>();
+        Cursor cursor =  getReadableDatabase().query(BLOOD_TYPE_TABLE, null, null, null, null, null, null);
+
+        while(cursor.moveToNext())
+        {
+            Log.d("Select group_factor: ", cursor.getString(cursor.getColumnIndex("group_factor")));
+            BloodGroup bloodGroup = new BloodGroup(cursor.getInt(cursor.getColumnIndex("id_blood_type")),cursor.getString(cursor.getColumnIndex("group_factor")));
+            data.add(bloodGroup);
+        }
+
+        this.close();
+        return data;
+    }
+
     public Mood getMoodByName(String name) {
         Mood mood = null;
         Cursor c = getReadableDatabase().query(MOOD_TABLE, new String[]{"mood"}, null, null, null, null, null);
@@ -304,13 +342,16 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 
     public Calendar convertStringToCalendar(String date){
         Calendar cal = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            cal.setTime(dateFormat.parse(date));
+            cal.setTime(DATE_FORMAT.parse(date));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return cal;
 	}
+
+    public String convertCalendarToString(Calendar calendar) {
+        return DATE_FORMAT.format(calendar.getTime());
+    }
 
 }
