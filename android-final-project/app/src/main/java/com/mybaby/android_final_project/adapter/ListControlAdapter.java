@@ -1,6 +1,5 @@
 package com.mybaby.android_final_project.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,32 +9,28 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.mybaby.android_final_project.R;
-import com.mybaby.android_final_project.activities.MainActivity;
-import com.mybaby.android_final_project.dao.ControlDAO;
 import com.mybaby.android_final_project.dao.impl.ControlDAOImpl;
 import com.mybaby.android_final_project.model.Control;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Created by Paula on 10/08/2015.
- */
-public class LastControlAdapter extends BaseAdapter {
+public class ListControlAdapter extends BaseAdapter {
 
     Context ctx;
-    ControlDAOImpl control;
+   // ControlDAOImpl control;
+    ArrayList<Control> control;
     LayoutInflater inflater;
 
-
-    public LastControlAdapter(MainActivity ctx, ControlDAO controlDAOImpl) {
+    public ListControlAdapter(Context ctx ,  ControlDAOImpl controlDAOImpl) {
         super();
         this.ctx= ctx;
-        this.control = control;
-        this.inflater = ((Activity) ctx).getLayoutInflater();
+        this.control = (ArrayList<Control>) controlDAOImpl.getAllControls();
+       // this.inflater = ((Activity) ctx).getLayoutInflater();
     }
 
     @Override
-       public int getCount() {
+    public int getCount() {
         return 0;
     }
 
@@ -52,19 +47,17 @@ public class LastControlAdapter extends BaseAdapter {
 
     @Override
     public View getView(int index, View view, ViewGroup parent) {
-        Control lastVisit =control.getLastControl();
+        // view = View.inflate(ctx, R.layout.tv_content_control_progress, null);
+        TextView controlTv = (TextView) view.findViewById(R.id.tv_control);
 
-       // view = View.inflate(ctx, R.layout.view_adapter, null);
-        //TextView nameTxt = (TextView) view.findViewById(R.id.lastVisit);
-        //nameTxt.setText(lastVisit.getPatient().getName());
-        //Log.d("LOG", "Indice:" + index);
-        //return view;
-        return null;
+        controlTv.setText(control.get(index).getPediatrician());
+        Log.d("LOG", "Indice:" + index);
+        return view;
     }
 
     public void deleteItem(int index)
     {
-        this.control.deleteControl(index);
+        //this.control.deleteControl(index);
     }
 
 }

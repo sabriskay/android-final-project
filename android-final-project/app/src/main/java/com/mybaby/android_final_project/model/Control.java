@@ -16,6 +16,7 @@ public class Control implements Serializable {
     private String notes;
     private int idMood;
     private Mood mood;
+    private Patient patient;
 
     public Control(int idControl, int idPatient, int teeth_amount, Calendar date_control, float weight, float height, float headCircumference, String pediatrician, String notes, int idMood) {
         this.idControl = idControl;
@@ -117,4 +118,11 @@ public class Control implements Serializable {
     public void setIdControl(int idControl) {
         this.idControl = idControl;
     }
+
+    public Patient getPatient() {
+        return patient;
+    }
+     public void setPatient(Patient patient){
+         patient = patient;
+     }
 }

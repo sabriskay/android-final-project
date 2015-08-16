@@ -4,7 +4,9 @@ import android.content.Context;
 
 import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
 import com.mybaby.android_final_project.dao.ControlDAO;
+import com.mybaby.android_final_project.dao.PatientDAO;
 import com.mybaby.android_final_project.model.Control;
+import com.mybaby.android_final_project.model.Patient;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,10 +18,10 @@ import java.util.List;
  */
 public class ControlDAOImpl implements ControlDAO {
 
-    Context context;
+    private Context context;
 
     public ControlDAOImpl(Context context){
-        context = context;
+        this.context = context;
     }
 
     @Override

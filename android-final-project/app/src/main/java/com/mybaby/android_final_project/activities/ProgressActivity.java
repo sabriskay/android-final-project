@@ -7,6 +7,9 @@ import android.view.MenuItem;
 
 import com.mybaby.android_final_project.R;
 
+/**
+ * Created by SabrinaKay on 08/08/2015.
+ */
 public class ProgressActivity extends Activity {
 
     @Override
