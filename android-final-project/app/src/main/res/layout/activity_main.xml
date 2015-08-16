@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:text="@string/title_list_last_date"
+            android:text="@string/title_list_date"
             android:paddingRight="31dp"
             android:layout_marginBottom="10dp"/>
 
@@ -43,7 +43,6 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:text="03/02/2015"/>
-
     </LinearLayout>
 
     <LinearLayout
@@ -59,7 +58,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:text="@string/title_list_last_size"
+            android:text="@string/title_list_size"
             android:layout_marginBottom="10dp"
             android:paddingRight="33dp"/>
 
@@ -69,7 +68,6 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:text="64 cm"/>
-
     </LinearLayout>
 
     <LinearLayout
@@ -85,7 +83,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:text="@string/title_list_last_weight"
+            android:text="@string/title_list_weight"
             android:paddingRight="11dp"
             android:layout_marginBottom="10dp"/>
 
@@ -95,12 +93,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:text="3.300 kg"/>
-
     </LinearLayout>
-
-
-
-
 
     <LinearLayout
         android:id="@+id/linear_border"
@@ -116,57 +109,65 @@
             android:background="@drawable/baby63"/>
     </LinearLayout>
 
-
-
     <LinearLayout
-        android:id="@+id/buttons_bar_bottom2"
-        android:layout_width="match_parent"
+        android:id="@+id/button_conteiner"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/button_border"
         android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_centerHorizontal="true">
 
-        <Button
-            android:id="@+id/button_progress"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:textSize="12sp"
-            android:text="@string/button_process_text"
-            android:layout_marginRight="30dp"/>
+        <LinearLayout
+            android:id="@+id/buttons_bar_bottom1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:paddingBottom="10dp">
 
-        <Button
-            android:id="@+id/button_control_history"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:textSize="12sp"
-            android:text="@string/button_control_history_text"/>
+            <Button
+                android:id="@+id/button_profile"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:textSize="12sp"
+                android:text="@string/button_profile_text"
+                android:layout_marginRight="20dp"
+                android:onClick="goToViewProfile"/>
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/button_add_new_control"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:textSize="12sp"
+                android:text="@string/button_new_control_text"
+                android:onClick="goToViewNewControl"/>
+        </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/buttons_bar_bottom1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_above="@id/buttons_bar_bottom2"
-        android:paddingBottom="10dp">
+        <LinearLayout
+            android:id="@+id/buttons_bar_bottom2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/button_profile"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:textSize="12sp"
-            android:text="@string/button_profile_text"
-            android:layout_marginRight="30dp"/>
+            <Button
+                android:id="@+id/button_progress"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:textSize="12sp"
+                android:text="@string/button_process_text"
+                android:layout_marginRight="20dp"
+                android:onClick="goToViewProgress"/>
 
-        <Button
-            android:id="@+id/button_add_new_control"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:textSize="12sp"
-            android:text="@string/button_new_control_text"/>
-
+            <Button
+                android:id="@+id/button_control_history"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:textSize="12sp"
+                android:text="@string/button_control_history_text"
+                android:onClick="goToViewControlsHistory"/>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -175,7 +176,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_below="@id/linear_weight"
-        android:layout_above="@id/buttons_bar_bottom1">
+        android:layout_above="@id/button_conteiner">
 
         <TextView
             android:id="@+id/list_note"
@@ -183,7 +184,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:text="@string/title_list_last_note"
+            android:text="@string/title_list_note"
             android:paddingRight="19dp"
             android:layout_marginBottom="10dp"/>
 
@@ -194,7 +195,5 @@
             android:textSize="15sp"
             android:layout_marginLeft="12dp"
             android:text="Muchas cosas interesantes sobre la consulta, digamos que estamos probando como anda estooooo!!!" />
-
     </LinearLayout>
-
 </RelativeLayout>

@@ -9,7 +9,8 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.SplashActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,23 +22,28 @@
         </activity>
         <activity
             android:name=".activities.AddNewControlActivity"
-            android:label="@string/title_activity_add_new_control" >
+            android:label="@string/title_activity_add_new_control"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.ProgressActivity"
-            android:label="@string/title_activity_progress" >
+            android:label="@string/title_activity_progress"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.ProfileActivity"
-            android:label="@string/title_activity_profile" >
+            android:label="@string/title_activity_profile"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.ControlHistoryActivity"
-            android:label="@string/title_activity_history_control" >
+            android:label="@string/title_activity_history_control"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.MainActivity"
-            android:label="MainActivity" >
+            android:label="MainActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

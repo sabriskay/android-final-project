@@ -12,6 +12,9 @@ import com.mybaby.android_final_project.adapter.ListControlAdapter;
 import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
 import com.mybaby.android_final_project.dao.impl.ControlDAOImpl;
 
+/**
+ * Created by SabrinaKay on 08/08/2015.
+ */
 public class ControlHistoryActivity extends Activity {
 
 

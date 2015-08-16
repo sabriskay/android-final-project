@@ -1,12 +1,17 @@
 package com.mybaby.android_final_project.activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.mybaby.android_final_project.R;
 
+/**
+ * Created by SabrinaKay on 08/08/2015.
+ */
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +24,30 @@ public class MainActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public void goToViewProfile(View v) {
+
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToViewNewControl(View v) {
+
+        Intent intent = new Intent(this, AddNewControlActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToViewProgress(View v) {
+
+        Intent intent = new Intent(this, ProgressActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToViewControlsHistory(View v) {
+
+        Intent intent = new Intent(this, ControlHistoryActivity.class);
+        startActivity(intent);
     }
 
     @Override
