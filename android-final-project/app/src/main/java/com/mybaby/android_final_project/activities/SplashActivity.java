@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.mybaby.android_final_project.R;
+import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
+import com.mybaby.android_final_project.model.Patient;
 
 
 /**
@@ -19,7 +21,24 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        loadDataBase();
+
         new IntentLauncher().start();
+    }
+
+    private void loadDataBase() {
+        // BEGIN - Create hardcode data for test purpose ONLY
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).deleteTables();
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).onInitializeDB();
+
+        Patient patientA1 = new Patient(1, "a1", PediatricControlDatabaseHelper.getDatabaseInstance(this).convertStringToCalendar("2015-01-01"), 12345678, "F", 1);
+        Patient patientA2 = new Patient(2, "A2", PediatricControlDatabaseHelper.getDatabaseInstance(this).convertStringToCalendar("2015-09-01"), 87654321, "M", 2);
+
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertPatient(patientA1);
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertPatient(patientA2);
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl("2015-01-01", 1, 3.5f, 30.3f, 30.1f, 2, "Angela", "factor AG", 1);
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl("2015-03-01", 1, 5.5f, 60.6f, 70.7f, 3, "Beatriz", "volver en 15", 1);
+        // END - Create hardcode data for test purpose
     }
 
     private class IntentLauncher extends Thread {
