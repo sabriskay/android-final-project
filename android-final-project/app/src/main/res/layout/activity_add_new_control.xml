@@ -2,9 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    android:padding="10dp"
-    android:background="@drawable/custom_border">
+    android:background="@drawable/wallpaper">
 
     <TextView
         android:id="@+id/title_new_control"
@@ -13,7 +11,7 @@
         android:textSize="40sp"
         android:textStyle="bold"
         android:text="@string/title_new_control"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/title_date"
@@ -160,24 +158,6 @@
                 android:text="@string/mood_angry"/>
         </RadioGroup>
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/image_block"
-        android:background="@drawable/baby29"
-        android:layout_alignBottom="@id/linear_mood"
-        android:layout_alignRight="@id/title_new_control"
-        android:layout_alignEnd="@id/title_new_control" />
-
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/image_bear"
-        android:background="@drawable/bear9"
-        android:layout_alignTop="@id/linear_mood"
-        android:layout_toRightOf="@id/image_block"
-        android:layout_toEndOf="@id/image_block" />
 
     <Button
         android:id="@+id/button_save"

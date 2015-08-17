@@ -22,7 +22,7 @@ import java.util.Locale;
  */
 public class AddNewControlActivity extends Activity {
 
-    EditText edittext;
+    EditText controlDateET;
     Calendar myCalendar = Calendar.getInstance();
 
     @Override
@@ -67,7 +67,7 @@ public class AddNewControlActivity extends Activity {
 
     private void initializeDatePickerDialog() {
 
-        edittext = (EditText)findViewById(R.id.editText);
+        controlDateET = (EditText)findViewById(R.id.editText);
 
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -82,7 +82,7 @@ public class AddNewControlActivity extends Activity {
             }
 
         };
-        edittext.setOnClickListener(new View.OnClickListener() {
+        controlDateET.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -99,6 +99,6 @@ public class AddNewControlActivity extends Activity {
         String myFormat = "MM/dd/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
 
-        edittext.setText(sdf.format(myCalendar.getTime()));
+        controlDateET.setText(sdf.format(myCalendar.getTime()));
     }
 }
