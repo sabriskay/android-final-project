@@ -67,4 +67,6 @@
         <item>32</item>
     </string-array>
 
+    <!--ControlHistory-->
+    <string name="title_control_list">Control List</string>
 </resources>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <!-- Pediatrician -->
+    <LinearLayout
+        android:id="@+id/layout_pediatrician"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_pediatrician"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Pediatrician:"/>
+
+        <TextView
+            android:id="@+id/tv_pediatrician_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:textSize="15sp"
+            android:text="pediatrician name"/>
+
+    </LinearLayout>
+
+    <!-- Size -->
+    <LinearLayout
+        android:id="@+id/layout_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_pediatrician">
+
+        <TextView
+            android:id="@+id/tv_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Size:"/>
+
+        <TextView
+            android:id="@+id/tv_size_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:textSize="15sp"
+            android:text="size"/>
+
+    </LinearLayout>
+
+    <!-- Weight -->
+    <LinearLayout
+        android:id="@+id/layout_weight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_size">
+
+        <TextView
+            android:id="@+id/tv_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Weight:"/>
+
+        <TextView
+            android:id="@+id/tv_weight_value"
+            android:layout_width="wrap_content"
+            android:paddingLeft="5dp"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="0"/>
+
+    </LinearLayout>
+
+
+    <!-- Head Circumference -->
+    <LinearLayout
+        android:id="@+id/layout_circumference"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_weight">
+
+        <TextView
+            android:id="@+id/tv_head_circumference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Head Circumference:"/>
+
+        <TextView
+            android:id="@+id/tv_head_circumference_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:textSize="15sp"
+            android:text="0"/>
+
+    </LinearLayout>
+
+
+    <!-- Teeth Amount -->
+    <LinearLayout
+        android:id="@+id/layout_teeth_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_circumference">
+
+        <TextView
+            android:id="@+id/tv_teeth_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Teeth Amount:"/>
+
+        <TextView
+            android:id="@+id/tv_teeth_amount_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:textSize="15sp"
+            android:text="0"/>
+
+    </LinearLayout>
+
+    <!-- Mood -->
+    <LinearLayout
+        android:id="@+id/layout_mood"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_teeth_amount">
+
+        <TextView
+            android:id="@+id/tv_mood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Mood:"/>
+
+        <TextView
+            android:id="@+id/tv_mood_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:textSize="15sp"
+            android:text="mood"/>
+
+    </LinearLayout>
+
+    <!-- Notes -->
+    <LinearLayout
+        android:id="@+id/layout_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_mood">
+
+        <TextView
+            android:id="@+id/tv_notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Notes:"/>
+
+        <TextView
+            android:id="@+id/tv_notes_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:textSize="15sp"
+            android:text="notes"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

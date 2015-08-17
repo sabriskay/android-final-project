@@ -4,39 +4,29 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListAdapter;
-import android.widget.ListView;
+import android.widget.ExpandableListView;
 
 import com.mybaby.android_final_project.R;
 import com.mybaby.android_final_project.adapter.ListControlAdapter;
-import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
 import com.mybaby.android_final_project.dao.impl.ControlDAOImpl;
 
 /**
  * Created by SabrinaKay on 08/08/2015.
  */
 public class ControlHistoryActivity extends Activity {
-
-
-    ListView myList;
+    ExpandableListView myList;
     ListControlAdapter listControlAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_history);
 
-        PediatricControlDatabaseHelper.getDatabaseInstance(this).deleteTables();
-        PediatricControlDatabaseHelper.getDatabaseInstance(this).onInitializeDB();
-        PediatricControlDatabaseHelper.getDatabaseInstance(this).getAllMood();
+        myList = (ExpandableListView) findViewById(R.id.lv_control_history);
 
+        ControlDAOImpl controlDAOImpl = new ControlDAOImpl(this);
 
-        myList= (ListView) findViewById(R.id.lv_control_history);
-
-        ControlDAOImpl controlDAOImpl= new ControlDAOImpl(this);
-
-        listControlAdapter = new ListControlAdapter(this, controlDAOImpl);
+        listControlAdapter = new ListControlAdapter(this, controlDAOImpl.getAllControls());
 
         myList.setAdapter(listControlAdapter);
 
