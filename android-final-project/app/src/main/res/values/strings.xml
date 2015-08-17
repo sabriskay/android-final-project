@@ -22,8 +22,9 @@
     <!--NewControl-->
 
     <string name="title_new_control">New Control</string>
-    <string name="title_head_circumference">Head circumference:</string>
+    <string name="title_head_circumference">Head circum:</string>
     <string name="title_teeth">Teeth</string>
+    <string name="title_pediatric">Pediatric</string>
     <string name="mood_happy">Happy</string>
     <string name="mood_crybaby">Crybaby</string>
     <string name="mood_angry">Angry</string>
@@ -32,6 +33,7 @@
     <string name="button_save">Save</string>
 
     <string-array name="count_teeth">
+        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>

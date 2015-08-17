@@ -3,26 +3,31 @@ package com.mybaby.android_final_project.activities;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.mybaby.android_final_project.R;
+import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
+import com.mybaby.android_final_project.model.Control;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
+import java.util.List;
 
 /**
  * Created by SabrinaKay on 08/08/2015.
  */
 public class AddNewControlActivity extends Activity {
 
-    EditText controlDateET;
+    EditText controlDateET, controlSizeET, controlWeightET, controlHeadCircumET, controlNoteET, controlPediatricET;
+    Spinner controlTeethSpinner;
+    RadioGroup contronMoodRG;
     Calendar myCalendar = Calendar.getInstance();
 
     @Override
@@ -30,8 +35,7 @@ public class AddNewControlActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_control);
-        initializeSpinnerTeeth();
-        initializeDatePickerDialog();
+        initUI();
     }
 
     @Override
@@ -56,12 +60,25 @@ public class AddNewControlActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void initUI() {
+
+        controlSizeET = (EditText)findViewById(R.id.add_size);
+        controlWeightET = (EditText)findViewById(R.id.add_weight);
+        controlHeadCircumET = (EditText)findViewById(R.id.add_head_circum);
+        controlPediatricET = (EditText)findViewById(R.id.add_pediatric);
+        controlNoteET = (EditText)findViewById(R.id.add_note);
+        contronMoodRG = (RadioGroup)findViewById(R.id.radio_gr_mood);
+
+        initializeSpinnerTeeth();
+        initializeDatePickerDialog();
+
+    }
     private void initializeSpinnerTeeth() {
 
         ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter.createFromResource(this, R.array.count_teeth, android.R.layout.simple_spinner_item);
-        Spinner dropdown = (Spinner)findViewById(R.id.spinner_teeth);
+        controlTeethSpinner = (Spinner)findViewById(R.id.spinner_teeth);
 
-        dropdown.setAdapter(staticAdapter);
+        controlTeethSpinner.setAdapter(staticAdapter);
 
     }
 
@@ -96,9 +113,25 @@ public class AddNewControlActivity extends Activity {
 
     private void updateLabel() {
 
-        String myFormat = "MM/dd/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.getDefault());
+        controlDateET.setText(PediatricControlDatabaseHelper.DATE_FORMAT.format(myCalendar.getTime()));
+    }
 
-        controlDateET.setText(sdf.format(myCalendar.getTime()));
+    public void saveNewControl(View v) {
+
+        String date = controlDateET.getText().toString();
+        int patient = 1;
+        float weight = Float.parseFloat(controlWeightET.getText().toString());
+        float size = Float.parseFloat(controlSizeET.getText().toString());
+        float head = Float.parseFloat(controlHeadCircumET.getText().toString());
+        int teeth = Integer.parseInt(controlTeethSpinner.getSelectedItem().toString());
+        String note = controlNoteET.getText().toString();
+        String pediatric = controlPediatricET.getText().toString();
+        int mood = 1;
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl(date, patient, weight, size, head, teeth, pediatric, note, mood);
+        List<Control> controlList = PediatricControlDatabaseHelper.getDatabaseInstance(this).getAllControl();
+        for (Control control : controlList) {
+            Log.d("CONTROLESSSSSSSSSSSSSSS","size"  + control.getHeight());
+        }
+        finish();
     }
 }
