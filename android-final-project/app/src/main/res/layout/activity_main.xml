@@ -6,9 +6,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:layout_margin="10dp"
-    android:padding="10dp"
-    android:background="@drawable/custom_border">
+    android:background="@drawable/wallpaper">
 
     <TextView
         android:id="@+id/last_visit"
@@ -18,7 +16,9 @@
         android:textStyle="bold"
         android:text="@string/title_list_last_visit"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:textColor="#269983"
+        android:fontFamily="sans-serif" />
 
     <LinearLayout
         android:id="@+id/linear_date"
@@ -35,14 +35,15 @@
             android:textStyle="bold"
             android:text="@string/title_list_date"
             android:paddingRight="31dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:textColor="#269983" />
 
         <TextView
             android:id="@+id/last_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="03/02/2015"/>
+            android:textColor="#269983"/>
     </LinearLayout>
 
     <LinearLayout
@@ -60,14 +61,15 @@
             android:textStyle="bold"
             android:text="@string/title_list_size"
             android:layout_marginBottom="10dp"
-            android:paddingRight="33dp"/>
+            android:paddingRight="33dp"
+            android:textColor="#269983" />
 
         <TextView
             android:id="@+id/last_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="64 cm"/>
+            android:textColor="#269983"/>
     </LinearLayout>
 
     <LinearLayout
@@ -85,14 +87,41 @@
             android:textStyle="bold"
             android:text="@string/title_list_weight"
             android:paddingRight="11dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:textColor="#269983" />
 
         <TextView
             android:id="@+id/last_weight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="3.300 kg"/>
+            android:textColor="#269983"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_head_circum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/linear_weight">
+
+        <TextView
+            android:id="@+id/list_head_circum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/title_head_circumference"
+            android:paddingRight="11dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#269983" />
+
+        <TextView
+            android:id="@+id/last_head_circum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#269983"/>
     </LinearLayout>
 
     <LinearLayout
@@ -114,7 +143,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/button_border"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
 
@@ -133,7 +161,8 @@
                 android:textSize="12sp"
                 android:text="@string/button_profile_text"
                 android:layout_marginRight="20dp"
-                android:onClick="goToViewProfile"/>
+                android:onClick="goToViewProfile"
+                android:textColor="#269983" />
 
             <Button
                 android:id="@+id/button_add_new_control"
@@ -141,7 +170,8 @@
                 android:layout_height="50dp"
                 android:textSize="12sp"
                 android:text="@string/button_new_control_text"
-                android:onClick="goToViewNewControl"/>
+                android:onClick="goToViewNewControl"
+                android:textColor="#269983" />
         </LinearLayout>
 
         <LinearLayout
@@ -158,7 +188,8 @@
                 android:textSize="12sp"
                 android:text="@string/button_process_text"
                 android:layout_marginRight="20dp"
-                android:onClick="goToViewProgress"/>
+                android:onClick="goToViewProgress"
+                android:textColor="#269983" />
 
             <Button
                 android:id="@+id/button_control_history"
@@ -166,16 +197,17 @@
                 android:layout_height="50dp"
                 android:textSize="12sp"
                 android:text="@string/button_control_history_text"
-                android:onClick="goToViewControlsHistory"/>
+                android:onClick="goToViewControlsHistory"
+                android:textColor="#269983" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linear_note"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@id/linear_weight"
+        android:layout_below="@id/linear_head_circum"
         android:layout_above="@id/button_conteiner">
 
         <TextView
@@ -185,15 +217,15 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:text="@string/title_list_note"
-            android:paddingRight="19dp"
-            android:layout_marginBottom="10dp"/>
+            android:textColor="#269983"/>
 
         <TextView
             android:id="@+id/last_note"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="15sp"
-            android:layout_marginLeft="12dp"
-            android:text="Muchas cosas interesantes sobre la consulta, digamos que estamos probando como anda estooooo!!!" />
+            android:textColor="#269983"
+            android:layout_margin="5dp"
+            android:background="@drawable/custom_border"/>
     </LinearLayout>
 </RelativeLayout>
