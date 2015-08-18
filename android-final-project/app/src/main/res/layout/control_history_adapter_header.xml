@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="30dp">
+    android:paddingLeft="30dp"
+    android:background="@drawable/header_border">
 
     <TextView
         android:id="@+id/tv_date"
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:text="date"/>
+        android:textColor="#269983"
+        android:text="@string/title_list_date"/>
 
 </LinearLayout>

@@ -12,6 +12,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.mybaby.android_final_project.R;
 import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
@@ -118,20 +119,39 @@ public class AddNewControlActivity extends Activity {
 
     public void saveNewControl(View v) {
 
-        String date = controlDateET.getText().toString();
-        int patient = 1;
-        float weight = Float.parseFloat(controlWeightET.getText().toString());
-        float size = Float.parseFloat(controlSizeET.getText().toString());
-        float head = Float.parseFloat(controlHeadCircumET.getText().toString());
-        int teeth = Integer.parseInt(controlTeethSpinner.getSelectedItem().toString());
-        String note = controlNoteET.getText().toString();
-        String pediatric = controlPediatricET.getText().toString();
-        int mood = 1;
-        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl(date, patient, weight, size, head, teeth, pediatric, note, mood);
-        List<Control> controlList = PediatricControlDatabaseHelper.getDatabaseInstance(this).getAllControl();
-        for (Control control : controlList) {
-            Log.d("CONTROLESSSSSSSSSSSSSSS","size"  + control.getHeight());
+        if (checkDataInput()) {
+
+            String date = controlDateET.getText().toString();
+            int patient = 1;
+            float weight = Float.parseFloat(controlWeightET.getText().toString());
+            float size = Float.parseFloat(controlSizeET.getText().toString());
+            float head = Float.parseFloat(controlHeadCircumET.getText().toString());
+            int teeth = Integer.parseInt(controlTeethSpinner.getSelectedItem().toString());
+            String note = controlNoteET.getText().toString();
+            String pediatric = controlPediatricET.getText().toString();
+            int mood = 1;
+
+            PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl(date, patient, weight, size, head, teeth, pediatric, note, mood);
+
+            Toast.makeText(this,R.string.message_new_control_added,Toast.LENGTH_LONG).show();
+            finish();
+
         }
-        finish();
+        else {
+            Toast.makeText(this,R.string.error_message_new_control,Toast.LENGTH_LONG).show();
+        }
+
+
+    }
+
+    private boolean checkDataInput() {
+
+        return controlDateET.getText().length() > 0 &&
+                controlSizeET.getText().length() > 0 &&
+                controlWeightET.getText().length() > 0 &&
+                controlHeadCircumET.getText().length() > 0 &&
+                controlNoteET.getText().length() > 0 &&
+                controlPediatricET.getText().length() > 0;
+
     }
 }

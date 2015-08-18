@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:background="@drawable/row_border">
 
     <!-- Pediatrician -->
     <LinearLayout
@@ -18,7 +19,8 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:text="Pediatrician:"/>
+            android:textColor="#269983"
+            android:text="@string/title_pediatric"/>
 
         <TextView
             android:id="@+id/tv_pediatrician_value"
@@ -26,6 +28,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:textSize="15sp"
+            android:textColor="#269983"
             android:text="pediatrician name"/>
 
     </LinearLayout>
@@ -44,7 +47,8 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:text="Size:"/>
+            android:textColor="#269983"
+            android:text="@string/title_list_size"/>
 
         <TextView
             android:id="@+id/tv_size_value"
@@ -52,6 +56,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:textSize="15sp"
+            android:textColor="#269983"
             android:text="size"/>
 
     </LinearLayout>
@@ -70,7 +75,8 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:text="Weight:"/>
+            android:textColor="#269983"
+            android:text="@string/title_list_weight"/>
 
         <TextView
             android:id="@+id/tv_weight_value"
@@ -78,6 +84,7 @@
             android:paddingLeft="5dp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:textColor="#269983"
             android:text="0"/>
 
     </LinearLayout>
@@ -97,7 +104,8 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:text="Head Circumference:"/>
+            android:textColor="#269983"
+            android:text="@string/title_head_circumference"/>
 
         <TextView
             android:id="@+id/tv_head_circumference_value"
@@ -105,6 +113,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:textSize="15sp"
+            android:textColor="#269983"
             android:text="0"/>
 
     </LinearLayout>
@@ -124,7 +133,8 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:text="Teeth Amount:"/>
+            android:textColor="#269983"
+            android:text="@string/title_teeth"/>
 
         <TextView
             android:id="@+id/tv_teeth_amount_value"
@@ -132,6 +142,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:textSize="15sp"
+            android:textColor="#269983"
             android:text="0"/>
 
     </LinearLayout>
@@ -150,7 +161,8 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:text="Mood:"/>
+            android:textColor="#269983"
+            android:text="@string/title_mood"/>
 
         <TextView
             android:id="@+id/tv_mood_value"
@@ -158,6 +170,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:textSize="15sp"
+            android:textColor="#269983"
             android:text="mood"/>
 
     </LinearLayout>
@@ -176,7 +189,8 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:text="Notes:"/>
+            android:textColor="#269983"
+            android:text="@string/title_list_note"/>
 
         <TextView
             android:id="@+id/tv_notes_value"
@@ -184,6 +198,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:textSize="15sp"
+            android:textColor="#269983"
             android:text="notes"/>
 
     </LinearLayout>
