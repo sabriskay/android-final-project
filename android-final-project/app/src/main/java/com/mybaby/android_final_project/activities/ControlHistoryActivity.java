@@ -29,8 +29,6 @@ public class ControlHistoryActivity extends Activity {
 
         PediatricControlDatabaseHelper.getDatabaseInstance(this).deleteTables();
         PediatricControlDatabaseHelper.getDatabaseInstance(this).onInitializeDB();
-        PediatricControlDatabaseHelper.getDatabaseInstance(this).getAllMood();
-
 
         myList= (ListView) findViewById(R.id.lv_control_history);
 

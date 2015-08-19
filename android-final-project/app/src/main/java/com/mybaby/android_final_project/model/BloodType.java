@@ -6,11 +6,11 @@ import java.io.Serializable;
  * Created by SabrinaKay on 8/15/15.
  */
 
-public class BloodGroup implements Serializable{
+public class BloodType implements Serializable{
     private int id;
     private String groupFactor;
 
-    public BloodGroup(int id, String groupFactor) {
+    public BloodType(int id, String groupFactor) {
         this.id = id;
         this.groupFactor = groupFactor;
     }

@@ -18,7 +18,6 @@ import java.util.List;
 public class ListControlAdapter extends BaseAdapter {
 
     Context ctx;
-   // ControlDAOImpl control;
     ArrayList<Control> control;
     LayoutInflater inflater;
 
