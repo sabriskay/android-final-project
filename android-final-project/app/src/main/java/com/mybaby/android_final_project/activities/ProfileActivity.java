@@ -8,11 +8,14 @@ import android.view.MenuItem;
 import com.mybaby.android_final_project.R;
 
 public class ProfileActivity extends Activity {
+    private boolean firstTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil);
+
+        firstTime = getIntent().getBooleanExtra("firstTime", false);
     }
 
     @Override
@@ -35,5 +38,12 @@ public class ProfileActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(firstTime) return;
+
+        super.onBackPressed();
     }
 }

@@ -144,6 +144,19 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         return rowDeleted;
     }
 
+    public boolean existAPatient() {
+
+        String SELECT_QUERY = "SELECT id_patient FROM " + PATIENT_TABLE;
+
+        Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
+
+        boolean exist = (c != null && c.getCount()> 0);
+
+        this.close();
+
+        return exist;
+    }
+
     public Patient getPatient(int id_patient) {
         String SELECT_QUERY = "SELECT pac.name, pac.genre, pac.id, pac.birth_date, pac.id_patient , pac.id_blood_type "
                 +" FROM " + PATIENT_TABLE + " pac "
