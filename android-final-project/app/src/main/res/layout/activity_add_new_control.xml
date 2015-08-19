@@ -2,9 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
-    android:padding="10dp"
-    android:background="@drawable/custom_border">
+    android:background="@drawable/wallpaper">
 
     <TextView
         android:id="@+id/title_new_control"
@@ -13,29 +11,59 @@
         android:textSize="40sp"
         android:textStyle="bold"
         android:text="@string/title_new_control"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#269983"/>
 
-    <TextView
-        android:id="@+id/title_date"
-        android:text="@string/title_list_date"
+    <LinearLayout
+        android:id="@+id/linear_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:layout_below="@id/title_new_control"/>
+        android:orientation="horizontal"
+        android:layout_below="@id/title_new_control"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:id="@+id/title_date"
+            android:text="@string/title_list_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#269983"
+            android:layout_weight="0" />
+
+        <EditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:textColor="#269983" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Date"
+            android:id="@+id/button_select_date"
+            android:textColor="#269983"
+            android:layout_weight="0" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linear_first_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/title_date">
+        android:layout_below="@id/linear_date"
+        android:layout_marginLeft="5dp">
 
         <LinearLayout
             android:id="@+id/linear_content1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.5">
 
             <LinearLayout
                 android:id="@+id/linear_size"
@@ -48,14 +76,16 @@
                     android:layout_height="wrap_content"
                     android:text="@string/title_list_size"
                     android:textStyle="bold"
-                    android:layout_weight="0.5"/>
+                    android:textColor="#269983"
+                    android:maxLength="6"/>
 
                 <EditText
                     android:id="@+id/add_size"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:layout_weight="0.5"/>
+                    android:textColor="#269983"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -69,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/title_teeth"
                     android:textStyle="bold"
-                    android:layout_weight="1"/>
+                    android:textColor="#269983"/>
 
                 <Spinner
                     android:id="@+id/spinner_teeth"
@@ -81,10 +111,10 @@
 
         <LinearLayout
             android:id="@+id/linear_content2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="0.5">
 
             <LinearLayout
                 android:id="@+id/linear_weight"
@@ -97,14 +127,18 @@
                     android:layout_height="wrap_content"
                     android:text="@string/title_list_weight"
                     android:textStyle="bold"
-                    android:layout_weight="0.5"/>
+                    android:layout_weight="0"
+                    android:textColor="#269983"/>
 
                 <EditText
                     android:id="@+id/add_weight"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:layout_weight="0.5"/>
+                    android:layout_weight="0"
+                    android:textColor="#269983"
+                    android:maxLength="6"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -118,16 +152,42 @@
                     android:layout_height="wrap_content"
                     android:text="@string/title_head_circumference"
                     android:textStyle="bold"
-                    android:layout_weight="0.5"/>
+                    android:textColor="#269983"/>
 
                 <EditText
                     android:id="@+id/add_head_circum"
-                    android:layout_width="60dp"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:layout_weight="2.69"/>
+                    android:textColor="#269983"
+                    android:textSize="12sp"
+                    android:maxLength="6"/>
             </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear_pediatric"
+        android:orientation="horizontal"
+        android:layout_below="@id/linear_first_data"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_pediatric"
+            android:textStyle="bold"
+            android:textColor="#269983"/>
+
+        <EditText
+            android:id="@+id/add_pediatric"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#269983"
+            android:textSize="12sp"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -135,73 +195,70 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/linear_first_data"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp">
+        android:layout_below="@id/linear_pediatric"
+        android:layout_margin="5dp">
 
         <RadioGroup
+            android:id="@+id/radio_gr_mood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mood_happy"/>
+                android:text="@string/mood_happy"
+                android:textColor="#269983"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mood_crybaby"/>
+                android:text="@string/mood_crybaby"
+                android:textColor="#269983"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mood_indifferent"/>
+                android:text="@string/mood_indifferent"
+                android:textColor="#269983"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mood_angry"/>
+                android:text="@string/mood_angry"
+                android:textColor="#269983"/>
         </RadioGroup>
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:id="@+id/image_block"
-        android:background="@drawable/baby29"
-        android:layout_alignBottom="@id/linear_mood"
-        android:layout_alignRight="@id/title_new_control"
-        android:layout_alignEnd="@id/title_new_control" />
-
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/image_bear"
-        android:background="@drawable/bear9"
-        android:layout_alignTop="@id/linear_mood"
-        android:layout_toRightOf="@id/image_block"
-        android:layout_toEndOf="@id/image_block" />
 
     <Button
         android:id="@+id/button_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_save"
-        android:layout_alignParentBottom="true"/>
+        android:onClick="saveNewControl"
+        android:layout_alignParentBottom="true"
+        android:textColor="#269983"/>
+
+    <TextView
+        android:id="@+id/title_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_list_note"
+        android:textStyle="bold"
+        android:textColor="#269983"
+        android:layout_below="@id/linear_mood"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="5dp" />
 
     <EditText
         android:id="@+id/add_note"
-        android:text="@string/title_list_note"
         android:layout_width="match_parent"
         android:gravity="top"
+        android:background="@drawable/custom_border"
         android:layout_height="match_parent"
+        android:layout_above="@id/button_save"
+        android:textColor="#269983"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="12sp"
         android:layout_below="@id/linear_mood"
-        android:layout_above="@id/button_save"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="date"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_above="@id/linear_first_data"
-        android:layout_alignParentRight="true"/>
+        android:layout_toRightOf="@id/title_note"
+        android:layout_toEndOf="@id/title_note" />
 
 </RelativeLayout>
