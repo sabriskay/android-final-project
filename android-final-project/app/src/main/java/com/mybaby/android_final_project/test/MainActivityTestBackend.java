@@ -5,13 +5,13 @@ import android.os.Bundle;
 
 import com.mybaby.android_final_project.R;
 import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
-import com.mybaby.android_final_project.dao.BloodGroupDAO;
+import com.mybaby.android_final_project.dao.BloodTypeDAO;
 import com.mybaby.android_final_project.dao.ControlDAO;
 import com.mybaby.android_final_project.dao.PatientDAO;
-import com.mybaby.android_final_project.dao.impl.BloodGroupDAOImpl;
+import com.mybaby.android_final_project.dao.impl.BloodTypeDAOImpl;
 import com.mybaby.android_final_project.dao.impl.ControlDAOImpl;
 import com.mybaby.android_final_project.dao.impl.PatientDAOImpl;
-import com.mybaby.android_final_project.model.BloodGroup;
+import com.mybaby.android_final_project.model.BloodType;
 import com.mybaby.android_final_project.model.Control;
 import com.mybaby.android_final_project.model.Patient;
 
@@ -28,15 +28,14 @@ public class MainActivityTestBackend extends Activity {
 
         PediatricControlDatabaseHelper.getDatabaseInstance(this).deleteTables();
         PediatricControlDatabaseHelper.getDatabaseInstance(this).onInitializeDB();
-        PediatricControlDatabaseHelper.getDatabaseInstance(this).getAllMood();
 
         Patient patientA1 = new Patient(1, "a1", PediatricControlDatabaseHelper.getDatabaseInstance(this).convertStringToCalendar("2015-01-01"), 12345678, "F", 1);
         Patient patientA2 = new Patient(2, "A2", PediatricControlDatabaseHelper.getDatabaseInstance(this).convertStringToCalendar("2015-09-01"), 87654321, "M", 2);
 
         PediatricControlDatabaseHelper.getDatabaseInstance(this).insertPatient(patientA1);
         PediatricControlDatabaseHelper.getDatabaseInstance(this).insertPatient(patientA2);
-        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl("2015-01-01", 1, 3.5f, 30.3f, 30.1f, 2, "Angela", "factor AG", 1);
-        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl("2015-03-01", 1, 5.5f, 60.6f, 70.7f, 3, "Beatriz", "volver en 15", 1);
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl("2015-01-01", 1, 3.5f, 30.3f, 30.1f, 2, "Angela", "factor AG", "triste");
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl("2015-03-01", 1, 5.5f, 60.6f, 70.7f, 3, "Beatriz", "volver en 15", "contento");
 
         // Test Patient
         PatientDAO patientDAOImpl = new PatientDAOImpl(this);
@@ -60,7 +59,7 @@ public class MainActivityTestBackend extends Activity {
         ControlDAO controlDAOImpl= new ControlDAOImpl(this);
         List<Control> controlList = controlDAOImpl.getAllControls();
         Assert.assertEquals(controlList.size(),2);
-
+        Assert.assertEquals(controlList.get(0).getMood(),"contento");
         Control control =  controlDAOImpl.getControl(controlList.get(0).getIdControl());
         Assert.assertEquals(control.getIdControl(), 2);
 
@@ -74,9 +73,9 @@ public class MainActivityTestBackend extends Activity {
         Assert.assertEquals(controlList.size(),1);
 
         // Test Blood Group
-        BloodGroupDAO bloodGroupDAOImpl = new BloodGroupDAOImpl(this);
-        List<BloodGroup> bloodGroupList = bloodGroupDAOImpl.getAllBloodGroup();
-        Assert.assertEquals(8, bloodGroupList.size());
+        BloodTypeDAO bloodTypeDAOImpl = new BloodTypeDAOImpl(this);
+        List<BloodType> bloodTypeList = bloodTypeDAOImpl.getAllBloodType();
+        Assert.assertEquals(8, bloodTypeList.size());
     }
 
 }

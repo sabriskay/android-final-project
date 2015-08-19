@@ -14,11 +14,10 @@ public class Control implements Serializable {
     private float headCircumference;
     private String pediatrician;
     private String notes;
-    private int idMood;
-    private Mood mood;
+    private String mood;
     private Patient patient;
 
-    public Control(int idControl, int idPatient, int teeth_amount, Calendar date_control, float weight, float height, float headCircumference, String pediatrician, String notes, int idMood) {
+    public Control(int idControl, int idPatient, int teeth_amount, Calendar date_control, float weight, float height, float headCircumference, String pediatrician, String notes, String mood) {
         this.idControl = idControl;
         this.idPatient = idPatient;
         this.teethAmount = teeth_amount;
@@ -28,15 +27,7 @@ public class Control implements Serializable {
         this.headCircumference = headCircumference;
         this.pediatrician = pediatrician;
         this.notes = notes;
-        this.idMood = idMood;
-    }
-
-    public int getIdMood() {
-        return idMood;
-    }
-
-    public void setIdMood(int idMood) {
-        this.idMood = idMood;
+        this.mood = mood;
     }
 
     public int getIdControl() {
@@ -107,14 +98,6 @@ public class Control implements Serializable {
         this.notes = notes;
     }
 
-    public Mood getMood() {
-        return mood;
-    }
-
-    public void setMood(Mood mood) {
-        this.mood = mood;
-    }
-
     public void setIdControl(int idControl) {
         this.idControl = idControl;
     }
@@ -122,7 +105,16 @@ public class Control implements Serializable {
     public Patient getPatient() {
         return patient;
     }
-     public void setPatient(Patient patient){
-         patient = patient;
-     }
+
+    public void setPatient(Patient patient) {
+        patient = patient;
+    }
+
+    public void setMood(String mood) {
+        this.mood = mood;
+    }
+
+    public String getMood() {
+        return mood;
+    }
 }
