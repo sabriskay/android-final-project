@@ -36,8 +36,8 @@ public class SplashActivity extends Activity {
 
         PediatricControlDatabaseHelper.getDatabaseInstance(this).insertPatient(patientA1);
         PediatricControlDatabaseHelper.getDatabaseInstance(this).insertPatient(patientA2);
-        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl("2015-01-01", 1, 3.5f, 30.3f, 30.1f, 2, "Angela", "factor AG", 1);
-        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl("2015-03-01", 1, 5.5f, 60.6f, 70.7f, 3, "Beatriz", "volver en 15", 1);
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl("2015-01-01", 1, 3.5f, 30.3f, 30.1f, 2, "Angela", "factor AG", "sad");
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl("2015-03-01", 1, 5.5f, 60.6f, 70.7f, 3, "Beatriz", "volver en 15", "happy");
         // END - Create hardcode data for test purpose
     }
 

@@ -127,7 +127,7 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
         teethCircumference.setText(String.valueOf(control.getTeethAmount()));
 
         TextView mood = (TextView) convertView.findViewById(R.id.tv_mood_value);
-        mood.setText(String.valueOf(control.getIdMood()));
+        mood.setText(control.getMood());
 
         TextView notes = (TextView) convertView.findViewById(R.id.tv_notes_value);
         notes.setText(control.getNotes());
