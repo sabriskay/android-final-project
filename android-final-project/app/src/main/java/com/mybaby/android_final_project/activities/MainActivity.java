@@ -24,24 +24,28 @@ import com.mybaby.android_final_project.model.Patient;
  * Created by SabrinaKay on 08/08/2015.
  */
 public class MainActivity extends Activity {
+    private boolean existPatient = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        existPatient = PediatricControlDatabaseHelper.getDatabaseInstance(this).existAPatient();
 
-        initUI();
+        if (!existPatient) {
+            goToViewProfile(null);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        Log.d("estoy", "volviendo");
-        initUI();
+        if(existPatient) {
+            initUI();
+        }
     }
-
 
     private void initUI() {
 
@@ -51,7 +55,7 @@ public class MainActivity extends Activity {
         PatientDAO patientDAOImpl = new PatientDAOImpl(this);
         Patient patient = patientDAOImpl.getPatient(1);
 
-        String genderPatient = (String)patient.getGenre();
+        String genderPatient = patient.getGenre();
 
         TextView controlDate = (TextView)findViewById(R.id.last_date);
         TextView controlSize = (TextView)findViewById(R.id.last_size);
@@ -81,6 +85,7 @@ public class MainActivity extends Activity {
     public void goToViewProfile(View v) {
 
         Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra("firstTime", !existPatient);
         startActivity(intent);
     }
 

@@ -28,7 +28,7 @@ public class ControlDAOImpl implements ControlDAO {
     public void addControl(Control Control) {
         PediatricControlDatabaseHelper.getDatabaseInstance(context).insertControl(convertCalendarToString(Control.getDateControl()), Control.getIdPatient(), Control.getWeight(),
                 Control.getHeight(), Control.getHeadCircumference(), Control.getTeethAmount(), Control.getPediatrician(),
-                Control.getNotes(), Control.getIdMood());
+                Control.getNotes(), Control.getMood().toLowerCase().trim());
 
     }
 

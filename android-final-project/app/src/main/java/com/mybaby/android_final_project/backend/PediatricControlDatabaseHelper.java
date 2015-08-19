@@ -8,9 +8,8 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.mybaby.android_final_project.model.BloodGroup;
+import com.mybaby.android_final_project.model.BloodType;
 import com.mybaby.android_final_project.model.Control;
-import com.mybaby.android_final_project.model.Mood;
 import com.mybaby.android_final_project.model.Patient;
 
 import java.text.ParseException;
@@ -23,10 +22,9 @@ import java.util.List;
 
 public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 {
-    private final static String CREATE_CONTROL_TABLE = "CREATE TABLE CONTROL (id_control INTEGER PRIMARY KEY AUTOINCREMENT, date_control TEXT,id_patient INTEGER, weight NUMERIC, height NUMERIC, head_circumference  NUMERIC, teeth_amount INTEGER, pediatrician TEXT, notes TEXT , id_mood INTEGER,date_audit NUMERIC )";
+    private final static String CREATE_CONTROL_TABLE = "CREATE TABLE CONTROL (id_control INTEGER PRIMARY KEY AUTOINCREMENT, date_control TEXT,id_patient INTEGER, weight NUMERIC, height NUMERIC, head_circumference  NUMERIC, teeth_amount INTEGER, pediatrician TEXT, notes TEXT , mood TEXT,date_audit NUMERIC )";
     private final static String CREATE_PATIENT_TABLE = "CREATE TABLE PATIENT(id_patient INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL UNIQUE, birth_date TEXT,id INTEGER UNIQUE, genre TEXT, id_blood_type INTEGER, date_audit NUMERIC)";
     private final static String CREATE_BLOOD_TYPE_TABLE = "CREATE TABLE BLOOD_TYPE (id_blood_type INTEGER PRIMARY KEY AUTOINCREMENT, group_factor TEXT UNIQUE )";
-    private final static String CREATE_MOOD_TABLE = "CREATE TABLE MOOD (id_mood INTEGER PRIMARY KEY AUTOINCREMENT, mood TEXT UNIQUE)";
 
     private final static String DATABASE_NAME = "PediatricControlDatabase";
     private final static String TABLE_DROP_STATEMENT = "DROP TABLE IF EXISTS ";
@@ -34,7 +32,6 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
     private static final String PATIENT_TABLE = "PATIENT" ;
     private static final String BLOOD_TYPE_TABLE = "BLOOD_TYPE";
     private static final String CONTROL_TABLE = "CONTROL";
-    private static final String MOOD_TABLE = "MOOD";
 
     private Context context;
     private static PediatricControlDatabaseHelper databaseInstance;
@@ -65,7 +62,6 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
     {
         Log.d("Create Database: ", DATABASE_NAME);
         db.execSQL(CREATE_PATIENT_TABLE);
-        db.execSQL(CREATE_MOOD_TABLE);
         db.execSQL(CREATE_BLOOD_TYPE_TABLE);
         db.execSQL(CREATE_CONTROL_TABLE);
         insertDefaultData(db);
@@ -78,7 +74,6 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 
         Log.d("Create Database: ", DATABASE_NAME);
         this.getWritableDatabase().execSQL(CREATE_PATIENT_TABLE);
-        this.getWritableDatabase().execSQL(CREATE_MOOD_TABLE);
         this.getWritableDatabase().execSQL(CREATE_BLOOD_TYPE_TABLE);
         this.getWritableDatabase().execSQL(CREATE_CONTROL_TABLE);
         insertDefaultData(this.getWritableDatabase());
@@ -91,7 +86,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
     }    
 
     
-	public long insertControl(String date_control,int id_patient, float weight , float height , float head_circumference  , int teeth_amount, String pediatrician , String notes, int id_mood)
+	public long insertControl(String date_control,int id_patient, float weight , float height , float head_circumference  , int teeth_amount, String pediatrician , String notes, String mood)
     {	
     	ContentValues values = new ContentValues();
     	
@@ -104,7 +99,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 		values.put("notes", notes);
 		values.put("date_audit", new Date().getTime());
 		values.put("pediatrician", pediatrician);
-        values.put("id_mood", id_mood);
+        values.put("mood", mood);
 
         long index = getWritableDatabase().insert(CONTROL_TABLE, null, values);
     	this.close();
@@ -149,6 +144,19 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         return rowDeleted;
     }
 
+    public boolean existAPatient() {
+
+        String SELECT_QUERY = "SELECT id_patient FROM " + PATIENT_TABLE;
+
+        Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
+
+        boolean exist = (c != null && c.getCount()> 0);
+
+        this.close();
+
+        return exist;
+    }
+
     public Patient getPatient(int id_patient) {
         String SELECT_QUERY = "SELECT pac.name, pac.genre, pac.id, pac.birth_date, pac.id_patient , pac.id_blood_type "
                 +" FROM " + PATIENT_TABLE + " pac "
@@ -176,8 +184,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
     {
         List<Control> controlList = new ArrayList<Control>();
 
-        String SELECT_QUERY = "SELECT control.*, pac.name, mood.mood FROM "+ CONTROL_TABLE +" control INNER JOIN "+ PATIENT_TABLE +" pac ON control.id_patient = pac.id_patient "
-                +" INNER JOIN "+ MOOD_TABLE + " mood ON control.id_mood = mood.id_mood "
+        String SELECT_QUERY = "SELECT control.*, pac.name FROM "+ CONTROL_TABLE +" control INNER JOIN "+ PATIENT_TABLE +" pac ON control.id_patient = pac.id_patient "
                 +" Order By control.date_control desc";
         Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
@@ -191,8 +198,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
     }
 
     public Control getControl(int id_control) {
-        String SELECT_QUERY = "SELECT control.*,mood.mood FROM " + CONTROL_TABLE
-                + " control INNER JOIN  MOOD mood on control.id_mood=mood.id_mood "
+        String SELECT_QUERY = "SELECT * FROM " + CONTROL_TABLE
                 +" WHERE id_control= " + id_control;
 
         Control control = null;
@@ -220,23 +226,6 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         return control;
     }
 
-
-
-	private void insertMood(SQLiteDatabase db)
-	{
-        Log.d("Populate Table: ", MOOD_TABLE);
-
-        String[] mood={"Contento","Enojado","Lloron","Indiferente"};
-    	ContentValues values = new ContentValues();
-
-    	for(String value: mood)
-		{
-            values.put("mood", value);
-            db.insert(MOOD_TABLE, null, values);
-        }
-
-    }
-
     private void insertBloodType(SQLiteDatabase db)
     {
         Log.d("Populate Table: ", BLOOD_TYPE_TABLE);
@@ -249,61 +238,20 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         }
     }
 
-	/*
-    public boolean checkUser(String username, String password)
-    {
-    	String[] args = new String[] {username, password};
-		Cursor c = getReadableDatabase().query(DATABASE_NAME_NEWS_TABLE, null, "username=? AND password=?", args, null, null, null); //Select null from users where username = ? and password =?
 
-
-    	if (c.getCount()> 0){
-            return true;
-        }
-        this.close();
-        return false;
-    }*/
-
-    public List<Mood> getAllMood()
-    {
-        List<Mood> data = new ArrayList<>();
-        Cursor cursor =  getReadableDatabase().query(MOOD_TABLE, null, null, null, null, null, null);
-        while(cursor.moveToNext())
-        {
-            Log.d("Select mood: ", cursor.getString(cursor.getColumnIndex("mood")));
-            Mood mood= new Mood(cursor.getInt(cursor.getColumnIndex("id_mood")),cursor.getString(cursor.getColumnIndex("mood")));
-            data.add(mood);
-        }
-
-        this.close();
-        return data;
-    }
-
-    public List<BloodGroup> getAllBloodType() {
-        List<BloodGroup> data = new ArrayList<>();
+    public List<BloodType> getAllBloodType() {
+        List<BloodType> data = new ArrayList<>();
         Cursor cursor =  getReadableDatabase().query(BLOOD_TYPE_TABLE, null, null, null, null, null, null);
 
         while(cursor.moveToNext())
         {
             Log.d("Select group_factor: ", cursor.getString(cursor.getColumnIndex("group_factor")));
-            BloodGroup bloodGroup = new BloodGroup(cursor.getInt(cursor.getColumnIndex("id_blood_type")),cursor.getString(cursor.getColumnIndex("group_factor")));
-            data.add(bloodGroup);
+            BloodType bloodType = new BloodType(cursor.getInt(cursor.getColumnIndex("id_blood_type")),cursor.getString(cursor.getColumnIndex("group_factor")));
+            data.add(bloodType);
         }
 
         this.close();
         return data;
-    }
-
-    public Mood getMoodByName(String name) {
-        Mood mood = null;
-        Cursor c = getReadableDatabase().query(MOOD_TABLE, new String[]{"mood"}, null, null, null, null, null);
-        if (c.getCount() > 0) {
-            c.moveToNext();
-            Log.d("mood: ", c.getString(c.getColumnIndex("mood")));
-            mood = new Mood(c.getInt(c.getColumnIndex("id_mood")), c.getString(c.getColumnIndex("mood")));
-        }
-
-        c.close();
-        return mood;
     }
 
     private Control createControl(Cursor c) {
@@ -315,9 +263,8 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
                 c.getFloat(c.getColumnIndex("height")),
                 c.getFloat(c.getColumnIndex("head_circumference")),
                 c.getString(c.getColumnIndex("pediatrician")),
-                c.getString(c.getColumnIndex("notes")),c.getInt(c.getColumnIndex("id_mood")));
-        data.setMood(new Mood(c.getInt(c.getColumnIndex("id_mood")),
-                c.getString(c.getColumnIndex("mood"))));
+                c.getString(c.getColumnIndex("notes")),
+                c.getString(c.getColumnIndex("mood")));
         return data;
     }
 
@@ -328,13 +275,11 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 
     private void insertDefaultData(SQLiteDatabase db){
         insertBloodType(db);
-        insertMood(db);
     }
 
     public void deleteTables(){
         Log.d("Delete Tables: ", DATABASE_NAME);
         this.getWritableDatabase().execSQL(TABLE_DROP_STATEMENT + PATIENT_TABLE);
-        this.getWritableDatabase().execSQL(TABLE_DROP_STATEMENT + MOOD_TABLE);
         this.getWritableDatabase().execSQL(TABLE_DROP_STATEMENT + BLOOD_TYPE_TABLE);
         this.getWritableDatabase().execSQL(TABLE_DROP_STATEMENT + CONTROL_TABLE);
     }

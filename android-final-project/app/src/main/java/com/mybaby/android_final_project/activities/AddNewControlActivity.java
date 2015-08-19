@@ -28,7 +28,7 @@ public class AddNewControlActivity extends Activity {
 
     EditText controlDateET, controlSizeET, controlWeightET, controlHeadCircumET, controlNoteET, controlPediatricET;
     Spinner controlTeethSpinner;
-    RadioGroup contronMoodRG;
+    RadioGroup controlMoodRG;
     Calendar myCalendar = Calendar.getInstance();
 
     @Override
@@ -68,7 +68,7 @@ public class AddNewControlActivity extends Activity {
         controlHeadCircumET = (EditText)findViewById(R.id.add_head_circum);
         controlPediatricET = (EditText)findViewById(R.id.add_pediatric);
         controlNoteET = (EditText)findViewById(R.id.add_note);
-        contronMoodRG = (RadioGroup)findViewById(R.id.radio_gr_mood);
+        controlMoodRG = (RadioGroup)findViewById(R.id.radio_gr_mood);
 
         initializeSpinnerTeeth();
         initializeDatePickerDialog();
@@ -129,7 +129,7 @@ public class AddNewControlActivity extends Activity {
             int teeth = Integer.parseInt(controlTeethSpinner.getSelectedItem().toString());
             String note = controlNoteET.getText().toString();
             String pediatric = controlPediatricET.getText().toString();
-            int mood = 1;
+            String mood = "Happy";
 
             PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl(date, patient, weight, size, head, teeth, pediatric, note, mood);
 
