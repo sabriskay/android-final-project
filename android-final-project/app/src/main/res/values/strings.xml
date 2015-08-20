@@ -75,4 +75,10 @@
 
     <!--ControlHistory-->
     <string name="title_control_list">Control List</string>
+    <string name="app_name_percentile">EzGrowth</string>
+    <string name="title_activity_graph">graph</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_graph_test">graphTest</string>
+
 </resources>
