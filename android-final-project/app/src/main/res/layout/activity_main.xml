@@ -144,7 +144,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:paddingTop="20dp">
 
         <LinearLayout
             android:id="@+id/buttons_bar_bottom1"
@@ -162,7 +163,8 @@
                 android:text="@string/button_profile_text"
                 android:layout_marginRight="20dp"
                 android:onClick="goToViewProfile"
-                android:textColor="#269983" />
+                android:textColor="#269983"
+                android:background="@drawable/button_border"/>
 
             <Button
                 android:id="@+id/button_add_new_control"
@@ -171,7 +173,8 @@
                 android:textSize="12sp"
                 android:text="@string/button_new_control_text"
                 android:onClick="goToViewNewControl"
-                android:textColor="#269983" />
+                android:textColor="#269983"
+                android:background="@drawable/button_border" />
         </LinearLayout>
 
         <LinearLayout
@@ -189,7 +192,8 @@
                 android:text="@string/button_process_text"
                 android:layout_marginRight="20dp"
                 android:onClick="goToViewProgress"
-                android:textColor="#269983" />
+                android:textColor="#269983"
+                android:background="@drawable/button_border"/>
 
             <Button
                 android:id="@+id/button_control_history"
@@ -198,7 +202,8 @@
                 android:textSize="12sp"
                 android:text="@string/button_control_history_text"
                 android:onClick="goToViewControlsHistory"
-                android:textColor="#269983" />
+                android:textColor="#269983"
+                android:background="@drawable/button_border" />
         </LinearLayout>
     </LinearLayout>
 

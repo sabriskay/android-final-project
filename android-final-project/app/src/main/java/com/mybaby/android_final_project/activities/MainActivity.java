@@ -74,11 +74,13 @@ public class MainActivity extends Activity {
         if(genderPatient.equalsIgnoreCase("F")) {
             pacientIcon.setBackgroundResource(R.drawable.female109);
             linearBorderIcon.setBackgroundResource(R.drawable.icon_border_fem);
+            controlNotes.setBackgroundResource(R.drawable.icon_border_fem);
 
         }
         else {
             pacientIcon.setBackgroundResource(R.drawable.baby63);
             linearBorderIcon.setBackgroundResource(R.drawable.icon_border);
+            controlNotes.setBackgroundResource(R.drawable.icon_border);
         }
     }
 
