@@ -1,7 +1,7 @@
 package com.mybaby.android_final_project.test;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -9,14 +9,28 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.mybaby.android_final_project.R;
+import com.mybaby.android_final_project.datatables.LengthForAgeInfantCharts;
 
-public class GraphTest extends ActionBarActivity {
+public class GraphTest extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph_test);
         GraphView graph = (GraphView) findViewById(R.id.graph);
+
+        DataPoint []data = new DataPoint[LengthForAgeInfantCharts.MONTHS.length];
+
+        for (int i = 0; i < 25; i++) {
+            int value = i*8;
+            double x = LengthForAgeInfantCharts.LENGTH_FOR_AGE_INFANT_BOYS_REFERENCES[0+ value];
+            double y = LengthForAgeInfantCharts.LENGTH_FOR_AGE_INFANT_BOYS_REFERENCES[1+ value];
+            data[i] = new DataPoint(x, y);
+        }
+
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(data);
+        graph.addSeries(series);
+/*
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
                 new DataPoint(0, 1),
                 new DataPoint(1, 5),
@@ -24,7 +38,7 @@ public class GraphTest extends ActionBarActivity {
                 new DataPoint(3, 2),
                 new DataPoint(4, 6)
         });
-        graph.addSeries(series);
+        graph.addSeries(series);*/
     }
 
     @Override
