@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textSize="40sp"
-        android:textColor="#269983"
+        android:textColor="@color/textColorGreen"
         android:textStyle="bold"/>
 
     <ExpandableListView

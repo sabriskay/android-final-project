@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="@string/title_pediatric"/>
 
         <TextView
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:textSize="15sp"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="pediatrician name"/>
 
     </LinearLayout>
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="@string/title_list_size"/>
 
         <TextView
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:textSize="15sp"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="size"/>
 
     </LinearLayout>
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="@string/title_list_weight"/>
 
         <TextView
@@ -84,7 +84,7 @@
             android:paddingLeft="5dp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="0"/>
 
     </LinearLayout>
@@ -104,7 +104,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="@string/title_head_circumference"/>
 
         <TextView
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:textSize="15sp"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="0"/>
 
     </LinearLayout>
@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="@string/title_teeth"/>
 
         <TextView
@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:textSize="15sp"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="0"/>
 
     </LinearLayout>
@@ -161,7 +161,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="@string/title_mood"/>
 
         <TextView
@@ -170,7 +170,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:textSize="15sp"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="mood"/>
 
     </LinearLayout>
@@ -189,7 +189,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="@string/title_list_note"/>
 
         <TextView
@@ -198,7 +198,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
             android:textSize="15sp"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:text="notes"/>
 
     </LinearLayout>

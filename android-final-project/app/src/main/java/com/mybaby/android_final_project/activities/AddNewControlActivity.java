@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.RadioGroup;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,8 +28,8 @@ public class AddNewControlActivity extends Activity {
 
     EditText controlDateET, controlSizeET, controlWeightET, controlHeadCircumET, controlNoteET, controlPediatricET;
     Spinner controlTeethSpinner;
-    RadioGroup controlMoodRG;
     Calendar myCalendar = Calendar.getInstance();
+    private RadioButton moodHappy, moodCry, moodIndifferent, moodAngry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,11 @@ public class AddNewControlActivity extends Activity {
         controlHeadCircumET = (EditText)findViewById(R.id.add_head_circum);
         controlPediatricET = (EditText)findViewById(R.id.add_pediatric);
         controlNoteET = (EditText)findViewById(R.id.add_note);
-        controlMoodRG = (RadioGroup)findViewById(R.id.radio_gr_mood);
+        moodHappy = (RadioButton)findViewById(R.id.rb_mood_happy);
+        moodAngry = (RadioButton)findViewById(R.id.rb_mood_angry);
+        moodIndifferent = (RadioButton)findViewById(R.id.rb_mood_indifferent);
+        moodCry = (RadioButton)findViewById(R.id.rb_mood_cry);
+
 
         initializeSpinnerTeeth();
         initializeDatePickerDialog();
@@ -121,6 +125,18 @@ public class AddNewControlActivity extends Activity {
 
         if (checkDataInput()) {
 
+            String mood = "";
+
+            if (moodAngry.isChecked()==true) {
+                mood = moodAngry.getText().toString();
+            } else if (moodHappy.isChecked()==true) {
+                mood = moodHappy.getText().toString();
+            } else if (moodCry.isChecked()==true) {
+                mood = moodCry.getText().toString();
+            } else if (moodIndifferent.isChecked()==true) {
+                mood = moodIndifferent.getText().toString();
+            }
+
             String date = controlDateET.getText().toString();
             int patient = 1;
             float weight = Float.parseFloat(controlWeightET.getText().toString());
@@ -129,7 +145,6 @@ public class AddNewControlActivity extends Activity {
             int teeth = Integer.parseInt(controlTeethSpinner.getSelectedItem().toString());
             String note = controlNoteET.getText().toString();
             String pediatric = controlPediatricET.getText().toString();
-            String mood = "Happy";
 
             PediatricControlDatabaseHelper.getDatabaseInstance(this).insertControl(date, patient, weight, size, head, teeth, pediatric, note, mood);
 
