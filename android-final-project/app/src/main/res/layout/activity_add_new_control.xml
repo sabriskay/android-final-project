@@ -12,7 +12,7 @@
         android:textStyle="bold"
         android:text="@string/title_new_control"
         android:layout_centerHorizontal="true"
-        android:textColor="#269983"/>
+        android:textColor="@color/textColorGreen"/>
 
     <LinearLayout
         android:id="@+id/linear_date"
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:layout_weight="0" />
 
         <EditText
@@ -37,16 +37,7 @@
             android:inputType="date"
             android:ems="10"
             android:id="@+id/editText"
-            android:textColor="#269983" />
-
-<!--        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Set Date"
-            android:id="@+id/button_select_date"
-            android:textColor="#269983"
-            android:layout_weight="0" />-->
+            android:textColor="@color/textColorGreen" />
 
     </LinearLayout>
 
@@ -76,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/title_list_size"
                     android:textStyle="bold"
-                    android:textColor="#269983"
+                    android:textColor="@color/textColorGreen"
                     android:maxLength="6"/>
 
                 <EditText
@@ -84,7 +75,7 @@
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:textColor="#269983"
+                    android:textColor="@color/textColorGreen"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -99,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/title_teeth"
                     android:textStyle="bold"
-                    android:textColor="#269983"/>
+                    android:textColor="@color/textColorGreen"/>
 
                 <Spinner
                     android:id="@+id/spinner_teeth"
@@ -128,7 +119,7 @@
                     android:text="@string/title_list_weight"
                     android:textStyle="bold"
                     android:layout_weight="0"
-                    android:textColor="#269983"/>
+                    android:textColor="@color/textColorGreen"/>
 
                 <EditText
                     android:id="@+id/add_weight"
@@ -136,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
                     android:layout_weight="0"
-                    android:textColor="#269983"
+                    android:textColor="@color/textColorGreen"
                     android:maxLength="6"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -152,14 +143,14 @@
                     android:layout_height="wrap_content"
                     android:text="@string/title_head_circumference"
                     android:textStyle="bold"
-                    android:textColor="#269983"/>
+                    android:textColor="@color/textColorGreen"/>
 
                 <EditText
                     android:id="@+id/add_head_circum"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:textColor="#269983"
+                    android:textColor="@color/textColorGreen"
                     android:textSize="12sp"
                     android:maxLength="6"/>
             </LinearLayout>
@@ -179,13 +170,13 @@
             android:layout_height="wrap_content"
             android:text="@string/title_pediatric"
             android:textStyle="bold"
-            android:textColor="#269983"/>
+            android:textColor="@color/textColorGreen"/>
 
         <EditText
             android:id="@+id/add_pediatric"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#269983"
+            android:textColor="@color/textColorGreen"
             android:textSize="12sp"/>
 
     </LinearLayout>
@@ -207,25 +198,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mood_happy"
-                android:textColor="#269983"/>
+                android:textColor="@color/textColorGreen"/>
             <RadioButton
                 android:id="@+id/rb_mood_cry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mood_crybaby"
-                android:textColor="#269983"/>
+                android:textColor="@color/textColorGreen"/>
             <RadioButton
                 android:id="@+id/rb_mood_indifferent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mood_indifferent"
-                android:textColor="#269983"/>
+                android:textColor="@color/textColorGreen"/>
             <RadioButton
                 android:id="@+id/rb_mood_angry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mood_angry"
-                android:textColor="#269983"/>
+                android:textColor="@color/textColorGreen"/>
         </RadioGroup>
     </LinearLayout>
 
@@ -236,7 +227,7 @@
         android:text="@string/button_save"
         android:onClick="saveNewControl"
         android:layout_alignParentBottom="true"
-        android:textColor="#269983"
+        android:textColor="@color/textColorGreen"
         android:background="@drawable/button_border"/>
 
     <TextView
@@ -245,7 +236,7 @@
         android:layout_height="wrap_content"
         android:text="@string/title_list_note"
         android:textStyle="bold"
-        android:textColor="#269983"
+        android:textColor="@color/textColorGreen"
         android:layout_below="@id/linear_mood"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -257,7 +248,7 @@
         android:gravity="top"
         android:background="@drawable/custom_border"
         android:layout_height="match_parent"
-        android:textColor="#269983"
+        android:textColor="@color/textColorGreen"
         android:textSize="12sp"
         android:layout_margin="10dp"
         android:layout_below="@id/title_note"

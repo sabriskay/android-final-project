@@ -75,4 +75,12 @@
 
     <!--ControlHistory-->
     <string name="title_control_list">Control List</string>
+
+    <!-- Profile -->
+    <string name="title_profile">Baby Profile</string>
+    <string name="baby_name">Full name:</string>
+    <string name="baby_id">ID:</string>
+    <string name="sex_fem">Girl</string>
+    <string name="sex_male">Boy</string>
+    <string name="birthday_date">Birthday Date:</string>
 </resources>
