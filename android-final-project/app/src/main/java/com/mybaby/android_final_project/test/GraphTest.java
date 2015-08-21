@@ -1,6 +1,7 @@
 package com.mybaby.android_final_project.test;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,17 +20,10 @@ public class GraphTest extends AppCompatActivity {
         setContentView(R.layout.activity_graph_test);
         GraphView graph = (GraphView) findViewById(R.id.graph);
 
-        DataPoint []data = new DataPoint[LengthForAgeInfantCharts.MONTHS.length];
-
-        for (int i = 0; i < 25; i++) {
-            int value = i*8;
-            double x = LengthForAgeInfantCharts.LENGTH_FOR_AGE_INFANT_BOYS_REFERENCES[0+ value];
-            double y = LengthForAgeInfantCharts.LENGTH_FOR_AGE_INFANT_BOYS_REFERENCES[1+ value];
-            data[i] = new DataPoint(x, y);
+        for (int i= 1;i < 8 ; i++) {
+            graph.addSeries(getDataPointLineGraphSeries(i));
         }
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(data);
-        graph.addSeries(series);
 /*
         LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
                 new DataPoint(0, 1),
@@ -39,6 +33,20 @@ public class GraphTest extends AppCompatActivity {
                 new DataPoint(4, 6)
         });
         graph.addSeries(series);*/
+    }
+
+    @NonNull
+    private LineGraphSeries<DataPoint> getDataPointLineGraphSeries(int column) {
+        DataPoint[] data = new DataPoint[LengthForAgeInfantCharts.MONTHS.length];
+
+        for (int i = 0; i < data.length; i++) {
+            int value = i * 8;
+            double x = LengthForAgeInfantCharts.LENGTH_FOR_AGE_INFANT_BOYS_REFERENCES[0 + value];
+            double y = LengthForAgeInfantCharts.LENGTH_FOR_AGE_INFANT_BOYS_REFERENCES[column + value];
+            data[i] = new DataPoint(x, y);
+        }
+
+        return new LineGraphSeries<DataPoint>(data);
     }
 
     @Override
