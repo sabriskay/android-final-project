@@ -11,8 +11,15 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.mybaby.android_final_project.R;
 import com.mybaby.android_final_project.datatables.LengthForAgeInfantCharts;
+import com.mybaby.android_final_project.datatables.WeightForAgeInfantCharts;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class GraphTest extends AppCompatActivity {
+
+    public static final int DATA_SIZE = 8;
+    public static final int MONTHS=24;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +27,12 @@ public class GraphTest extends AppCompatActivity {
         setContentView(R.layout.activity_graph_test);
         GraphView graph = (GraphView) findViewById(R.id.graph);
 
-        for (int i= 1;i < 8 ; i++) {
-            graph.addSeries(getDataPointLineGraphSeries(i));
+      /*  for (int i= 1;i < DATA_SIZE; i++) {
+            graph.addSeries(getDataPointLineGraphSeries(i,LengthForAgeInfantCharts.LENGTH_FOR_AGE_INFANT_BOYS_REFERENCES));
+        }*/
+
+        for (int i= 1;i < DATA_SIZE; i++) {
+            graph.addSeries(getDataPointLineGraphSeries(i, WeightForAgeInfantCharts.WEIGHT_FOR_AGE_INFANT_GIRLS_REFERENCES));
         }
 
 /*
@@ -36,13 +47,13 @@ public class GraphTest extends AppCompatActivity {
     }
 
     @NonNull
-    private LineGraphSeries<DataPoint> getDataPointLineGraphSeries(int column) {
-        DataPoint[] data = new DataPoint[LengthForAgeInfantCharts.MONTHS.length];
+    private LineGraphSeries<DataPoint> getDataPointLineGraphSeries(int column, Double[] chart ) {
+        DataPoint[] data = new DataPoint[MONTHS];
 
         for (int i = 0; i < data.length; i++) {
-            int value = i * 8;
-            double x = LengthForAgeInfantCharts.LENGTH_FOR_AGE_INFANT_BOYS_REFERENCES[0 + value];
-            double y = LengthForAgeInfantCharts.LENGTH_FOR_AGE_INFANT_BOYS_REFERENCES[column + value];
+            int value = i * DATA_SIZE;
+            double x = chart[0 + value];
+            double y = chart[column + value];
             data[i] = new DataPoint(x, y);
         }
 
