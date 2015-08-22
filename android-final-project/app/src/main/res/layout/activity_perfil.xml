@@ -31,14 +31,15 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textColor="@color/textColorGreen"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="32dp"/>
 
         <EditText
             android:id="@+id/full_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/textColorGreen"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:capitalize="sentences" />
 
     </LinearLayout>
 
@@ -81,7 +82,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textColor="@color/textColorGreen"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="80dp"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -90,8 +91,117 @@
             android:ems="10"
             android:id="@+id/baby_id"
             android:textColor="@color/textColorGreen"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:numeric="integer" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_blood_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/linear_id">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/blood_type"
+            android:textStyle="bold"
+            android:textColor="@color/textColorGreen"
+            android:layout_marginRight="20dp"/>
+
+        <Spinner
+            android:id="@+id/spinner_blood_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_select_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/linear_blood_type"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gender"
+            android:textStyle="bold"
+            android:textColor="@color/textColorGreen"
+            android:layout_marginBottom="5dp"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/rb_gender_fem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/textColorGreen" />
+
+            <RadioButton
+                android:id="@+id/rb_gender_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/textColorGreen"
+                android:layout_marginTop="12dp" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/img_girl"
+        android:background="@drawable/icon_border_fem"
+        android:layout_marginTop="20dp"
+        android:layout_alignTop="@id/linear_select_gender"
+        android:layout_toRightOf="@id/linear_select_gender"
+        android:layout_toEndOf="@id/linear_select_gender"
+        android:layout_marginBottom="5dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/female109" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/img_boy"
+        android:background="@drawable/icon_border"
+        android:layout_below="@id/img_girl"
+        android:layout_alignLeft="@id/img_girl"
+        android:layout_alignStart="@id/img_girl">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/baby63" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_save"
+        android:onClick="saveBaby"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/textColorGreen"
+        android:background="@drawable/button_border"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"/>
+
 
 </RelativeLayout>

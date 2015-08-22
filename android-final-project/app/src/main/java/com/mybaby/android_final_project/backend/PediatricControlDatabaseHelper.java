@@ -37,6 +37,8 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
     private Context context;
     private static PediatricControlDatabaseHelper databaseInstance;
     public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private Patient currentPatient = null;
+    
 
     public static PediatricControlDatabaseHelper getDatabaseInstance(Context context)
     {
@@ -107,15 +109,15 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         return index;
     }
     
-	public long insertPatient(Patient patient)
+	public long insertPatient(String name, Calendar birthDate, int id, String genre, int idBloodGroup)
 	{
         Log.d("Insert into Table: ", PATIENT_TABLE);
         ContentValues values = new ContentValues();
-        values.put("name", patient.getName());
-        values.put("id_blood_type", patient.getIdBloodGroup());
-        values.put("genre", patient.getGenre());
-        values.put("id", patient.getid());
-        values.put("birth_date", convertCalendarToString(patient.getBirthDate()));
+        values.put("name", name);
+        values.put("id_blood_type", idBloodGroup);
+        values.put("genre", genre);
+        values.put("id", id);
+        values.put("birth_date", convertCalendarToString(birthDate));
         values.put("date_audit", new Date().getTime());
 
         long index = getWritableDatabase().insert(PATIENT_TABLE, null, values);
@@ -158,11 +160,11 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         return exist;
     }
 
-    public Patient getPatient(int id_patient) {
+    public Patient getPatient(/*int id_patient*/) {
         String SELECT_QUERY = "SELECT pac.name, pac.genre, pac.id, pac.birth_date, pac.id_patient , pac.id_blood_type "
                 +" FROM " + PATIENT_TABLE + " pac "
-                + " INNER JOIN " + BLOOD_TYPE_TABLE + " gs ON pac.id_blood_type = gs.id_blood_type "
-                + " WHERE pac.id_patient=" + id_patient;
+                + " INNER JOIN " + BLOOD_TYPE_TABLE + " gs ON pac.id_blood_type = gs.id_blood_type ";
+                //+ " WHERE pac.id_patient=" + id_patient;
 
         Patient data = null;
         Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
@@ -178,7 +180,14 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         }
         this.close();
         return data;
+    }
 
+    public Patient getCurrentPatient() {
+        return currentPatient;
+    }
+
+    public void setCurrentPatient(Patient currentPatient) {
+        this.currentPatient = currentPatient;
     }
 
 
@@ -279,10 +288,6 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         int rowsDeleted = getWritableDatabase().delete(CONTROL_TABLE, "id_Control = "+idControl,null );
         return rowsDeleted;
     }
-
-
-    //fecha de nac -> cuantos meses, controles: peso cm , longitud cm
-
 
     private void insertDefaultData(SQLiteDatabase db){
         insertBloodType(db);

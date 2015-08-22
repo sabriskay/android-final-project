@@ -3,7 +3,6 @@ package com.mybaby.android_final_project.activities;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,10 +15,8 @@ import android.widget.Toast;
 
 import com.mybaby.android_final_project.R;
 import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
-import com.mybaby.android_final_project.model.Control;
 
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * Created by SabrinaKay on 08/08/2015.
@@ -66,7 +63,7 @@ public class AddNewControlActivity extends Activity {
         controlSizeET = (EditText)findViewById(R.id.add_size);
         controlWeightET = (EditText)findViewById(R.id.add_weight);
         controlHeadCircumET = (EditText)findViewById(R.id.add_head_circum);
-        controlPediatricET = (EditText)findViewById(R.id.add_pediatric);
+        controlPediatricET = (EditText)findViewById(R.id.add_pediatrician);
         controlNoteET = (EditText)findViewById(R.id.add_note);
         moodHappy = (RadioButton)findViewById(R.id.rb_mood_happy);
         moodAngry = (RadioButton)findViewById(R.id.rb_mood_angry);
@@ -153,7 +150,7 @@ public class AddNewControlActivity extends Activity {
 
         }
         else {
-            Toast.makeText(this,R.string.error_message_new_control,Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.error_message_empty_fields,Toast.LENGTH_LONG).show();
         }
 
 
