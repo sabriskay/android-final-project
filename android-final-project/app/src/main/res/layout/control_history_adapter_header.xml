@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:textColor="#269983"
+        android:textColor="@color/textColorGreen"
         android:text="@string/title_list_date"/>
 
 </LinearLayout>
