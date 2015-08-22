@@ -3,7 +3,6 @@ package com.mybaby.android_final_project.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,9 +13,7 @@ import android.widget.TextView;
 import com.mybaby.android_final_project.R;
 import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
 import com.mybaby.android_final_project.dao.ControlDAO;
-import com.mybaby.android_final_project.dao.PatientDAO;
 import com.mybaby.android_final_project.dao.impl.ControlDAOImpl;
-import com.mybaby.android_final_project.dao.impl.PatientDAOImpl;
 import com.mybaby.android_final_project.model.Control;
 import com.mybaby.android_final_project.model.Patient;
 
@@ -24,60 +21,60 @@ import com.mybaby.android_final_project.model.Patient;
  * Created by SabrinaKay on 08/08/2015.
  */
 public class MainActivity extends Activity {
-    private boolean existPatient = false;
+    private boolean existCurrentPatient = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        existPatient = PediatricControlDatabaseHelper.getDatabaseInstance(this).existAPatient();
-
-        if (!existPatient) {
-            goToViewProfile(null);
-        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        if(existPatient) {
+        PediatricControlDatabaseHelper.getDatabaseInstance(this).setCurrentPatient(PediatricControlDatabaseHelper.getDatabaseInstance(this).getPatient());
+        existCurrentPatient = PediatricControlDatabaseHelper.getDatabaseInstance(this).getCurrentPatient() != null;
+
+        if(existCurrentPatient) {
             initUI();
+        } else {
+            goToViewProfile(null);
         }
     }
 
     private void initUI() {
 
+        Patient patient = PediatricControlDatabaseHelper.getDatabaseInstance(this).getCurrentPatient();
         ControlDAO controlDAOImpl= new ControlDAOImpl(this);
         Control lastControl = controlDAOImpl.getLastControl();
 
-        PatientDAO patientDAOImpl = new PatientDAOImpl(this);
-        Patient patient = patientDAOImpl.getPatient(1);
-
         String genderPatient = patient.getGenre();
 
-        TextView controlDate = (TextView)findViewById(R.id.last_date);
-        TextView controlSize = (TextView)findViewById(R.id.last_size);
-        TextView controlWeight = (TextView)findViewById(R.id.last_weight);
-        TextView controlHeadC = (TextView)findViewById(R.id.last_head_circum);
-        TextView controlNotes = (TextView)findViewById(R.id.last_note);
+
         ImageView pacientIcon = (ImageView)findViewById(R.id.iconBaby);
         LinearLayout linearBorderIcon = (LinearLayout)findViewById(R.id.linear_border);
+        TextView controlNotes = (TextView) findViewById(R.id.last_note);
 
-        controlDate.setText(PediatricControlDatabaseHelper.getDatabaseInstance(this).convertCalendarToString(lastControl.getDateControl()));
-        controlSize.setText(Float.toString(lastControl.getHeight()) + " cm");
-        controlWeight.setText(Float.toString(lastControl.getWeight()) + " kg");
-        controlHeadC.setText(Float.toString(lastControl.getHeadCircumference()) + " cm");
-        controlNotes.setText(lastControl.getNotes());
+        if (lastControl != null) {
 
-        if(genderPatient.equalsIgnoreCase("F")) {
+            TextView controlDate = (TextView) findViewById(R.id.last_date);
+            TextView controlSize = (TextView) findViewById(R.id.last_size);
+            TextView controlWeight = (TextView) findViewById(R.id.last_weight);
+            TextView controlHeadC = (TextView) findViewById(R.id.last_head_circum);
+            controlDate.setText(PediatricControlDatabaseHelper.getDatabaseInstance(this).convertCalendarToString(lastControl.getDateControl()));
+            controlSize.setText(Float.toString(lastControl.getHeight()) + " cm");
+            controlWeight.setText(Float.toString(lastControl.getWeight()) + " kg");
+            controlHeadC.setText(Float.toString(lastControl.getHeadCircumference()) + " cm");
+            controlNotes.setText(lastControl.getNotes());
+        }
+
+        if (genderPatient.equalsIgnoreCase("F")) {
             pacientIcon.setBackgroundResource(R.drawable.female109);
             linearBorderIcon.setBackgroundResource(R.drawable.icon_border_fem);
             controlNotes.setBackgroundResource(R.drawable.icon_border_fem);
 
-        }
-        else {
+        } else {
             pacientIcon.setBackgroundResource(R.drawable.baby63);
             linearBorderIcon.setBackgroundResource(R.drawable.icon_border);
             controlNotes.setBackgroundResource(R.drawable.icon_border);
@@ -87,7 +84,7 @@ public class MainActivity extends Activity {
     public void goToViewProfile(View v) {
 
         Intent intent = new Intent(this, ProfileActivity.class);
-        intent.putExtra("firstTime", !existPatient);
+        intent.putExtra("firstTime", !existCurrentPatient);
         startActivity(intent);
     }
 

@@ -161,6 +161,7 @@
                 android:layout_height="50dp"
                 android:textSize="12sp"
                 android:text="@string/button_profile_text"
+                android:textStyle="bold"
                 android:layout_marginRight="20dp"
                 android:onClick="goToViewProfile"
                 android:textColor="@color/textColorGreen"
@@ -172,6 +173,7 @@
                 android:layout_height="50dp"
                 android:textSize="12sp"
                 android:text="@string/button_new_control_text"
+                android:textStyle="bold"
                 android:onClick="goToViewNewControl"
                 android:textColor="@color/textColorGreen"
                 android:background="@drawable/button_border" />
@@ -190,6 +192,7 @@
                 android:layout_height="50dp"
                 android:textSize="12sp"
                 android:text="@string/button_process_text"
+                android:textStyle="bold"
                 android:layout_marginRight="20dp"
                 android:onClick="goToViewProgress"
                 android:textColor="@color/textColorGreen"
@@ -201,6 +204,7 @@
                 android:layout_height="50dp"
                 android:textSize="12sp"
                 android:text="@string/button_control_history_text"
+                android:textStyle="bold"
                 android:onClick="goToViewControlsHistory"
                 android:textColor="@color/textColorGreen"
                 android:background="@drawable/button_border" />

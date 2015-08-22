@@ -36,17 +36,20 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
 
         for (Control control: controlList) {
             String date = PediatricControlDatabaseHelper.getDatabaseInstance(context).convertCalendarToString(control.getDateControl());
-            headerList.add(date);
 
-            tempChildList = new ArrayList<>();
-            for (Control otherControl: controlList) {
-                String otherDate = PediatricControlDatabaseHelper.getDatabaseInstance(context).convertCalendarToString(otherControl.getDateControl());
-                if(otherDate.equals(date)) {
-                    tempChildList.add(otherControl);
+            if(!headerList.contains(date)) {
+                headerList.add(date);
+
+                tempChildList = new ArrayList<>();
+                for (Control otherControl: controlList) {
+                    String otherDate = PediatricControlDatabaseHelper.getDatabaseInstance(context).convertCalendarToString(otherControl.getDateControl());
+                    if(otherDate.equals(date)) {
+                        tempChildList.add(otherControl);
+                    }
                 }
-            }
 
-            childList.put(date, tempChildList);
+                childList.put(date, tempChildList);
+            }
         }
     }
 

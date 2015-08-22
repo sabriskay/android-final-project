@@ -6,6 +6,8 @@ import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
 import com.mybaby.android_final_project.dao.PatientDAO;
 import com.mybaby.android_final_project.model.Patient;
 
+import java.util.Calendar;
+
 /**
  * Created by paula.garcia on 8/10/2015.
  */
@@ -17,13 +19,13 @@ public class PatientDAOImpl implements PatientDAO{
     }
 
     @Override
-    public Patient getPatient(int idPatient) {
-        return PediatricControlDatabaseHelper.getDatabaseInstance(context).getPatient(idPatient);
+    public Patient getPatient() {
+        return PediatricControlDatabaseHelper.getDatabaseInstance(context).getPatient();
     }
 
     @Override
-    public void addPatient(Patient patient) {
-        PediatricControlDatabaseHelper.getDatabaseInstance(context).insertPatient(patient);
+    public void addPatient(String name, Calendar birthDate, int id, String genre, int idBloodGroup) {
+        PediatricControlDatabaseHelper.getDatabaseInstance(context).insertPatient(name, birthDate, id, genre, idBloodGroup);
     }
 
     @Override

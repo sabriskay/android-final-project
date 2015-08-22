@@ -173,7 +173,7 @@
             android:textColor="@color/textColorGreen"/>
 
         <EditText
-            android:id="@+id/add_pediatric"
+            android:id="@+id/add_pediatrician"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/textColorGreen"
@@ -226,9 +226,13 @@
         android:layout_height="wrap_content"
         android:text="@string/button_save"
         android:onClick="saveNewControl"
+        android:textStyle="bold"
         android:layout_alignParentBottom="true"
         android:textColor="@color/textColorGreen"
-        android:background="@drawable/button_border"/>
+        android:background="@drawable/button_border"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/title_note"
