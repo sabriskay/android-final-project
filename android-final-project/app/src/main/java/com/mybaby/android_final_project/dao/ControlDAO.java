@@ -14,7 +14,7 @@ public interface ControlDAO {
     // Getting single Control
     public Control getControl(int id);
 
-    // Getting All Controls
+    // Getting All Controls Desc by default
     public List<Control> getAllControls();
 
     // Getting Controls Count
@@ -30,4 +30,6 @@ public interface ControlDAO {
     // Getting single Last Control
     public Control getLastControl();
 
+    //By order
+    public List<Control> getAllControls(String orderBy);
 }

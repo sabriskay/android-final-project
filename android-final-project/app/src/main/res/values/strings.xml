@@ -83,4 +83,5 @@
     <string name="sex_fem">Girl</string>
     <string name="sex_male">Boy</string>
     <string name="birthday_date">Birthday Date:</string>
+    <string name="title_activity_graph_test">graphTest</string>
 </resources>

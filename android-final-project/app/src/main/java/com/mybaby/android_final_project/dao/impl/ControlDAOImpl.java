@@ -43,6 +43,12 @@ public class ControlDAOImpl implements ControlDAO {
     }
 
     @Override
+    public List<Control> getAllControls(String orderBy) {
+        return  PediatricControlDatabaseHelper.getDatabaseInstance(context).getAllControl(orderBy);
+    }
+
+
+    @Override
     public int getControlsCount() {
         return 0;
     }

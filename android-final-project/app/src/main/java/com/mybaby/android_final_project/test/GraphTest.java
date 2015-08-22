@@ -10,16 +10,13 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.mybaby.android_final_project.R;
-import com.mybaby.android_final_project.datatables.LengthForAgeInfantCharts;
 import com.mybaby.android_final_project.datatables.WeightForAgeInfantCharts;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class GraphTest extends AppCompatActivity {
 
     public static final int DATA_SIZE = 8;
-    public static final int MONTHS=24;
+    public static final int MONTHS = 24;
+    public static final int FIRST_COLUMN = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +49,7 @@ public class GraphTest extends AppCompatActivity {
 
         for (int i = 0; i < data.length; i++) {
             int value = i * DATA_SIZE;
-            double x = chart[0 + value];
+            double x = chart[FIRST_COLUMN + value];
             double y = chart[column + value];
             data[i] = new DataPoint(x, y);
         }
