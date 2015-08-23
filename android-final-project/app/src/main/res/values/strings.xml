@@ -88,4 +88,12 @@
 
     <string name="message_add_patient">Baby added</string>
     <string name="message_edit_patient">Baby updated</string>
+    
+    <!-- Testing -->
+    <string name="title_activity_graph_test">graphTest</string>
+    <string name="title_activity_chart">ChartActivity</string>
+
+       <!-- Chart -->
+    <string name="menu_settings">Settings</string>
+
 </resources>

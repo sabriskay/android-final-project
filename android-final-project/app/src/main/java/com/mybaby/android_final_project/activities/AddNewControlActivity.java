@@ -115,7 +115,7 @@ public class AddNewControlActivity extends Activity {
 
     private void updateLabel() {
 
-        controlDateET.setText(PediatricControlDatabaseHelper.DATE_FORMAT.format(myCalendar.getTime()));
+        controlDateET.setText(PediatricControlDatabaseHelper.dateFormat.format(myCalendar.getTime()));
     }
 
     public void saveNewControl(View v) {

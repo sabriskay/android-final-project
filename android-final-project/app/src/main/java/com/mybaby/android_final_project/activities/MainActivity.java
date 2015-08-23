@@ -3,6 +3,7 @@ package com.mybaby.android_final_project.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,11 +18,15 @@ import com.mybaby.android_final_project.dao.impl.ControlDAOImpl;
 import com.mybaby.android_final_project.model.Control;
 import com.mybaby.android_final_project.model.Patient;
 
+import java.io.Serializable;
+
 /**
  * Created by SabrinaKay on 08/08/2015.
  */
 public class MainActivity extends Activity {
     private boolean existCurrentPatient = false;
+    String genderPatient = null;
+    Patient patient ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +50,11 @@ public class MainActivity extends Activity {
 
     private void initUI() {
 
-        Patient patient = PediatricControlDatabaseHelper.getDatabaseInstance(this).getCurrentPatient();
+        patient = PediatricControlDatabaseHelper.getDatabaseInstance(this).getCurrentPatient();
         ControlDAO controlDAOImpl= new ControlDAOImpl(this);
         Control lastControl = controlDAOImpl.getLastControl();
 
-        String genderPatient = patient.getGenre();
+        genderPatient = patient.getGenre();
 
 
         ImageView pacientIcon = (ImageView)findViewById(R.id.iconBaby);
@@ -96,7 +101,7 @@ public class MainActivity extends Activity {
 
     public void goToViewProgress(View v) {
 
-        Intent intent = new Intent(this, ProgressActivity.class);
+        Intent intent = new Intent(this, ProgressWeightForAgeChartActivity.class);
         startActivity(intent);
     }
 

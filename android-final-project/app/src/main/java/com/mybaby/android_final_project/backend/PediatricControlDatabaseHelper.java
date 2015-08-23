@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 
 public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
@@ -35,8 +36,9 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 
     private Context context;
     private static PediatricControlDatabaseHelper databaseInstance;
+    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private Patient currentPatient = null;
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    
 
     public static PediatricControlDatabaseHelper getDatabaseInstance(Context context)
     {
@@ -188,12 +190,18 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         this.currentPatient = currentPatient;
     }
 
+
     public List<Control> getAllControl()
+    {
+        return getAllControl("desc");
+    }
+
+    public List<Control> getAllControl(String order)
     {
         List<Control> controlList = new ArrayList<Control>();
 
         String SELECT_QUERY = "SELECT control.*, pac.name FROM "+ CONTROL_TABLE +" control INNER JOIN "+ PATIENT_TABLE +" pac ON control.id_patient = pac.id_patient "
-                +" Order By control.date_control desc";
+                +" Order By control.date_control " + order;
         Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
         {
@@ -293,18 +301,19 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
     }
 
 
-    public Calendar convertStringToCalendar(String date){
-        Calendar cal = Calendar.getInstance();
+    public Calendar convertStringToCalendar(String date) {
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("America/Argentina/Cordoba"));
+        dateFormat.setTimeZone(TimeZone.getTimeZone("America/Argentina/Cordoba"));
         try {
-            cal.setTime(DATE_FORMAT.parse(date));
+            cal.setTime(dateFormat.parse(date));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return cal;
-	}
+    }
 
     public String convertCalendarToString(Calendar calendar) {
-        return DATE_FORMAT.format(calendar.getTime());
+        return dateFormat.format(calendar.getTime());
     }
 
 }
