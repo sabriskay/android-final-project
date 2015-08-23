@@ -99,10 +99,10 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 		values.put("height", height);
 		values.put("head_circumference", head_circumference );
 		values.put("teeth_amount", teeth_amount);
-		values.put("notes", notes);
+		values.put("notes", notes.trim());
 		values.put("date_audit", new Date().getTime());
-		values.put("pediatrician", pediatrician);
-        values.put("mood", mood);
+		values.put("pediatrician", pediatrician.trim());
+        values.put("mood", mood.trim());
 
         long index = getWritableDatabase().insert(CONTROL_TABLE, null, values);
     	this.close();
@@ -113,7 +113,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 	{
         Log.d("Insert into Table: ", PATIENT_TABLE);
         ContentValues values = new ContentValues();
-        values.put("name", name);
+        values.put("name", name.trim());
         values.put("id_blood_type", idBloodGroup);
         values.put("genre", genre);
         values.put("id", id);
@@ -129,7 +129,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         Log.d("Update into Table: ", PATIENT_TABLE);
 
         ContentValues values = new ContentValues();
-        values.put("name", patient.getName());
+        values.put("name", patient.getName().trim());
         values.put("id_blood_type", patient.getIdBloodGroup());
         values.put("genre", patient.getGenre());
         values.put("id", patient.getid());

@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -31,7 +32,8 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textColor="@color/textColorGreen"
-            android:layout_marginRight="32dp"/>
+            android:layout_marginRight="45dp"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/full_name"
@@ -56,7 +58,8 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textColor="@color/textColorGreen"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:textSize="20sp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -82,7 +85,8 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textColor="@color/textColorGreen"
-            android:layout_marginRight="80dp"/>
+            android:layout_marginRight="113dp"
+            android:textSize="20sp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -109,7 +113,8 @@
             android:text="@string/blood_type"
             android:textStyle="bold"
             android:textColor="@color/textColorGreen"
-            android:layout_marginRight="20dp"/>
+            android:layout_marginRight="20dp"
+            android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_blood_type"
@@ -133,7 +138,8 @@
             android:text="@string/gender"
             android:textStyle="bold"
             android:textColor="@color/textColorGreen"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:textSize="20sp" />
 
         <RadioGroup
             android:layout_width="wrap_content"
@@ -161,7 +167,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/img_girl"
         android:background="@drawable/icon_border_fem"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="26dp"
         android:layout_alignTop="@id/linear_select_gender"
         android:layout_toRightOf="@id/linear_select_gender"
         android:layout_toEndOf="@id/linear_select_gender"
@@ -201,7 +207,8 @@
         android:background="@drawable/button_border"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="20dp"
+        android:textSize="25sp" />
 
 
 </RelativeLayout>
