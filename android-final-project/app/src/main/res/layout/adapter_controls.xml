@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="10dp"
                 android:textStyle="bold"
-                android:text="@string/title_list_size"
+                android:text="@string/title_list_length"
                 android:layout_below="@id/list_date"
                 android:paddingRight="11dp"/>
 

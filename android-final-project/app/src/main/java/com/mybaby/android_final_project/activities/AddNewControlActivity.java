@@ -60,7 +60,7 @@ public class AddNewControlActivity extends Activity {
 
     private void initUI() {
 
-        controlSizeET = (EditText)findViewById(R.id.add_size);
+        controlSizeET = (EditText)findViewById(R.id.add_length);
         controlWeightET = (EditText)findViewById(R.id.add_weight);
         controlHeadCircumET = (EditText)findViewById(R.id.add_head_circum);
         controlPediatricET = (EditText)findViewById(R.id.add_pediatrician);

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">android-final-project</string>
+    <string name="app_name">Crescere!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_add_new_control">AddNewControlActivity</string>
@@ -10,7 +10,7 @@
     <!--main-->
     <string name="title_list_last_visit">Last control</string>
     <string name="title_list_date">Date:</string>
-    <string name="title_list_size">Size:</string>
+    <string name="title_list_length">Length:</string>
     <string name="title_list_weight">Weight:</string>
     <string name="title_list_note">Notes:</string>
 
@@ -69,7 +69,8 @@
         <item>31</item>
         <item>32</item>
     </string-array>
-
+    <string name="cm">(cm)</string>
+    <string name="kg">(kg)</string>
     <string name="message_new_control_added">New control added</string>
     <string name="error_message_empty_fields">Please, complete the empty fields</string>
 

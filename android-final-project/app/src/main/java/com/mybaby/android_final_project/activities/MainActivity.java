@@ -68,9 +68,9 @@ public class MainActivity extends Activity {
             TextView controlWeight = (TextView) findViewById(R.id.last_weight);
             TextView controlHeadC = (TextView) findViewById(R.id.last_head_circum);
             controlDate.setText(PediatricControlDatabaseHelper.getDatabaseInstance(this).convertCalendarToString(lastControl.getDateControl()));
-            controlSize.setText(Float.toString(lastControl.getHeight()) + " cm");
-            controlWeight.setText(Float.toString(lastControl.getWeight()) + " kg");
-            controlHeadC.setText(Float.toString(lastControl.getHeadCircumference()) + " cm");
+            controlSize.setText(Float.toString(lastControl.getHeight()) + " " + R.string.cm);
+            controlWeight.setText(Float.toString(lastControl.getWeight()) + " " + R.string.kg);
+            controlHeadC.setText(Float.toString(lastControl.getHeadCircumference()) + " " + R.string.cm);
             controlNotes.setText(lastControl.getNotes());
         }
 
