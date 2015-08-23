@@ -48,14 +48,14 @@ public class ProgressLengthForAgeChartActivity extends ProgressChartActivity {
 
         ControlDAO controlDAOImpl = new ControlDAOImpl(this);
         List<Control> controlList = controlDAOImpl.getAllControls();
-        List<MeasurePerMonth> weightPerMonth = new ArrayList<MeasurePerMonth>();
+        List<MeasurePerMonth> heightPerMonth = new ArrayList<MeasurePerMonth>();
 
         for (int i = 0; i < controlList.size(); i++) {
             int x = Utils.monthsBetween(patient.getBirthDate(), controlList.get(i).getDateControl());
-            weightPerMonth.add(new MeasurePerMonth(x, controlList.get(i).getHeight()));
+            heightPerMonth.add(new MeasurePerMonth(x, controlList.get(i).getHeight()));
         }
-        Collections.sort(weightPerMonth);
-        return weightPerMonth;
+        Collections.sort(heightPerMonth);
+        return heightPerMonth;
     }
 
 

@@ -100,11 +100,6 @@ public class ProgressChartActivity extends Activity {
         return viewsSeries;
     }
 
-    public void setMeasureType() {
-
-    }
-
-
     public String getGender() {
         return gender;
     }
