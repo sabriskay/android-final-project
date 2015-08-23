@@ -91,5 +91,9 @@
     
     <!-- Testing -->
     <string name="title_activity_graph_test">graphTest</string>
+    <string name="title_activity_chart">ChartActivity</string>
+
+       <!-- Chart -->
+    <string name="menu_settings">Settings</string>
 
 </resources>

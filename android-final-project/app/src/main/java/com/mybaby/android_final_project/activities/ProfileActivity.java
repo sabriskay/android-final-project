@@ -125,7 +125,7 @@ public class ProfileActivity extends Activity {
     }
 
     private void updateLabel() {
-        birthdateET.setText(PediatricControlDatabaseHelper.DATE_FORMAT.format(myCalendar.getTime()));
+        birthdateET.setText(PediatricControlDatabaseHelper.dateFormat.format(myCalendar.getTime()));
     }
 
     private void initializeSpinnerBlood() {

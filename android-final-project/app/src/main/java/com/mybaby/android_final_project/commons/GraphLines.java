@@ -1,10 +1,8 @@
-package com.mybaby.android_final_project.test;
+package com.mybaby.android_final_project.commons;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
@@ -12,7 +10,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.mybaby.android_final_project.R;
 import com.mybaby.android_final_project.datatables.WeightForAgeInfantCharts;
 
-public class GraphTest extends AppCompatActivity {
+public class GraphLines extends AppCompatActivity {
 
     public static final int DATA_SIZE = 8;
     public static final int MONTHS = 24;

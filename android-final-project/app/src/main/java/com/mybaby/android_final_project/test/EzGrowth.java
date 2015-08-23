@@ -1,26 +1,25 @@
 package com.mybaby.android_final_project.test;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mybaby.android_final_project.ezgrowth.*;
-import com.mybaby.android_final_project.R;
+import com.mybaby.android_final_project.ezgrowth.bmiForAge;
+import com.mybaby.android_final_project.ezgrowth.headCircumferenceForAge;
+import com.mybaby.android_final_project.ezgrowth.lengthForAgeInfant;
+import com.mybaby.android_final_project.ezgrowth.statureForAge;
+import com.mybaby.android_final_project.ezgrowth.weightForAge;
+import com.mybaby.android_final_project.ezgrowth.weightForAgeInfant;
+import com.mybaby.android_final_project.ezgrowth.weightForLengthInfant;
+import com.mybaby.android_final_project.ezgrowth.weightForStature;
+import com.mybaby.android_final_project.ezgrowth.zTable;
 
-public class EzGrowth extends Activity
+public class EzGrowth
 {
     /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle icicle) 
+   /* public void onCreate()
     {
-        super.onCreate(icicle);
-        setContentView(R.layout.percentile);
+      *//*  super.onCreate(icicle);
+        setContentView(R.layout.percentile);*//*
         
         // Implement WeightForAgeBtn click
         Button l_oResultsBtn = (Button) findViewById(R.id.ResultsBtn);
@@ -34,10 +33,10 @@ public class EzGrowth extends Activity
         		Double l_dStature = -0.1;
         		Double l_dSex = -0.1;
         		Double l_dAge = -0.1;
-        		Double l_dWeight = -0.1;
+        		Double l_dWeight = -0.1;*/
         		
                 // Set sex to male or female according to marked radio button
-                RadioButton l_oRadioButton = (RadioButton) findViewById(R.id.MaleRadioButton);
+/*                RadioButton l_oRadioButton = (RadioButton) findViewById(R.id.MaleRadioButton);
                 if (l_oRadioButton.isChecked())
                 {
                 	// Set sex to male
@@ -108,49 +107,98 @@ public class EzGrowth extends Activity
                 {
                 	showAlert("Incorrect Value",0,"Incorrect value inserted in Age.","Okay",true);
                 	return;
-                }
+                }*/
                 
-                String l_sResults[] = {""};
-        		if ((l_dWeight >= 0.0) && (l_dStature >= 24.0) && (l_dAge >= 24.0) && (l_dAge <= 240.5))
-        		{
-        			l_dBMI = l_dWeight/((l_dStature * l_dStature) / 10000);
-        			UpdateBMIForAge(l_dBMI,l_dAge,l_dSex,l_sResults);
-        		}
-        		if ((l_dHeadCircumference >= 0.0) && (l_dAge >= 0.0) && (l_dAge <= 36.0))
-        		{
-        			UpdateHeadForAge(l_dHeadCircumference,l_dAge,l_dSex,l_sResults);
-        		}
-        		if ((l_dAge >= 0.0) && (l_dAge <= 35.5) && (l_dLength >= 0.0))
-        		{
-        			UpdateLengthForAge(l_dLength,l_dAge,l_dSex,l_sResults);
-        		}
-        		if ((l_dAge >= 24.0) && (l_dAge <= 240.0) && (l_dStature >= 0.0))
-        		{
-        			UpdateStatureForAge(l_dStature,l_dAge,l_dSex,l_sResults);
-        		}
-        		if ((l_dAge >= 36.0) && (l_dAge <= 240.0) && (l_dWeight >= 0.0))
-        		{
-        			UpdateWeightForAge(l_dWeight,l_dAge,l_dSex,l_sResults);
-        		}
-        		if ((l_dAge < 36.0) && (l_dAge >= 0.0) && (l_dWeight >= 0.0))
-        		{
-        			UpdateWeightForAgeInfant(l_dWeight,l_dAge,l_dSex,l_sResults);
-        		}
-        		if ((l_dAge >= 0.0) && (l_dAge <= 35.5) && (l_dWeight >= 0.0) && (l_dLength >= 0.0))
-        		{
-        			UpdateWeightForLengthInfant(l_dWeight,l_dLength,l_dSex,l_sResults);
-        		}
-        		if ((l_dAge >= 24.0) && (l_dAge <= 60.0) && (l_dWeight >= 0.0) && (l_dStature >= 0.0))
-        		{
-        			UpdateWeightForStature(l_dWeight,l_dStature,l_dSex,l_sResults);
-        		}
-        		if (l_sResults[0].equalsIgnoreCase(""))
-        			l_sResults[0] = "No results available, Verify the values you inserted.\nFor Example Age must be between 0 and 240 months.";
-        		TextView l_oResultsView = (TextView) findViewById(R.id.ResultsLbl);
-        		l_oResultsView.setText(l_sResults[0]);
-        	}         
-        });
-    }
+//                String l_sResults[] = {""};
+//        		if ((l_dWeight >= 0.0) && (l_dStature >= 24.0) && (l_dAge >= 24.0) && (l_dAge <= 240.5))
+//        		{
+//        			l_dBMI = l_dWeight/((l_dStature * l_dStature) / 10000);
+//        			UpdateBMIForAge(l_dBMI,l_dAge,l_dSex,l_sResults);
+//        		}
+//        		if ((l_dHeadCircumference >= 0.0) && (l_dAge >= 0.0) && (l_dAge <= 36.0))
+//        		{
+//        			UpdateHeadForAge(l_dHeadCircumference,l_dAge,l_dSex,l_sResults);
+//        		}
+//        		if ((l_dAge >= 0.0) && (l_dAge <= 35.5) && (l_dLength >= 0.0))
+//        		{
+//        			UpdateLengthForAge(l_dLength,l_dAge,l_dSex,l_sResults);
+//        		}
+//        		if ((l_dAge >= 24.0) && (l_dAge <= 240.0) && (l_dStature >= 0.0))
+//        		{
+//        			UpdateStatureForAge(l_dStature,l_dAge,l_dSex,l_sResults);
+//        		}
+//        		if ((l_dAge >= 36.0) && (l_dAge <= 240.0) && (l_dWeight >= 0.0))
+//        		{
+//        			UpdateWeightForAge(l_dWeight,l_dAge,l_dSex,l_sResults);
+//        		}
+//        		if ((l_dAge < 36.0) && (l_dAge >= 0.0) && (l_dWeight >= 0.0))
+//        		{
+//        			UpdateWeightForAgeInfant(l_dWeight,l_dAge,l_dSex,l_sResults);
+//        		}
+//        		if ((l_dAge >= 0.0) && (l_dAge <= 35.5) && (l_dWeight >= 0.0) && (l_dLength >= 0.0))
+//        		{
+//        			UpdateWeightForLengthInfant(l_dWeight,l_dLength,l_dSex,l_sResults);
+//        		}
+//        		if ((l_dAge >= 24.0) && (l_dAge <= 60.0) && (l_dWeight >= 0.0) && (l_dStature >= 0.0))
+//        		{
+//        			UpdateWeightForStature(l_dWeight,l_dStature,l_dSex,l_sResults);
+//        		}
+//        		if (l_sResults[0].equalsIgnoreCase(""))
+//        			l_sResults[0] = "No results available, Verify the values you inserted.\nFor Example Age must be between 0 and 240 months.";
+//        		TextView l_oResultsView = (TextView) findViewById(R.id.ResultsLbl);
+//        		l_oResultsView.setText(l_sResults[0]);
+//        	}
+//        });
+//    }
+
+	public void decideValue(){
+
+        Double l_dBMI = -0.1;
+        Double l_dHeadCircumference = -0.1;
+        Double l_dLength = -0.1;
+        Double l_dStature = -0.1;
+        Double l_dSex = -0.1;
+        Double l_dAge = -0.1;
+        Double l_dWeight = -0.1;
+
+		String l_sResults[] = {""};
+		if ((l_dWeight >= 0.0) && (l_dStature >= 24.0) && (l_dAge >= 24.0) && (l_dAge <= 240.5))
+		{
+			l_dBMI = l_dWeight/((l_dStature * l_dStature) / 10000);
+			UpdateBMIForAge(l_dBMI,l_dAge,l_dSex,l_sResults);
+		}
+		if ((l_dHeadCircumference >= 0.0) && (l_dAge >= 0.0) && (l_dAge <= 36.0))
+		{
+			UpdateHeadForAge(l_dHeadCircumference,l_dAge,l_dSex,l_sResults);
+		}
+		if ((l_dAge >= 0.0) && (l_dAge <= 35.5) && (l_dLength >= 0.0))
+		{
+			UpdateLengthForAge(l_dLength,l_dAge,l_dSex,l_sResults);
+		}
+		if ((l_dAge >= 24.0) && (l_dAge <= 240.0) && (l_dStature >= 0.0))
+		{
+			UpdateStatureForAge(l_dStature,l_dAge,l_dSex,l_sResults);
+		}
+		if ((l_dAge >= 36.0) && (l_dAge <= 240.0) && (l_dWeight >= 0.0))
+		{
+			UpdateWeightForAge(l_dWeight,l_dAge,l_dSex,l_sResults);
+		}
+		if ((l_dAge < 36.0) && (l_dAge >= 0.0) && (l_dWeight >= 0.0))
+		{
+			UpdateWeightForAgeInfant(l_dWeight,l_dAge,l_dSex,l_sResults);
+		}
+		if ((l_dAge >= 0.0) && (l_dAge <= 35.5) && (l_dWeight >= 0.0) && (l_dLength >= 0.0))
+		{
+			UpdateWeightForLengthInfant(l_dWeight,l_dLength,l_dSex,l_sResults);
+		}
+		if ((l_dAge >= 24.0) && (l_dAge <= 60.0) && (l_dWeight >= 0.0) && (l_dStature >= 0.0))
+		{
+			UpdateWeightForStature(l_dWeight,l_dStature,l_dSex,l_sResults);
+		}
+		if (l_sResults[0].equalsIgnoreCase(""))
+			l_sResults[0] = "No results available, Verify the values you inserted.\nFor Example Age must be between 0 and 240 months.";
+	}
+
     public void UpdateBMIForAge(Double a_dBMI, Double a_dAge,Double a_dSex,String a_sResults[])
     {
     	Double l_dPercentage = GetPercentage(a_dBMI,a_dAge,a_dSex, bmiForAge.BMI_FOR_AGE);
@@ -276,11 +324,11 @@ public class EzGrowth extends Activity
 		return -0.01;
 	}
 
-    public void  showAlert(String val1,int _int,String message,String ok, boolean _boolean){
-        Context context = getApplicationContext();
-        int duration = Toast.LENGTH_SHORT;
-
-        Toast toast = Toast.makeText(context, message, duration);
-        toast.show();
-    }
+//    public void  showAlert(String val1,int _int,String message,String ok, boolean _boolean){
+//        Context context = getApplicationContext();
+//        int duration = Toast.LENGTH_SHORT;
+//
+//        Toast toast = Toast.makeText(context, message, duration);
+//        toast.show();
+//    }
 }
