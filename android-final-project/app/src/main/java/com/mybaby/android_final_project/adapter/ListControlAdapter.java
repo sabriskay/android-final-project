@@ -148,15 +148,10 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
             @Override
             public boolean onLongClick(View v) {
                 Control contr = (Control) getChild(groupPosition, childPosition);
-                if (confirmDelete()) {
-                    removeChild(contr.getIdControl());
-                    Log.e("adapter", "size = " + getGroupCount());
-                    notifyDataSetChanged();
-                }
+                confirmDelete(contr.getIdControl());
                 return true;
             }
         });
-        notifyDataSetChanged();
         return convertView;
     }
 
@@ -173,9 +168,8 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
     }
 
 
-    private boolean confirmDelete() throws Resources.NotFoundException
+    private void confirmDelete(final int idControl) throws Resources.NotFoundException
     {
-        final boolean[] result = {false};
         new AlertDialog.Builder(context)
                 .setTitle("Confirm delete control item")
                 .setMessage("Do you confirm deletion?")
@@ -189,9 +183,10 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
                             public void onClick(DialogInterface dialog,
                                                 int which) {
                                 //Do Something Here
-                                Toast.makeText(context, "Deleted!",
-                                        Toast.LENGTH_SHORT).show();
-                                result[0] = true;
+                                Toast.makeText(context, "Deleted!" +idControl,Toast.LENGTH_SHORT).show();
+                                removeChild(idControl);
+                                notifyDataSetChanged();
+
                             }
                         })
                 .setNegativeButton("No",
@@ -202,10 +197,8 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
                                                 int which) {
                                 Toast.makeText(context, "Canceled!",
                                         Toast.LENGTH_SHORT).show();
-                                result[0] = false;
                             }
                         }).show();
-        return result[0];
     }
 
 }
