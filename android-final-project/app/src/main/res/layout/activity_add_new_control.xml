@@ -85,7 +85,7 @@
                     android:textSize="12sp"/>
             </LinearLayout>
 
-            <LinearLayout
+<!--            <LinearLayout
                 android:id="@+id/linear_teeth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:spinnerMode="dropdown" />
-            </LinearLayout>
+            </LinearLayout>-->
         </LinearLayout>
 
         <LinearLayout
@@ -140,7 +140,7 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <LinearLayout
+<!--            <LinearLayout
                 android:id="@+id/linear_head_circum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,8 +162,49 @@
                     android:textColor="@color/textColorGreen"
                     android:textSize="12sp"
                     android:maxLength="6"/>
-            </LinearLayout>
+            </LinearLayout>-->
         </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linear_content3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_first_data"
+        android:layout_marginLeft="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_head_circumference"
+            android:textStyle="bold"
+            android:textColor="@color/textColorGreen"
+            android:textSize="15sp"/>
+
+        <EditText
+            android:id="@+id/add_head_circum"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:textColor="@color/textColorGreen"
+            android:textSize="12sp"
+            android:maxLength="6"
+            android:layout_marginRight="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_teeth"
+            android:textStyle="bold"
+            android:textColor="@color/textColorGreen"
+            android:textSize="15sp"/>
+
+        <Spinner
+            android:id="@+id/spinner_teeth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"/>
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -171,7 +212,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/linear_pediatric"
         android:orientation="horizontal"
-        android:layout_below="@id/linear_first_data"
+        android:layout_below="@id/linear_content3"
         android:layout_marginLeft="5dp">
 
         <TextView
