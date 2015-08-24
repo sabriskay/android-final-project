@@ -74,7 +74,7 @@ public class ProgressWeightForAgeChartActivity extends ProgressChartActivity {
 
         for (int i = 0; i < controlList.size(); i++) {
             int x = Utils.monthsBetween(patient.getBirthDate(), controlList.get(i).getDateControl());
-            weightPerMonth.add(new MeasurePerMonth(x, controlList.get(i).getWeight()));
+            weightPerMonth.add(new MeasurePerMonth(x,controlList.get(i).getWeight()));
         }
         Collections.sort(weightPerMonth);
         return weightPerMonth;

@@ -25,7 +25,7 @@ public class MeasurePerMonth implements Comparable<MeasurePerMonth>{
         return month;
     }
 
-    public float getMeasure() {
+    public double getMeasure() {
         return measure;
     }
 }

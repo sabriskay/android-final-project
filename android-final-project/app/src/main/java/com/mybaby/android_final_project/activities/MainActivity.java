@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.mybaby.android_final_project.R;
 import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
+import com.mybaby.android_final_project.commons.Utils;
 import com.mybaby.android_final_project.dao.ControlDAO;
 import com.mybaby.android_final_project.dao.impl.ControlDAOImpl;
 import com.mybaby.android_final_project.model.Control;
@@ -68,9 +69,10 @@ public class MainActivity extends Activity {
             TextView controlWeight = (TextView) findViewById(R.id.last_weight);
             TextView controlHeadC = (TextView) findViewById(R.id.last_head_circum);
             controlDate.setText(PediatricControlDatabaseHelper.getDatabaseInstance(this).convertCalendarToString(lastControl.getDateControl()));
-            controlSize.setText(Float.toString(lastControl.getHeight()) + " " + R.string.cm);
-            controlWeight.setText(Float.toString(lastControl.getWeight()) + " " + R.string.kg);
-            controlHeadC.setText(Float.toString(lastControl.getHeadCircumference()) + " " + R.string.cm);
+
+            controlSize.setText(String.format("%.2f", lastControl.getHeight()) );
+            controlWeight.setText(String.format("%.2f",lastControl.getWeight()));
+            controlHeadC.setText(String.format("%.2f",lastControl.getHeadCircumference()) );
             controlNotes.setText(lastControl.getNotes());
         }
 

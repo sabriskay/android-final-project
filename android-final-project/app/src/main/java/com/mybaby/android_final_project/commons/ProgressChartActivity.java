@@ -47,13 +47,13 @@ public class ProgressChartActivity extends Activity {
 
         CustomMultiRenderer multiRenderer = new CustomMultiRenderer(this, measureTableTitle+" for Age", measureTableTitle);
         for (int column = 1; column < DATA_SIZE; column++) {
-            XYSeriesRenderer defaultRenderer = makeXYSeriesRenderer(Color.WHITE, 2, multiRenderer.getVal());
+            XYSeriesRenderer defaultRenderer = makeXYSeriesRenderer(Color.BLACK, 2, multiRenderer.getVal());
             //add render
             multiRenderer.addSeriesRenderer(defaultRenderer);
         }
 
         // Creating XYSeriesRenderer to customize visitsSeries
-        XYSeriesRenderer babyBoyRenderer = makeXYSeriesRenderer(Color.BLUE, 10, multiRenderer.getVal() * 1.5f);
+        XYSeriesRenderer babyBoyRenderer = makeXYSeriesRenderer(Color.parseColor("#269983"), 8, multiRenderer.getVal());
         multiRenderer.addSeriesRenderer(babyBoyRenderer);
 
         // Getting a reference to LinearLayout of the MainActivity Layout
@@ -68,10 +68,10 @@ public class ProgressChartActivity extends Activity {
 
 
     @NonNull
-    private XYSeriesRenderer makeXYSeriesRenderer(int white, int lineWidth, float val) {
+    private XYSeriesRenderer makeXYSeriesRenderer(int color, int lineWidth, float val) {
         // Creating XYSeriesRenderer to customize visitsSeries
         XYSeriesRenderer visitsRenderer = new XYSeriesRenderer();
-        visitsRenderer.setColor(white);
+        visitsRenderer.setColor(color);
         visitsRenderer.setPointStyle(PointStyle.CIRCLE);
         visitsRenderer.setFillPoints(true);
         visitsRenderer.setLineWidth(lineWidth);
@@ -95,7 +95,7 @@ public class ProgressChartActivity extends Activity {
     private XYSeries getDataFromControls(List<MeasurePerMonth> measurePerMonths) {
         XYSeries viewsSeries = new XYSeries("");
         for (MeasurePerMonth m : measurePerMonths) {
-            viewsSeries.add(m.getMonth(), m.getMeasure());
+            viewsSeries.add(m.getMonth(), Utils.roundDouble(m.getMeasure(),2));
         }
         return viewsSeries;
     }
