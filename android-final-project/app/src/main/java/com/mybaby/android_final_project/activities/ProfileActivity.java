@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -113,13 +113,22 @@ public class ProfileActivity extends Activity {
             }
 
         };
-        birthdateET.setOnClickListener(new View.OnClickListener() {
 
+        birthdateET.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                new DatePickerDialog(ProfileActivity.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            public boolean onTouch(View v, MotionEvent m) {
+                // TODO Auto-generated method stub
+                switch (m.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        new DatePickerDialog(ProfileActivity.this, date, myCalendar
+                                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        break;
+                }
+
+                return true;
             }
         });
     }

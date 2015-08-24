@@ -1,14 +1,21 @@
 package com.mybaby.android_final_project.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mybaby.android_final_project.R;
 import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
+import com.mybaby.android_final_project.dao.ControlDAO;
+import com.mybaby.android_final_project.dao.impl.ControlDAOImpl;
 import com.mybaby.android_final_project.model.Control;
 
 import java.util.ArrayList;
@@ -23,6 +30,7 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
     private Context context;
     private ArrayList<String> headerList;
     private HashMap<String, ArrayList<Control>> childList;
+    private Control control;
 
     public ListControlAdapter(Context context, List<Control> controlList) {
         this.context = context;
@@ -105,8 +113,8 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        Control control = (Control) getChild(groupPosition, childPosition);
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        this.control = (Control) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater inflaterInflater = (LayoutInflater) context
@@ -135,6 +143,24 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
         TextView notes = (TextView) convertView.findViewById(R.id.tv_notes_value);
         notes.setText(control.getNotes());
 
+        //delete
+        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Control contr = (Control) getChild(groupPosition, childPosition);
+
+                Toast.makeText(context, "touched! id" +
+                                contr.getIdControl() +" ped."+contr.getPediatrician(),
+                        Toast.LENGTH_SHORT).show();
+                if (confirmDelete()) {
+                    removeChild(contr.getIdControl());
+                    Log.e("adapter", "size = " + getGroupCount());
+                    notifyDataSetChanged();
+                }
+                return true;
+            }
+        });
+        notifyDataSetChanged();
         return convertView;
     }
 
@@ -142,4 +168,48 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
     }
+
+    public void removeChild(int idControl)
+    {
+
+        ControlDAO controlDaoImpl=  new ControlDAOImpl(context);
+        //controlDaoImpl.deleteControl(idControl);
+    }
+
+
+    private boolean confirmDelete() throws Resources.NotFoundException
+    {
+        final boolean[] result = {false};
+        new AlertDialog.Builder(context)
+                .setTitle("Confirm delete control item")
+                .setMessage("Do you confirm deletion?")
+                .setIcon(
+                        context.getResources().getDrawable(
+                                android.R.drawable.ic_dialog_alert))
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                //Do Something Here
+                                Toast.makeText(context, "Deleted!",
+                                        Toast.LENGTH_SHORT).show();
+                                result[0] = true;
+                            }
+                        })
+                .setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                Toast.makeText(context, "Canceled!",
+                                        Toast.LENGTH_SHORT).show();
+                                result[0] = false;
+                            }
+                        }).show();
+        return result[0];
+    }
+
 }

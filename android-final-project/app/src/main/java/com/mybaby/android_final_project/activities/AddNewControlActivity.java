@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -101,14 +102,23 @@ public class AddNewControlActivity extends Activity {
             }
 
         };
-        controlDateET.setOnClickListener(new View.OnClickListener() {
 
+        controlDateET.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
+            public boolean onTouch(View v, MotionEvent m) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(AddNewControlActivity.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                switch(m.getAction())
+                {
+                    case MotionEvent.ACTION_DOWN :
+                        new DatePickerDialog(AddNewControlActivity.this, date, myCalendar
+                                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        break;
+                    case MotionEvent.ACTION_UP  :
+                        break;
+                }
+
+                return true;
             }
         });
     }
