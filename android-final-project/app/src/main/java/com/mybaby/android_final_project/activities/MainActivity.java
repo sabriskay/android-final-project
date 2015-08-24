@@ -3,7 +3,6 @@ package com.mybaby.android_final_project.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,8 +16,6 @@ import com.mybaby.android_final_project.dao.ControlDAO;
 import com.mybaby.android_final_project.dao.impl.ControlDAOImpl;
 import com.mybaby.android_final_project.model.Control;
 import com.mybaby.android_final_project.model.Patient;
-
-import java.io.Serializable;
 
 /**
  * Created by SabrinaKay on 08/08/2015.
@@ -64,13 +61,13 @@ public class MainActivity extends Activity {
         if (lastControl != null) {
 
             TextView controlDate = (TextView) findViewById(R.id.last_date);
-            TextView controlSize = (TextView) findViewById(R.id.last_size);
+            TextView controlSize = (TextView) findViewById(R.id.last_length);
             TextView controlWeight = (TextView) findViewById(R.id.last_weight);
             TextView controlHeadC = (TextView) findViewById(R.id.last_head_circum);
             controlDate.setText(PediatricControlDatabaseHelper.getDatabaseInstance(this).convertCalendarToString(lastControl.getDateControl()));
-            controlSize.setText(Float.toString(lastControl.getHeight()) + " " + R.string.cm);
-            controlWeight.setText(Float.toString(lastControl.getWeight()) + " " + R.string.kg);
-            controlHeadC.setText(Float.toString(lastControl.getHeadCircumference()) + " " + R.string.cm);
+            controlSize.setText(String.format("%.2f", lastControl.getHeight()) );
+            controlWeight.setText(String.format("%.2f",lastControl.getWeight()));
+            controlHeadC.setText(String.format("%.2f",lastControl.getHeadCircumference()) );
             controlNotes.setText(lastControl.getNotes());
         }
 
@@ -101,7 +98,7 @@ public class MainActivity extends Activity {
 
     public void goToViewProgress(View v) {
 
-        Intent intent = new Intent(this, ProgressWeightForAgeChartActivity.class);
+        Intent intent = new Intent(this, ProgressActivity.class);
         startActivity(intent);
     }
 

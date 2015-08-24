@@ -124,13 +124,13 @@ public class AddNewControlActivity extends Activity {
 
             String mood = "";
 
-            if (moodAngry.isChecked()==true) {
+            if (moodAngry.isChecked()) {
                 mood = moodAngry.getText().toString();
-            } else if (moodHappy.isChecked()==true) {
+            } else if (moodHappy.isChecked()) {
                 mood = moodHappy.getText().toString();
-            } else if (moodCry.isChecked()==true) {
+            } else if (moodCry.isChecked()) {
                 mood = moodCry.getText().toString();
-            } else if (moodIndifferent.isChecked()==true) {
+            } else if (moodIndifferent.isChecked()) {
                 mood = moodIndifferent.getText().toString();
             }
 
