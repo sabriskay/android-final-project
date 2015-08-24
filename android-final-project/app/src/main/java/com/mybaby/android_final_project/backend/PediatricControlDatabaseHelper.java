@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 
 public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
@@ -35,7 +36,9 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 
     private Context context;
     private static PediatricControlDatabaseHelper databaseInstance;
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+    public static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private Patient currentPatient = null;
+    
 
     public static PediatricControlDatabaseHelper getDatabaseInstance(Context context)
     {
@@ -96,25 +99,25 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
 		values.put("height", height);
 		values.put("head_circumference", head_circumference );
 		values.put("teeth_amount", teeth_amount);
-		values.put("notes", notes);
+		values.put("notes", notes.trim());
 		values.put("date_audit", new Date().getTime());
-		values.put("pediatrician", pediatrician);
-        values.put("mood", mood);
+		values.put("pediatrician", pediatrician.trim());
+        values.put("mood", mood.trim());
 
         long index = getWritableDatabase().insert(CONTROL_TABLE, null, values);
     	this.close();
         return index;
     }
     
-	public long insertPatient(Patient patient)
+	public long insertPatient(String name, Calendar birthDate, int id, String genre, int idBloodGroup)
 	{
         Log.d("Insert into Table: ", PATIENT_TABLE);
         ContentValues values = new ContentValues();
-        values.put("name", patient.getName());
-        values.put("id_blood_type", patient.getIdBloodGroup());
-        values.put("genre", patient.getGenre());
-        values.put("id", patient.getid());
-        values.put("birth_date", convertCalendarToString(patient.getBirthDate()));
+        values.put("name", name.trim());
+        values.put("id_blood_type", idBloodGroup);
+        values.put("genre", genre);
+        values.put("id", id);
+        values.put("birth_date", convertCalendarToString(birthDate));
         values.put("date_audit", new Date().getTime());
 
         long index = getWritableDatabase().insert(PATIENT_TABLE, null, values);
@@ -126,7 +129,7 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         Log.d("Update into Table: ", PATIENT_TABLE);
 
         ContentValues values = new ContentValues();
-        values.put("name", patient.getName());
+        values.put("name", patient.getName().trim());
         values.put("id_blood_type", patient.getIdBloodGroup());
         values.put("genre", patient.getGenre());
         values.put("id", patient.getid());
@@ -157,11 +160,11 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         return exist;
     }
 
-    public Patient getPatient(int id_patient) {
+    public Patient getPatient(/*int id_patient*/) {
         String SELECT_QUERY = "SELECT pac.name, pac.genre, pac.id, pac.birth_date, pac.id_patient , pac.id_blood_type "
                 +" FROM " + PATIENT_TABLE + " pac "
-                + " INNER JOIN " + BLOOD_TYPE_TABLE + " gs ON pac.id_blood_type = gs.id_blood_type "
-                + " WHERE pac.id_patient=" + id_patient;
+                + " INNER JOIN " + BLOOD_TYPE_TABLE + " gs ON pac.id_blood_type = gs.id_blood_type ";
+                //+ " WHERE pac.id_patient=" + id_patient;
 
         Patient data = null;
         Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
@@ -177,15 +180,28 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
         }
         this.close();
         return data;
-
     }
 
+    public Patient getCurrentPatient() {
+        return currentPatient;
+    }
+
+    public void setCurrentPatient(Patient currentPatient) {
+        this.currentPatient = currentPatient;
+    }
+
+
     public List<Control> getAllControl()
+    {
+        return getAllControl("desc");
+    }
+
+    public List<Control> getAllControl(String order)
     {
         List<Control> controlList = new ArrayList<Control>();
 
         String SELECT_QUERY = "SELECT control.*, pac.name FROM "+ CONTROL_TABLE +" control INNER JOIN "+ PATIENT_TABLE +" pac ON control.id_patient = pac.id_patient "
-                +" Order By control.date_control desc";
+                +" Order By control.date_control " + order;
         Cursor c = this.getReadableDatabase().rawQuery(SELECT_QUERY, null);
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext())
         {
@@ -285,18 +301,19 @@ public class PediatricControlDatabaseHelper extends SQLiteOpenHelper
     }
 
 
-    public Calendar convertStringToCalendar(String date){
-        Calendar cal = Calendar.getInstance();
+    public Calendar convertStringToCalendar(String date) {
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("America/Argentina/Cordoba"));
+        dateFormat.setTimeZone(TimeZone.getTimeZone("America/Argentina/Cordoba"));
         try {
-            cal.setTime(DATE_FORMAT.parse(date));
+            cal.setTime(dateFormat.parse(date));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return cal;
-	}
+    }
 
     public String convertCalendarToString(Calendar calendar) {
-        return DATE_FORMAT.format(calendar.getTime());
+        return dateFormat.format(calendar.getTime());
     }
 
 }

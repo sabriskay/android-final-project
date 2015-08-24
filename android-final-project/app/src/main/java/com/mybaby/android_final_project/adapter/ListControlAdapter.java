@@ -1,14 +1,21 @@
 package com.mybaby.android_final_project.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mybaby.android_final_project.R;
 import com.mybaby.android_final_project.backend.PediatricControlDatabaseHelper;
+import com.mybaby.android_final_project.dao.ControlDAO;
+import com.mybaby.android_final_project.dao.impl.ControlDAOImpl;
 import com.mybaby.android_final_project.model.Control;
 
 import java.util.ArrayList;
@@ -23,9 +30,12 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
     private Context context;
     private ArrayList<String> headerList;
     private HashMap<String, ArrayList<Control>> childList;
+    private Control control;
+    private List<Control> controlList;
 
     public ListControlAdapter(Context context, List<Control> controlList) {
         this.context = context;
+        this.controlList = controlList;
         buildAdapterLists(controlList);
     }
 
@@ -36,17 +46,20 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
 
         for (Control control: controlList) {
             String date = PediatricControlDatabaseHelper.getDatabaseInstance(context).convertCalendarToString(control.getDateControl());
-            headerList.add(date);
 
-            tempChildList = new ArrayList<>();
-            for (Control otherControl: controlList) {
-                String otherDate = PediatricControlDatabaseHelper.getDatabaseInstance(context).convertCalendarToString(otherControl.getDateControl());
-                if(otherDate.equals(date)) {
-                    tempChildList.add(otherControl);
+            if(!headerList.contains(date)) {
+                headerList.add(date);
+
+                tempChildList = new ArrayList<>();
+                for (Control otherControl: controlList) {
+                    String otherDate = PediatricControlDatabaseHelper.getDatabaseInstance(context).convertCalendarToString(otherControl.getDateControl());
+                    if(otherDate.equals(date)) {
+                        tempChildList.add(otherControl);
+                    }
                 }
-            }
 
-            childList.put(date, tempChildList);
+                childList.put(date, tempChildList);
+            }
         }
     }
 
@@ -102,8 +115,8 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        Control control = (Control) getChild(groupPosition, childPosition);
+    public View getChildView(final int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        this.control = (Control) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater inflaterInflater = (LayoutInflater) context
@@ -132,6 +145,15 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
         TextView notes = (TextView) convertView.findViewById(R.id.tv_notes_value);
         notes.setText(control.getNotes());
 
+        //delete
+        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Control contr = (Control) getChild(groupPosition, childPosition);
+                confirmDelete(contr.getIdControl());
+                return true;
+            }
+        });
         return convertView;
     }
 
@@ -139,4 +161,47 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
     }
+
+    public void removeChild(int idControl)
+    {
+
+        ControlDAO controlDaoImpl=  new ControlDAOImpl(context);
+        controlDaoImpl.deleteControl(idControl);
+        buildAdapterLists(controlDaoImpl.getAllControls());
+    }
+
+
+    private void confirmDelete(final int idControl) throws Resources.NotFoundException
+    {
+
+        new AlertDialog.Builder(context)
+                .setTitle("Confirm delete control item")
+                .setMessage("Do you confirm deletion?")
+                .setIcon(
+                        context.getResources().getDrawable(
+                                android.R.drawable.ic_dialog_alert))
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                //Do Something Here
+                                Toast.makeText(context, R.string.message_delete_control,Toast.LENGTH_SHORT).show();
+                                removeChild(idControl);
+                                notifyDataSetChanged();
+                            }
+                        })
+                .setNegativeButton("No",
+                        new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                Toast.makeText(context, R.string.message_cancel_delete,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }).show();
+    }
+
 }

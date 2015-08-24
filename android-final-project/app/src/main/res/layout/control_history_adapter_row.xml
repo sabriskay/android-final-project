@@ -48,7 +48,7 @@
             android:textSize="15sp"
             android:textStyle="bold"
             android:textColor="@color/textColorGreen"
-            android:text="@string/title_list_size"/>
+            android:text="@string/title_list_length"/>
 
         <TextView
             android:id="@+id/tv_size_value"

@@ -36,23 +36,23 @@
                 android:layout_toRightOf="@id/list_date"/>
 
             <TextView
-                android:id="@+id/list_size"
+                android:id="@+id/list_length"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10dp"
                 android:textStyle="bold"
-                android:text="@string/title_list_size"
+                android:text="@string/title_list_length"
                 android:layout_below="@id/list_date"
                 android:paddingRight="11dp"/>
 
             <TextView
-                android:id="@+id/last_size"
+                android:id="@+id/last_length"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10dp"
                 android:text="64 cm"
                 android:layout_below="@id/list_date"
-                android:layout_toRightOf="@id/list_size"/>
+                android:layout_toRightOf="@id/list_length"/>
 
             <TextView
                 android:id="@+id/list_weight"
@@ -61,7 +61,7 @@
                 android:textSize="10dp"
                 android:textStyle="bold"
                 android:text="@string/title_list_weight"
-                android:layout_below="@id/list_size"
+                android:layout_below="@id/list_length"
                 android:paddingRight="11dp"/>
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="10dp"
                 android:text="3.300 kg"
-                android:layout_below="@id/list_size"
+                android:layout_below="@id/list_length"
                 android:layout_toRightOf="@id/list_weight"/>
 
             <TextView
