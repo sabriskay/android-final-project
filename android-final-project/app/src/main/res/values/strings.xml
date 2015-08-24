@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Crescere!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_about">About</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_add_new_control">AddNewControlActivity</string>
     <string name="title_activity_progress">ProgressActivity</string>
@@ -10,19 +10,19 @@
     <!--main-->
     <string name="title_list_last_visit">Last control</string>
     <string name="title_list_date">Date:</string>
-    <string name="title_list_length">Length:</string>
-    <string name="title_list_weight">Weight:</string>
+    <string name="title_list_length">Length (cm):</string>
+    <string name="title_list_weight">Weight (kg):</string>
     <string name="title_list_note">Notes:</string>
 
     <string name="button_profile_text">Profile</string>
-    <string name="button_process_text">Process</string>
+    <string name="button_process_text">Progress</string>
     <string name="button_new_control_text">New Control</string>
     <string name="button_control_history_text">Controls</string>
 
     <!--NewControl-->
 
     <string name="title_new_control">New Control</string>
-    <string name="title_head_circumference">Head circum:</string>
+    <string name="title_head_circumference">Head circum (cm):</string>
     <string name="title_teeth">Teeth:</string>
     <string name="title_pediatric">Pediatrician:</string>
     <string name="title_mood">Mood:</string>
@@ -96,5 +96,21 @@
 
        <!-- Chart -->
     <string name="menu_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!-- Graph -->
+    <string name="title_progress">Baby Progress</string>
+    <string name="wight_progress">Weight Progress</string>
+    <string name="length_progress">Length Progress</string>
+    <string name="title_activity_about">AboutActivity</string>
+
+    <!-- About -->
+    <string name="title_about">About</string>
+    <string name="design_collaboration">Design collaborators:</string>
+    <string name="collaborators">Freepik, Lucia and Ariel</string>
+    <string name="developed_by">Developed by:</string>
+    <string name="developers">Paula García and Sabrina Sproviero</string>
+    <string name="copyright">© Copyright 2015 Crescere!</string>
+    <string name="copyright_add">All right reserved</string>
 
 </resources>

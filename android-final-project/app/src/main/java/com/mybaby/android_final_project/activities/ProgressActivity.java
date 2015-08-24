@@ -6,38 +6,22 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ExpandableListView;
+import android.view.View;
 
 import com.mybaby.android_final_project.R;
-import com.mybaby.android_final_project.adapter.ListControlAdapter;
-import com.mybaby.android_final_project.dao.impl.ControlDAOImpl;
 
-/**
- * Created by SabrinaKay on 08/08/2015.
- */
-public class ControlHistoryActivity extends Activity {
-    ExpandableListView myList;
-    ListControlAdapter listControlAdapter;
+public class ProgressActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_control_history);
-
-        myList = (ExpandableListView) findViewById(R.id.lv_control_history);
-
-        ControlDAOImpl controlDAOImpl = new ControlDAOImpl(this);
-
-        listControlAdapter = new ListControlAdapter(this, controlDAOImpl.getAllControls());
-
-        myList.setAdapter(listControlAdapter);
-
+        setContentView(R.layout.activity_progress);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_history_control, menu);
+        inflater.inflate(R.menu.menu_progress, menu);
         return true;
     }
 
@@ -53,4 +37,15 @@ public class ControlHistoryActivity extends Activity {
 
         return false;
     }
+
+    public void goToWightProgress(View v) {
+        Intent intent = new Intent(this, ProgressWeightForAgeChartActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToLengthProgress(View v) {
+        Intent intent = new Intent(this, ProgressLengthForAgeChartActivity.class);
+        startActivity(intent);
+    }
+
 }

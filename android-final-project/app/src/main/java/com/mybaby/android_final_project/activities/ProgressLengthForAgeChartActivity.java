@@ -27,7 +27,7 @@ public class ProgressLengthForAgeChartActivity extends ProgressChartActivity {
         super.onCreate(savedInstanceState);
         //setGender(getIntent().getStringExtra("gender"));
         setGender(GENDER);
-        patient = new Patient(1, "a1", PediatricControlDatabaseHelper.getDatabaseInstance(this).convertStringToCalendar("2015-01-01"), 12345678, "M", 1);
+        patient = PediatricControlDatabaseHelper.getDatabaseInstance(this).getCurrentPatient();
         setMeasureTableTitle(LENGTH);
         setBabyMeasures(getBabyAndControlData());
         decideStardardChart();

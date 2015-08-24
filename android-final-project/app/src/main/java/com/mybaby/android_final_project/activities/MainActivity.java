@@ -3,8 +3,8 @@ package com.mybaby.android_final_project.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,8 +18,6 @@ import com.mybaby.android_final_project.dao.ControlDAO;
 import com.mybaby.android_final_project.dao.impl.ControlDAOImpl;
 import com.mybaby.android_final_project.model.Control;
 import com.mybaby.android_final_project.model.Patient;
-
-import java.io.Serializable;
 
 /**
  * Created by SabrinaKay on 08/08/2015.
@@ -65,14 +63,13 @@ public class MainActivity extends Activity {
         if (lastControl != null) {
 
             TextView controlDate = (TextView) findViewById(R.id.last_date);
-            TextView controlSize = (TextView) findViewById(R.id.last_size);
+            TextView controlSize = (TextView) findViewById(R.id.last_length);
             TextView controlWeight = (TextView) findViewById(R.id.last_weight);
             TextView controlHeadC = (TextView) findViewById(R.id.last_head_circum);
             controlDate.setText(PediatricControlDatabaseHelper.getDatabaseInstance(this).convertCalendarToString(lastControl.getDateControl()));
-
             controlSize.setText(String.format("%.2f", lastControl.getHeight()) );
-            controlWeight.setText(String.format("%.2f",lastControl.getWeight()));
-            controlHeadC.setText(String.format("%.2f",lastControl.getHeadCircumference()) );
+            controlWeight.setText(String.format("%.2f", lastControl.getWeight()));
+            controlHeadC.setText(String.format("%.2f", lastControl.getHeadCircumference()) );
             controlNotes.setText(lastControl.getNotes());
         }
 
@@ -103,7 +100,7 @@ public class MainActivity extends Activity {
 
     public void goToViewProgress(View v) {
 
-        Intent intent = new Intent(this, ProgressWeightForAgeChartActivity.class);
+        Intent intent = new Intent(this, ProgressActivity.class);
         startActivity(intent);
     }
 
@@ -115,24 +112,22 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            case R.id.action_about:
+                Intent intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
+                return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
 

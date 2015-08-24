@@ -2,8 +2,10 @@ package com.mybaby.android_final_project.activities;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -38,24 +40,22 @@ public class AddNewControlActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_add_new_control, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_add_new_control, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        switch (item.getItemId()) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            case R.id.action_about:
+                Intent intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
+                return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
     private void initUI() {
@@ -124,13 +124,13 @@ public class AddNewControlActivity extends Activity {
 
             String mood = "";
 
-            if (moodAngry.isChecked()==true) {
+            if (moodAngry.isChecked()) {
                 mood = moodAngry.getText().toString();
-            } else if (moodHappy.isChecked()==true) {
+            } else if (moodHappy.isChecked()) {
                 mood = moodHappy.getText().toString();
-            } else if (moodCry.isChecked()==true) {
+            } else if (moodCry.isChecked()) {
                 mood = moodCry.getText().toString();
-            } else if (moodIndifferent.isChecked()==true) {
+            } else if (moodIndifferent.isChecked()) {
                 mood = moodIndifferent.getText().toString();
             }
 
