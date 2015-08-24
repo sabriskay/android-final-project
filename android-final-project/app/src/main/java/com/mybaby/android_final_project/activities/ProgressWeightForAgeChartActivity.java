@@ -18,15 +18,13 @@ import java.util.List;
 
 public class ProgressWeightForAgeChartActivity extends ProgressChartActivity {
 
-    public static final String GENDER = "M";
     public static final String WEIGHT = "Weight";
+    public static final String GENDER = "M";
     Patient patient = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  setGender(getIntent().getStringExtra("gender"));
-        setGender(GENDER);
         patient = PediatricControlDatabaseHelper.getDatabaseInstance(this).getCurrentPatient();
         setBabyMeasures(getBabyAndControlData());
         setMeasureTableTitle(WEIGHT);
@@ -35,7 +33,7 @@ public class ProgressWeightForAgeChartActivity extends ProgressChartActivity {
     }
 
     private void decideStardardChart() {
-        if (getGender().equals(GENDER)) {
+        if (GENDER.equals(patient.getGenre())) {
             setStandardChart(WeightForAgeInfantCharts.WEIGHT_FOR_AGE_INFANT_BOYS_REFERENCES);
         } else {
             setStandardChart(WeightForAgeInfantCharts.WEIGHT_FOR_AGE_INFANT_GIRLS_REFERENCES);

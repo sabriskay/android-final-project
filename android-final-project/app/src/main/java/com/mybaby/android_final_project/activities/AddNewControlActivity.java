@@ -162,7 +162,6 @@ public class AddNewControlActivity extends Activity {
                 controlSizeET.getText().length() > 0 &&
                 controlWeightET.getText().length() > 0 &&
                 controlHeadCircumET.getText().length() > 0 &&
-                controlNoteET.getText().length() > 0 &&
                 controlPediatricET.getText().length() > 0;
 
     }

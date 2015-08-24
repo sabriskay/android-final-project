@@ -25,7 +25,6 @@ public class ProgressChartActivity extends Activity {
     public static final int MONTHS = 24;
     public static final int FIRST_COLUMN = 0;
     private Double[] standardChart = null;
-    private String gender = null;
     private List<MeasurePerMonth> babyMeasures;
     private String measureTableTitle;
 
@@ -98,14 +97,6 @@ public class ProgressChartActivity extends Activity {
             viewsSeries.add(m.getMonth(), Utils.roundDouble(m.getMeasure(),2));
         }
         return viewsSeries;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public Double[] getStandardChart() {

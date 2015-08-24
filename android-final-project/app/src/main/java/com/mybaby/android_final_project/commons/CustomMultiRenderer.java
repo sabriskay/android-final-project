@@ -23,7 +23,7 @@ public class CustomMultiRenderer extends XYMultipleSeriesRenderer {
         this.setXAxisMin(0);
         this.setXAxisMax(24);
         this.setZoomEnabled(false);
-        this.setPanEnabled(false);
+        this.setPanEnabled(true);
         this.setShowLegend(false);
 
         //size

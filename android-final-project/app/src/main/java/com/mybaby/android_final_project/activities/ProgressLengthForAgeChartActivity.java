@@ -25,8 +25,6 @@ public class ProgressLengthForAgeChartActivity extends ProgressChartActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setGender(getIntent().getStringExtra("gender"));
-        setGender(GENDER);
         patient = PediatricControlDatabaseHelper.getDatabaseInstance(this).getCurrentPatient();
         setMeasureTableTitle(LENGTH);
         setBabyMeasures(getBabyAndControlData());
@@ -36,7 +34,7 @@ public class ProgressLengthForAgeChartActivity extends ProgressChartActivity {
 
     private void decideStardardChart() {
 
-        if (getGender().equals(GENDER)) {
+        if (GENDER.equals(patient.getGenre())) {
             setStandardChart(LengthForAgeInfantCharts.LENGTH_FOR_AGE_INFANT_BOYS_REFERENCES);
         } else {
             setStandardChart(LengthForAgeInfantCharts.LENGTH_FOR_AGE_INFANT_GIRLS_REFERENCES);
