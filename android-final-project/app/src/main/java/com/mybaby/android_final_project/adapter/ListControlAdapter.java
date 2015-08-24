@@ -149,6 +149,7 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
             public boolean onLongClick(View v) {
                 Control contr = (Control) getChild(groupPosition, childPosition);
                 confirmDelete(contr.getIdControl());
+                notifyDataSetChanged();
                 return true;
             }
         });
@@ -183,7 +184,7 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
                             public void onClick(DialogInterface dialog,
                                                 int which) {
                                 //Do Something Here
-                                Toast.makeText(context, "Deleted!" +idControl,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, R.string.message_delete_control,Toast.LENGTH_SHORT).show();
                                 removeChild(idControl);
                                 notifyDataSetChanged();
 
@@ -195,7 +196,7 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
                             @Override
                             public void onClick(DialogInterface dialog,
                                                 int which) {
-                                Toast.makeText(context, "Canceled!",
+                                Toast.makeText(context, R.string.message_cancel_delete,
                                         Toast.LENGTH_SHORT).show();
                             }
                         }).show();
