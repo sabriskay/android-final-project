@@ -32,6 +32,8 @@ public class ControlHistoryActivity extends Activity {
 
         myList.setAdapter(listControlAdapter);
 
+
+
     }
 
     @Override
@@ -52,5 +54,12 @@ public class ControlHistoryActivity extends Activity {
         }
 
         return false;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        listControlAdapter.notifyDataSetChanged();
     }
 }

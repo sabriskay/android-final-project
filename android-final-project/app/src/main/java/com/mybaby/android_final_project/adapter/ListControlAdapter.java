@@ -31,9 +31,11 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
     private ArrayList<String> headerList;
     private HashMap<String, ArrayList<Control>> childList;
     private Control control;
+    private List<Control> controlList;
 
     public ListControlAdapter(Context context, List<Control> controlList) {
         this.context = context;
+        this.controlList = controlList;
         buildAdapterLists(controlList);
     }
 
@@ -149,7 +151,6 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
             public boolean onLongClick(View v) {
                 Control contr = (Control) getChild(groupPosition, childPosition);
                 confirmDelete(contr.getIdControl());
-                notifyDataSetChanged();
                 return true;
             }
         });
@@ -166,11 +167,13 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
 
         ControlDAO controlDaoImpl=  new ControlDAOImpl(context);
         controlDaoImpl.deleteControl(idControl);
+        buildAdapterLists(controlDaoImpl.getAllControls());
     }
 
 
     private void confirmDelete(final int idControl) throws Resources.NotFoundException
     {
+
         new AlertDialog.Builder(context)
                 .setTitle("Confirm delete control item")
                 .setMessage("Do you confirm deletion?")
@@ -187,7 +190,6 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
                                 Toast.makeText(context, R.string.message_delete_control,Toast.LENGTH_SHORT).show();
                                 removeChild(idControl);
                                 notifyDataSetChanged();
-
                             }
                         })
                 .setNegativeButton("No",
