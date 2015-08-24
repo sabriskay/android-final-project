@@ -76,6 +76,9 @@
 
     <!--ControlHistory-->
     <string name="title_control_list">Control List</string>
+    <string name="message_delete_control">Deleted!</string>
+    <string name="message_cancel_delete">Canceled!</string>
+
 
     <!-- Profile -->
     <string name="title_profile">Baby Profile</string>

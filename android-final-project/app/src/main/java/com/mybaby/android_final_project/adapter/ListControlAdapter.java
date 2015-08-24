@@ -31,9 +31,11 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
     private ArrayList<String> headerList;
     private HashMap<String, ArrayList<Control>> childList;
     private Control control;
+    private List<Control> controlList;
 
     public ListControlAdapter(Context context, List<Control> controlList) {
         this.context = context;
+        this.controlList = controlList;
         buildAdapterLists(controlList);
     }
 
@@ -165,11 +167,13 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
 
         ControlDAO controlDaoImpl=  new ControlDAOImpl(context);
         controlDaoImpl.deleteControl(idControl);
+        buildAdapterLists(controlDaoImpl.getAllControls());
     }
 
 
     private void confirmDelete(final int idControl) throws Resources.NotFoundException
     {
+
         new AlertDialog.Builder(context)
                 .setTitle("Confirm delete control item")
                 .setMessage("Do you confirm deletion?")
@@ -183,10 +187,9 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
                             public void onClick(DialogInterface dialog,
                                                 int which) {
                                 //Do Something Here
-                                Toast.makeText(context, "Deleted!" +idControl,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, R.string.message_delete_control,Toast.LENGTH_SHORT).show();
                                 removeChild(idControl);
                                 notifyDataSetChanged();
-
                             }
                         })
                 .setNegativeButton("No",
@@ -195,7 +198,7 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
                             @Override
                             public void onClick(DialogInterface dialog,
                                                 int which) {
-                                Toast.makeText(context, "Canceled!",
+                                Toast.makeText(context, R.string.message_cancel_delete,
                                         Toast.LENGTH_SHORT).show();
                             }
                         }).show();
