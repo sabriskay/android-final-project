@@ -52,8 +52,8 @@ public class ProgressChartActivity extends Activity {
         }
 
         // Creating XYSeriesRenderer to customize visitsSeries
-        XYSeriesRenderer babyBoyRenderer = makeXYSeriesRenderer(Color.parseColor("#269983"), 8, multiRenderer.getVal());
-        multiRenderer.addSeriesRenderer(babyBoyRenderer);
+        XYSeriesRenderer babyValuesRenderer = makeXYSeriesRenderer(Color.parseColor("#269983"), 8, multiRenderer.getVal());
+        multiRenderer.addSeriesRenderer(babyValuesRenderer);
 
         // Getting a reference to LinearLayout of the MainActivity Layout
         LinearLayout chartContainer = (LinearLayout) findViewById(R.id.chart_container);
@@ -68,7 +68,7 @@ public class ProgressChartActivity extends Activity {
 
     @NonNull
     private XYSeriesRenderer makeXYSeriesRenderer(int color, int lineWidth, float val) {
-        // Creating XYSeriesRenderer to customize visitsSeries
+        // Creating XYSeriesRenderer to customize xySeries
         XYSeriesRenderer visitsRenderer = new XYSeriesRenderer();
         visitsRenderer.setColor(color);
         visitsRenderer.setPointStyle(PointStyle.CIRCLE);
