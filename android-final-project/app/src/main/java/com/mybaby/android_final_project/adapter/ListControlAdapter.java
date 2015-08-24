@@ -148,10 +148,6 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
             @Override
             public boolean onLongClick(View v) {
                 Control contr = (Control) getChild(groupPosition, childPosition);
-
-                Toast.makeText(context, "touched! id" +
-                                contr.getIdControl() +" ped."+contr.getPediatrician(),
-                        Toast.LENGTH_SHORT).show();
                 if (confirmDelete()) {
                     removeChild(contr.getIdControl());
                     Log.e("adapter", "size = " + getGroupCount());
@@ -173,7 +169,7 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
     {
 
         ControlDAO controlDaoImpl=  new ControlDAOImpl(context);
-        //controlDaoImpl.deleteControl(idControl);
+        controlDaoImpl.deleteControl(idControl);
     }
 
 
