@@ -200,7 +200,25 @@
             android:textSize="15sp"
             android:textColor="@color/textColorGreen"
             android:text="notes"/>
-
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/l_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/layout_notes"></LinearLayout>
+
+    <Button
+        android:id="@+id/del_item_button"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center"
+        android:onClick="buttonClicked"
+        android:background="@drawable/arrow"
+        android:layout_below="@+id/layout_mood"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:clickable="true" />
+
 
 </RelativeLayout>

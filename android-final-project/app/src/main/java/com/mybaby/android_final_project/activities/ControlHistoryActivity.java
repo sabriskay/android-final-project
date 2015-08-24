@@ -2,10 +2,12 @@ package com.mybaby.android_final_project.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ExpandableListView;
 
 import com.mybaby.android_final_project.R;
@@ -32,8 +34,6 @@ public class ControlHistoryActivity extends Activity {
 
         myList.setAdapter(listControlAdapter);
 
-
-
     }
 
     @Override
@@ -54,12 +54,5 @@ public class ControlHistoryActivity extends Activity {
         }
 
         return false;
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        listControlAdapter.notifyDataSetChanged();
     }
 }
