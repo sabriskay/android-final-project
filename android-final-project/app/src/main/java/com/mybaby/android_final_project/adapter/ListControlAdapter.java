@@ -146,7 +146,7 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
         notes.setText(control.getNotes());
         //select
         Button delBut= (Button)convertView.findViewById(R.id.del_item_button);
-        delBut.setOnClickListener(new View.OnClickListener() {
+            delBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Control contr = (Control) getChild(groupPosition, childPosition);
@@ -175,6 +175,7 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
     {
         ControlDAO controlDaoImpl=  new ControlDAOImpl(context);
         controlDaoImpl.deleteControl(idControl);
+        notifyDataSetChanged();
         buildAdapterLists(controlDaoImpl.getAllControls());
     }
 
