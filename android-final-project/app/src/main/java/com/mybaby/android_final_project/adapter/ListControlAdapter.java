@@ -4,11 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -144,6 +144,15 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
 
         TextView notes = (TextView) convertView.findViewById(R.id.tv_notes_value);
         notes.setText(control.getNotes());
+        //select
+        Button delBut= (Button)convertView.findViewById(R.id.del_item_button);
+        delBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Control contr = (Control) getChild(groupPosition, childPosition);
+                confirmDelete(contr.getIdControl());
+            }
+        });
 
         //delete
         convertView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -164,7 +173,6 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
 
     public void removeChild(int idControl)
     {
-
         ControlDAO controlDaoImpl=  new ControlDAOImpl(context);
         controlDaoImpl.deleteControl(idControl);
         buildAdapterLists(controlDaoImpl.getAllControls());
@@ -189,7 +197,6 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
                                 //Do Something Here
                                 Toast.makeText(context, R.string.message_delete_control,Toast.LENGTH_SHORT).show();
                                 removeChild(idControl);
-                                notifyDataSetChanged();
                             }
                         })
                 .setNegativeButton("No",
