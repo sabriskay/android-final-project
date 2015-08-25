@@ -183,7 +183,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/textColorGreen"
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:maxLength="50" />
 
     </LinearLayout>
 
@@ -268,6 +269,7 @@
         android:layout_below="@id/title_note"
         android:layout_above="@id/button_save"
         android:layout_centerHorizontal="true"
-        android:layout_margin="5sp" />
+        android:layout_margin="5sp"
+        android:maxLength="255" />
 
 </RelativeLayout>
