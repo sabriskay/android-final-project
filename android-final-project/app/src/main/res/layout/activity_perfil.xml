@@ -41,7 +41,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/textColorGreen"
             android:layout_weight="1"
-            android:capitalize="sentences" />
+            android:capitalize="sentences"
+            android:maxLength="50" />
 
     </LinearLayout>
 
@@ -96,7 +97,8 @@
             android:id="@+id/baby_id"
             android:textColor="@color/textColorGreen"
             android:layout_weight="1"
-            android:numeric="integer" />
+            android:numeric="integer"
+            android:maxLength="10" />
 
     </LinearLayout>
 
