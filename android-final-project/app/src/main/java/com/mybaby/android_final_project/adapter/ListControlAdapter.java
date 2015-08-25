@@ -197,7 +197,6 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
                                 //Do Something Here
                                 Toast.makeText(context, R.string.message_delete_control,Toast.LENGTH_SHORT).show();
                                 removeChild(idControl);
-                                notifyDataSetChanged();
                             }
                         })
                 .setNegativeButton("No",
