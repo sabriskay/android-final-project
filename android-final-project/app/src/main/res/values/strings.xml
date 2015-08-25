@@ -13,14 +13,12 @@
     <string name="title_list_length">Length (cm):</string>
     <string name="title_list_weight">Weight (kg):</string>
     <string name="title_list_note">Notes:</string>
-
     <string name="button_profile_text">Profile</string>
     <string name="button_process_text">Progress</string>
     <string name="button_new_control_text">New Control</string>
     <string name="button_control_history_text">Controls</string>
 
     <!--NewControl-->
-
     <string name="title_new_control">New Control</string>
     <string name="title_head_circumference">Head circum (cm):</string>
     <string name="title_teeth">Teeth:</string>
@@ -30,7 +28,6 @@
     <string name="mood_crybaby">Crybaby</string>
     <string name="mood_angry">Angry</string>
     <string name="mood_indifferent">Indifferent</string>
-
     <string name="button_save">Save</string>
 
     <string-array name="count_teeth">
@@ -79,7 +76,6 @@
     <string name="message_delete_control">Deleted!</string>
     <string name="message_cancel_delete">Canceled!</string>
 
-
     <!-- Profile -->
     <string name="title_profile">Baby Profile</string>
     <string name="baby_name">Full name:</string>
@@ -89,7 +85,6 @@
     <string name="birthday_date">Birthday Date:</string>
     <string name="blood_type">Blood Type:</string>
     <string name="gender">Gender:</string>
-
     <string name="message_add_patient">Baby added</string>
     <string name="message_edit_patient">Baby updated</string>
     

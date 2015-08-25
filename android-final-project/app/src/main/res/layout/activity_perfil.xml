@@ -113,8 +113,8 @@
             android:text="@string/blood_type"
             android:textStyle="bold"
             android:textColor="@color/textColorGreen"
-            android:layout_marginRight="20dp"
-            android:textSize="20sp" />
+            android:layout_marginRight="35dp"
+            android:textSize="20sp"/>
 
         <Spinner
             android:id="@+id/spinner_blood_type"
