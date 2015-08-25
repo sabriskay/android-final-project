@@ -105,7 +105,8 @@
     <!-- About -->
     <string name="title_about">About</string>
     <string name="design_collaboration">Design collaborators:</string>
-    <string name="collaborators">Freepik, Lucia and Ariel</string>
+    <string name="collaborators">Lucia and Ariel</string>
+    <string name="made_icons">Icon made by Freepik from www.flaticon.com </string>
     <string name="developed_by">Developed by:</string>
     <string name="developers">Paula García and Sabrina Sproviero</string>
     <string name="copyright">© Copyright 2015 Crescere!</string>

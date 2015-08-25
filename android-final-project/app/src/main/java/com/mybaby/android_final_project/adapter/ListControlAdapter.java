@@ -175,7 +175,6 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
     {
         ControlDAO controlDaoImpl=  new ControlDAOImpl(context);
         controlDaoImpl.deleteControl(idControl);
-        notifyDataSetChanged();
         buildAdapterLists(controlDaoImpl.getAllControls());
     }
 
@@ -198,6 +197,7 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
                                 //Do Something Here
                                 Toast.makeText(context, R.string.message_delete_control,Toast.LENGTH_SHORT).show();
                                 removeChild(idControl);
+                                notifyDataSetChanged();
                             }
                         })
                 .setNegativeButton("No",
@@ -210,6 +210,7 @@ public class ListControlAdapter extends BaseExpandableListAdapter {
                                         Toast.LENGTH_SHORT).show();
                             }
                         }).show();
+
     }
 
 }
